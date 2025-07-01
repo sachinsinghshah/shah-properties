@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shah Properties - Real Estate Website
+
+A modern Next.js-powered real estate website for Shah Properties, showcasing premium properties in Dehradun and Saharanpur.
+
+## Features
+
+- **Real Properties Showcase**: Displaying actual properties in prime locations like Kalyanpur, Shimla Bypass Road, Pondha, and more
+- **Location-Based Filtering**: Browse properties by specific localities
+- **Property Type Filtering**: Separate sections for residential plots, commercial properties, and agricultural lands
+- **Detailed Property Pages**: Complete information with property specs, descriptions, features, and agent contact details
+- **Mobile Responsive Design**: Optimized for all devices
+- **Indian-Specific Pricing**: Display of prices in lakhs and crores with ₹ symbol
+- **Square Yard & Square Feet Measurements**: Plot sizes shown in both Indian and international standards
+- **Price Per Square Yard**: Displayed for easy comparison between properties
+
+## Property Data Structure
+
+The site uses real property data from locations in Dehradun and Saharanpur, including:
+
+- Residential plots in Kalyanpur, Shimla Bypass Road, Pondha, and Dholas
+- Agricultural lands in Behat, Saharanpur
+
+Each property includes:
+- Title and address
+- Price and price per square yard
+- Area in square yards and square feet
+- High-quality images
+- Detailed descriptions and features
+- Agent contact information
+
+## Technology Stack
+
+- **Next.js**: For server-side rendering and optimized performance
+- **TypeScript**: For type safety and better developer experience
+- **Tailwind CSS**: For responsive and modern UI components
+- **React Icons**: For beautiful iconography throughout the site
 
 ## Getting Started
 
-First, run the development server:
-
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+3. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Future Enhancements
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Add search functionality
+- Implement user authentication for saved properties
+- Add a blog section with real estate tips
+- Create a property submission form for sellers
+- Integrate a payment gateway for booking properties
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## License
 
-## Learn More
+This project is proprietary and belongs to Shah Properties.
 
-To learn more about Next.js, take a look at the following resources:
+## Acknowledgments
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Property images sourced from Unsplash
+- Icons provided by React Icons
+- UI inspiration from modern real estate websites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Created by [Your Name]
