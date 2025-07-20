@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test - Shah Properties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .image-test {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-test img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🏠 Shah Properties - Image Test</h1>
+
+    <div class="image-test">
+        <h2>Property 1: Van Vihar Plot Images</h2>
+        <div class="status success">Testing images for Property 1...</div>
+
+        <h3>Main Image:</h3>
+        <img src="http://localhost:3000/images/properties/dehradun/kalyanpur/van-vihar-main.jpg" alt="Van Vihar Main"
+            onload="this.parentElement.innerHTML += '<div class=\'status success\'>✅ Main image loaded successfully!</div>'"
+            onerror="this.parentElement.innerHTML += '<div class=\'status error\'>❌ Main image failed to load</div>'">
+
+        <h3>Location Image:</h3>
+        <img src="http://localhost:3000/images/properties/dehradun/kalyanpur/van-vihar-location.jpg"
+            alt="Van Vihar Location"
+            onload="this.parentElement.innerHTML += '<div class=\'status success\'>✅ Location image loaded successfully!</div>'"
+            onerror="this.parentElement.innerHTML += '<div class=\'status error\'>❌ Location image failed to load</div>'">
+
+        <h3>Surroundings Image:</h3>
+        <img src="http://localhost:3000/images/properties/dehradun/kalyanpur/van-vihar-surroundings.jpg"
+            alt="Van Vihar Surroundings"
+            onload="this.parentElement.innerHTML += '<div class=\'status success\'>✅ Surroundings image loaded successfully!</div>'"
+            onerror="this.parentElement.innerHTML += '<div class=\'status error\'>❌ Surroundings image failed to load</div>'">
+    </div>
+
+    <div class="image-test">
+        <h2>Property 2: Kalyanpur Plot Images</h2>
+        <div class="status success">Testing images for Property 2...</div>
+
+        <h3>Main Image:</h3>
+        <img src="http://localhost:3000/images/properties/dehradun/kalyanpur/plot-main.jpg" alt="Kalyanpur Plot Main"
+            onload="this.parentElement.innerHTML += '<div class=\'status success\'>✅ Main image loaded successfully!</div>'"
+            onerror="this.parentElement.innerHTML += '<div class=\'status error\'>❌ Main image failed to load</div>'">
+
+        <h3>Location Image:</h3>
+        <img src="http://localhost:3000/images/properties/dehradun/kalyanpur/plot-location.jpg"
+            alt="Kalyanpur Plot Location"
+            onload="this.parentElement.innerHTML += '<div class=\'status success\'>✅ Location image loaded successfully!</div>'"
+            onerror="this.parentElement.innerHTML += '<div class=\'status error\'>❌ Location image failed to load</div>'">
+
+        <h3>Surroundings Image:</h3>
+        <img src="http://localhost:3000/images/properties/dehradun/kalyanpur/plot-surroundings.jpg"
+            alt="Kalyanpur Plot Surroundings"
+            onload="this.parentElement.innerHTML += '<div class=\'status success\'>✅ Surroundings image loaded successfully!</div>'"
+            onerror="this.parentElement.innerHTML += '<div class=\'status error\'>❌ Surroundings image failed to load</div>'">
+    </div>
+
+    <div class="image-test">
+        <h2>🔧 Troubleshooting Steps</h2>
+        <ol>
+            <li><strong>Check if images load above</strong> - If they do, the issue is with the Next.js app</li>
+            <li><strong>Hard refresh your browser</strong> - Press Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)</li>
+            <li><strong>Clear browser cache</strong> - Open Developer Tools → Application → Storage → Clear storage</li>
+            <li><strong>Check browser console</strong> - Look for any error messages</li>
+            <li><strong>Try incognito/private mode</strong> - This bypasses cache</li>
+        </ol>
+    </div>
+</body>
+
+</html>

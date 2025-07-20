@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaMapMarkerAlt,
   FaRulerCombined,
@@ -12,10 +13,11 @@ import {
   FaHeart,
   FaArrowLeft,
   FaCheckCircle,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { properties, getSimilarProperties } from "@/data/properties";
 import PropertyCard from "@/components/PropertyCard";
-import OptimizedImage from "@/components/OptimizedImage";
+import ImageGallery from "@/components/ImageGallery";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -123,53 +125,12 @@ export default async function PropertyDetailPage({ params }: Props) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
             {/* Main Content */}
-            <div className="lg:col-span-2">
+            <div className="xl:col-span-2">
               {/* Property Images */}
-              <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-                <div className="relative h-96">
-                  <OptimizedImage
-                    src={property.images[0]}
-                    alt={property.title}
-                    fill
-                    priority
-                    className="object-cover"
-                    placeholder="blur"
-                  />
-                  <div className="absolute top-4 right-4 flex space-x-2">
-                    <button className="bg-white/80 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors">
-                      <FaHeart className="text-red-500" />
-                    </button>
-                    <button className="bg-white/80 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors">
-                      <FaShare className="text-blue-800" />
-                    </button>
-                  </div>
-                  <div className="absolute bottom-4 left-4">
-                    <div className="bg-blue-800 text-white px-3 py-1 rounded-md font-medium">
-                      {property.type}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Image Gallery */}
-                {property.images.length > 1 && (
-                  <div className="grid grid-cols-3 gap-2 p-4">
-                    {property.images.slice(1, 4).map((image, index) => (
-                      <div
-                        key={index}
-                        className="relative h-24 rounded overflow-hidden"
-                      >
-                        <OptimizedImage
-                          src={image}
-                          alt={`${property.title} - Image ${index + 2}`}
-                          fill
-                          className="object-cover hover:scale-105 transition-transform cursor-pointer"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
+              <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+                <ImageGallery images={property.images} title={property.title} />
               </div>
 
               {/* Property Details */}
@@ -195,37 +156,37 @@ export default async function PropertyDetailPage({ params }: Props) {
                 </div>
 
                 {/* Key Details */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-                  <div className="text-center">
-                    <FaRulerCombined className="text-blue-800 text-2xl mx-auto mb-2" />
-                    <div className="font-semibold">Area</div>
-                    <div className="text-gray-600">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                  <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+                    <FaRulerCombined className="text-blue-600 text-3xl mx-auto mb-3" />
+                    <div className="font-bold text-gray-900 mb-1">Area</div>
+                    <div className="text-blue-600 font-semibold">
                       {property.area.value} {property.area.unit}
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-blue-800 text-2xl mx-auto mb-2">
+                  <div className="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-100">
+                    <div className="text-green-600 text-3xl mx-auto mb-3">
                       🏷️
                     </div>
-                    <div className="font-semibold">Category</div>
-                    <div className="text-gray-600 capitalize">
+                    <div className="font-bold text-gray-900 mb-1">Category</div>
+                    <div className="text-green-600 font-semibold capitalize">
                       {property.category}
                     </div>
                   </div>
-                  <div className="text-center">
-                    <FaCalendarAlt className="text-blue-800 text-2xl mx-auto mb-2" />
-                    <div className="font-semibold">Posted</div>
-                    <div className="text-gray-600">
+                  <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl border border-purple-100">
+                    <FaCalendarAlt className="text-purple-600 text-3xl mx-auto mb-3" />
+                    <div className="font-bold text-gray-900 mb-1">Posted</div>
+                    <div className="text-purple-600 font-semibold">
                       {new Date(property.postedDate).toLocaleDateString()}
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-blue-800 text-2xl mx-auto mb-2">
+                  <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border border-orange-100">
+                    <div className="text-orange-600 text-3xl mx-auto mb-3">
                       📍
                     </div>
-                    <div className="font-semibold">Status</div>
+                    <div className="font-bold text-gray-900 mb-1">Status</div>
                     <div
-                      className={`capitalize font-medium ${
+                      className={`capitalize font-semibold ${
                         property.status === "available"
                           ? "text-green-600"
                           : "text-red-600"
@@ -245,49 +206,65 @@ export default async function PropertyDetailPage({ params }: Props) {
                 </div>
 
                 {/* Features */}
-                <div className="mb-6">
-                  <h2 className="text-xl font-semibold mb-3">Features</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4 text-gray-900">
+                    Features
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {property.features.map((feature, index) => (
-                      <div key={index} className="flex items-center">
-                        <FaCheckCircle className="text-green-500 mr-2" />
-                        <span className="text-gray-700">{feature}</span>
+                      <div
+                        key={index}
+                        className="flex items-center p-3 bg-green-50 rounded-lg border border-green-100"
+                      >
+                        <FaCheckCircle className="text-green-600 mr-3 text-lg" />
+                        <span className="text-gray-800 font-medium">
+                          {feature}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Amenities */}
-                <div className="mb-6">
-                  <h2 className="text-xl font-semibold mb-3">Amenities</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4 text-gray-900">
+                    Amenities
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {property.amenities.map((amenity, index) => (
-                      <div key={index} className="flex items-center">
-                        <FaCheckCircle className="text-blue-500 mr-2" />
-                        <span className="text-gray-700">{amenity}</span>
+                      <div
+                        key={index}
+                        className="flex items-center p-3 bg-blue-50 rounded-lg border border-blue-100"
+                      >
+                        <FaCheckCircle className="text-blue-600 mr-3 text-lg" />
+                        <span className="text-gray-800 font-medium">
+                          {amenity}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Nearby Facilities */}
-                <div>
-                  <h2 className="text-xl font-semibold mb-3">
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4 text-gray-900">
                     Nearby Facilities
                   </h2>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {property.nearbyFacilities.map((facility, index) => (
                       <div
                         key={index}
-                        className="flex justify-between items-center p-3 bg-gray-50 rounded-lg"
+                        className="flex justify-between items-center p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200 hover:shadow-md transition-shadow"
                       >
                         <div>
-                          <span className="font-medium">{facility.name}</span>
+                          <span className="font-bold text-gray-900">
+                            {facility.name}
+                          </span>
                           <span className="text-gray-600 ml-2 capitalize">
                             ({facility.type})
                           </span>
                         </div>
-                        <span className="text-blue-800 font-medium">
+                        <span className="text-blue-600 font-bold">
                           {facility.distance}
                         </span>
                       </div>
@@ -298,38 +275,69 @@ export default async function PropertyDetailPage({ params }: Props) {
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="xl:col-span-1">
               {/* Contact Agent */}
-              <div className="bg-white rounded-lg shadow-md p-6 mb-8 sticky top-24">
-                <h3 className="text-xl font-semibold mb-4">Contact Agent</h3>
-                <div className="text-center mb-4">
-                  <div className="w-16 h-16 bg-blue-800 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-white font-bold text-xl">
-                      {property.agent.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </span>
+              <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl p-8 mb-8 sticky top-24 border border-gray-100">
+                <div className="text-center mb-8">
+                  <div className="relative">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl">
+                      <span className="text-white font-bold text-3xl">
+                        {property.agent.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </span>
+                    </div>
+                    <div className="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full flex items-center justify-center border-4 border-white">
+                      <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                    </div>
                   </div>
-                  <h4 className="font-semibold text-gray-900">
+                  <h3 className="font-bold text-2xl text-gray-900 mb-2">
                     {property.agent.name}
-                  </h4>
-                  <p className="text-gray-600">Real Estate Agent</p>
+                  </h3>
+                  <p className="text-blue-600 font-semibold text-lg mb-1">
+                    Real Estate Agent
+                  </p>
+                  <p className="text-gray-600 text-sm">Available Now</p>
                 </div>
 
-                <div className="space-y-3 mb-6">
+                {/* Agent Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600">15+</div>
+                    <div className="text-xs text-gray-600">
+                      Years Experience
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600">500+</div>
+                    <div className="text-xs text-gray-600">Properties Sold</div>
+                  </div>
+                </div>
+
+                {/* Contact Buttons */}
+                <div className="space-y-4 mb-8">
                   <a
                     href={`tel:${property.agent.phone}`}
-                    className="flex items-center justify-center bg-blue-800 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors"
+                    className="flex items-center justify-center bg-gradient-to-r from-green-600 to-green-700 text-white py-4 px-6 rounded-xl hover:from-green-700 hover:to-green-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
                   >
-                    <FaPhone className="mr-2" />
+                    <FaPhone className="mr-3 text-lg" />
                     Call Now
                   </a>
                   <a
-                    href={`mailto:${property.agent.email}`}
-                    className="flex items-center justify-center border border-blue-800 text-blue-800 py-3 px-4 rounded-md hover:bg-blue-50 transition-colors"
+                    href={`https://wa.me/91${property.agent.phone}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white py-4 px-6 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
                   >
-                    <FaEnvelope className="mr-2" />
+                    <FaWhatsapp className="mr-3 text-lg" />
+                    WhatsApp
+                  </a>
+                  <a
+                    href={`mailto:${property.agent.email}?subject=Inquiry about ${property.title}`}
+                    className="flex items-center justify-center border-2 border-blue-600 text-blue-600 py-4 px-6 rounded-xl hover:bg-blue-50 transition-all duration-200 font-semibold"
+                  >
+                    <FaEnvelope className="mr-3 text-lg" />
                     Send Email
                   </a>
                   {property.agent.facebook && (
@@ -337,22 +345,59 @@ export default async function PropertyDetailPage({ params }: Props) {
                       href={property.agent.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors"
+                      className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
                     >
-                      <FaFacebook className="mr-2" />
+                      <FaFacebook className="mr-3 text-lg" />
                       Facebook
                     </a>
                   )}
                 </div>
 
-                <div className="text-center">
-                  <div className="text-sm text-gray-600">
-                    <FaPhone className="inline mr-1" />
-                    {property.agent.phone}
+                {/* Contact Information */}
+                <div className="space-y-4 p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-600 font-medium">Phone:</span>
+                    <a
+                      href={`tel:${property.agent.phone}`}
+                      className="text-blue-600 font-bold hover:text-blue-800 transition-colors"
+                    >
+                      +91 {property.agent.phone}
+                    </a>
                   </div>
-                  <div className="text-sm text-gray-600">
-                    <FaEnvelope className="inline mr-1" />
-                    {property.agent.email}
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-600 font-medium">Email:</span>
+                    <a
+                      href={`mailto:${property.agent.email}`}
+                      className="text-blue-600 font-bold hover:text-blue-800 transition-colors text-sm"
+                    >
+                      {property.agent.email}
+                    </a>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-600 font-medium">
+                      Response Time:
+                    </span>
+                    <span className="text-green-600 font-bold">
+                      Within 1 hour
+                    </span>
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="mt-6 p-4 bg-yellow-50 rounded-xl border border-yellow-200">
+                  <h4 className="font-bold text-yellow-800 mb-2">
+                    Quick Actions
+                  </h4>
+                  <div className="space-y-2">
+                    <button className="w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors">
+                      📋 Schedule Property Viewing
+                    </button>
+                    <button className="w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors">
+                      💰 Get Price Negotiation
+                    </button>
+                    <button className="w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors">
+                      📄 Request Documents
+                    </button>
                   </div>
                 </div>
               </div>
@@ -361,11 +406,11 @@ export default async function PropertyDetailPage({ params }: Props) {
 
           {/* Similar Properties */}
           {similarProperties.length > 0 && (
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8">
+            <div className="mt-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
                 Similar Properties
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                 {similarProperties.map((property) => (
                   <PropertyCard key={property.id} property={property} />
                 ))}

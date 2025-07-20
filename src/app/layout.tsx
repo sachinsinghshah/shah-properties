@@ -94,7 +94,7 @@ export default function RootLayout({
                 "Premium real estate services in Dehradun and Saharanpur",
               url: "https://shahproperties.com",
               telephone: "+91-8383815279",
-              email: "info@shahproperties.com",
+              email: "shahproperties03@gmail.com",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Dehradun",
