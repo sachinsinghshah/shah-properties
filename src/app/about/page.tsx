@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FaAward, FaHandshake, FaHeart, FaBuilding } from "react-icons/fa";
-import OptimizedImage from "@/components/OptimizedImage";
+
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -61,11 +61,10 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
-                <OptimizedImage
+                <img
                   src="/images/image1.jpg"
                   alt="Shah Properties office"
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-contain bg-gray-100"
                 />
               </div>
             </div>
@@ -141,11 +140,10 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <div className="relative h-64 w-full">
-                  <OptimizedImage
+                  <img
                     src="/images/image2.jpg"
                     alt="Rajesh Shah"
-                    fill
-                    className="object-cover object-center"
+                    className="w-full h-full object-contain bg-gray-100"
                   />
                 </div>
                 <div className="p-4 text-center">
@@ -163,11 +161,10 @@ export default function AboutPage() {
 
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <div className="relative h-64 w-full">
-                  <OptimizedImage
+                  <img
                     src="/images/image3.jpg"
                     alt="Priya Sharma"
-                    fill
-                    className="object-cover object-center"
+                    className="w-full h-full object-contain bg-gray-100"
                   />
                 </div>
                 <div className="p-4 text-center">
@@ -185,11 +182,10 @@ export default function AboutPage() {
 
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <div className="relative h-64 w-full">
-                  <OptimizedImage
+                  <img
                     src="/images/image4.jpg"
                     alt="Amit Kapoor"
-                    fill
-                    className="object-cover object-center"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <div className="p-4 text-center">
@@ -207,11 +203,10 @@ export default function AboutPage() {
 
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <div className="relative h-64 w-full">
-                  <OptimizedImage
+                  <img
                     src="/images/image1.jpg"
                     alt="Meera Patel"
-                    fill
-                    className="object-cover object-center"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <div className="p-4 text-center">

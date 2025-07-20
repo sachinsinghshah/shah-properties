@@ -133,10 +133,10 @@ export default function Footer() {
               <li className="flex items-center">
                 <FaEnvelope className="mr-3 text-blue-400" />
                 <a
-                  href="mailto:info@shahproperties.com"
+                  href="mailto:shahproperties03@gmail.com"
                   className="text-gray-300 hover:text-white"
                 >
-                  info@shahproperties.com
+                  shahproperties03@gmail.com
                 </a>
               </li>
             </ul>

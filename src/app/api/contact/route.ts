@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ContactForm, ApiResponse } from "@/types";
+import {
+  sendEmail,
+  createContactFormEmailHTML,
+  createAutoReplyEmailHTML,
+  createAutoReplyText,
+} from "@/lib/email";
 
 export async function POST(request: NextRequest) {
   try {
@@ -42,34 +48,63 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // In a real implementation, you would:
-    // 1. Send email using a service like Nodemailer, SendGrid, or Resend
-    // 2. Save to database
-    // 3. Send confirmation email to user
+    // Send email to business
+    const businessEmailHTML = createContactFormEmailHTML({
+      name,
+      email,
+      phone,
+      subject,
+      message,
+    });
 
-    // For now, we'll simulate email sending
-    const emailData = {
-      to: "info@shahproperties.com",
+    const businessEmailData = {
+      to: process.env.CONTACT_EMAIL_TO || "shahproperties03@gmail.com",
       subject: `New Contact Form Submission: ${subject}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
-        <hr>
-        <p><em>Sent from Shah Properties website</em></p>
-      `,
+      html: businessEmailHTML,
     };
 
-    // TODO: Implement actual email sending service (Nodemailer, SendGrid, etc.)
-    // Example with Nodemailer:
-    // await transporter.sendMail(emailData);
+    // Send auto-reply to customer
+    const autoReplyHTML = createAutoReplyEmailHTML(name);
+    const autoReplyData = {
+      to: email,
+      subject: "We received your message - Shah Properties",
+      html: autoReplyHTML,
+    };
 
-    // For production, implement proper email service integration
-    // For now, data is validated and stored for follow-up
+    try {
+      // Send business notification email
+      await sendEmail(businessEmailData);
+
+      // Send auto-reply to customer (non-blocking)
+      // Temporarily disabled due to spam issues with Gmail SMTP
+      // TODO: Implement with professional email service like SendGrid
+      /*
+    try {
+      // Create plain text version for better deliverability
+      const autoReplyText = createAutoReplyText(name);
+      const autoReplyDataWithText = {
+        ...autoReplyData,
+        text: autoReplyText,
+      };
+
+      await sendEmail(autoReplyDataWithText);
+    } catch (autoReplyError) {
+      // Log auto-reply failure but don't fail the main request
+      if (process.env.NODE_ENV === "development") {
+        console.error("Auto-reply email failed:", autoReplyError);
+      }
+    }
+    */
+    } catch (emailError) {
+      // If email sending fails, log error but don't fail the request
+      // This ensures the user gets a response even if email service is down
+      if (process.env.NODE_ENV === "development") {
+        console.error("Business email failed:", emailError);
+      }
+
+      // In production, you might want to save to a queue for retry
+      // or store in database for manual follow-up
+    }
 
     // Return success response
     return NextResponse.json<ApiResponse<{ id: string }>>({

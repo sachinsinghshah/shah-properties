@@ -61,11 +61,15 @@ export const properties: Property[] = [
         type: "transport",
       },
     ],
-    images: ["/images/image1.jpg", "/images/image2.jpg", "/images/image3.jpg"],
+    images: [
+      "/images/properties/dehradun/kalyanpur/van-vihar-main.jpg",
+      "/images/properties/dehradun/kalyanpur/van-vihar-location.jpg",
+      "/images/properties/dehradun/kalyanpur/van-vihar-surroundings.jpg",
+    ],
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-10-15",
@@ -127,11 +131,15 @@ export const properties: Property[] = [
         type: "transport",
       },
     ],
-    images: ["/images/image2.jpg", "/images/image3.jpg", "/images/image4.jpg"],
+    images: [
+      "/images/properties/dehradun/kalyanpur/plot-main.jpg",
+      "/images/properties/dehradun/kalyanpur/plot-location.jpg",
+      "/images/properties/dehradun/kalyanpur/plot-surroundings.jpg",
+    ],
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-09-02",
@@ -139,12 +147,12 @@ export const properties: Property[] = [
   },
   {
     id: "3",
-    title: "100 Sq. Yards Residential Plot in Shimla Bypass Road, Dehradun",
+    title: "100 Sq. Yards Residential Plot in Kalyanpur, Dehradun",
     description:
       "Affordable residential plot in the high-potential area of Shimla Bypass Road, Dehradun. Perfect for first-time homebuyers or investors looking for properties with good appreciation prospects. The location is ideal with excellent connectivity to the city center while maintaining a peaceful environment. This is a great opportunity to own land in a rapidly developing area with consistent property value growth. The plot has all necessary approvals for residential construction.",
     price: 1050000, // 10.50 Lac
     pricePerSqYard: 10500,
-    location: "1 km inside from Shimla Bypass Road, Dehradun",
+    location: "Kalyanpur, Shimla Bypass Road, Dehradun",
     area: {
       value: 100,
       unit: "Sq. Yards",
@@ -193,11 +201,15 @@ export const properties: Property[] = [
         type: "transport",
       },
     ],
-    images: ["/images/image3.jpg", "/images/image1.jpg", "/images/image4.jpg"],
+    images: [
+      "/images/properties/dehradun/kalyanpur/van-vihar-main.jpg",
+      "/images/properties/dehradun/kalyanpur/van-vihar-location.jpg",
+      "/images/properties/dehradun/kalyanpur/van-vihar-surroundings.jpg",
+    ],
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-09-10",
@@ -263,7 +275,7 @@ export const properties: Property[] = [
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-07-25",
@@ -330,7 +342,7 @@ export const properties: Property[] = [
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-08-18",
@@ -396,7 +408,7 @@ export const properties: Property[] = [
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-06-30",
@@ -462,7 +474,7 @@ export const properties: Property[] = [
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-10-05",
@@ -528,7 +540,7 @@ export const properties: Property[] = [
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-09-20",
@@ -594,7 +606,7 @@ export const properties: Property[] = [
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-05-15",
@@ -660,7 +672,7 @@ export const properties: Property[] = [
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
-      email: "roshansingh@shahproperties.com",
+      email: "shahproperties03@gmail.com",
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-11-01",

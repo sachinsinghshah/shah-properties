@@ -41,7 +41,7 @@ function PropertiesPageContent() {
   // Apply filters when component mounts or filters change
   useEffect(() => {
     const timer = setTimeout(() => {
-      applyFilters();
+    applyFilters();
     }, 0);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -163,7 +163,7 @@ function PropertiesPageContent() {
       setCurrentPage(pageNumber);
       // Scroll to top when changing pages (only in browser)
       if (typeof window !== "undefined") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
   };
