@@ -1,18 +1,90 @@
 // Property data file for Shah Properties
-// Contains actual properties in Dehradun, Saharanpur and other areas
+// Contains actual properties in Dehradun and surrounding areas
 
 import { Property } from "@/types";
+
+// COMPLETELY FLEXIBLE area-based image mapping - supports ANY image names!
+// Just add your images with ANY names to the arrays below
+const areaImageMap: Record<string, string[]> = {
+  kalyanpur: [
+    "/images/properties/dehradun/kalyanpur/van-vihar-main.jpg",
+    "/images/properties/dehradun/kalyanpur/van-vihar-location.jpg",
+    "/images/properties/dehradun/kalyanpur/van-vihar-surroundings.jpg",
+    "/images/properties/dehradun/kalyanpur/plot-main.jpg",
+    "/images/properties/dehradun/kalyanpur/plot-location.jpg",
+    "/images/properties/dehradun/kalyanpur/plot-surroundings.jpg",
+    // Add more images with ANY names:
+    // "/images/properties/dehradun/kalyanpur/my-custom-photo.jpg",
+    // "/images/properties/dehradun/kalyanpur/beautiful-sunset.jpg",
+    // "/images/properties/dehradun/kalyanpur/drone-shot.jpg",
+  ],
+  pondha: [
+    // Add your real Pondha images with ANY names:
+    "/images/properties/dehradun/pondha/pondha_1.jpg",
+    "/images/properties/dehradun/pondha/pondha_2.jpg",
+    "/images/properties/dehradun/pondha/pondha_3.jpg",
+    "/images/properties/dehradun/pondha/pondha_4.jpg",
+    "/images/properties/dehradun/pondha/pondha_5.jpg",
+  ],
+
+  dholas: [
+    // Add your real Dholas images with ANY names:
+    "/images/properties/dehradun/dholas/dholas_1.jpg",
+    "/images/properties/dehradun/dholas/dholas_2.jpg",
+  ],
+};
+
+// Helper function to get area-based images - supports ANY image names
+function getAreaImages(location: string): string[] {
+  const locationLower = location.toLowerCase();
+
+  // Check for each area and return all available images
+  if (locationLower.includes("kalyanpur")) {
+    return areaImageMap["kalyanpur"];
+  } else if (locationLower.includes("pondha")) {
+    return areaImageMap["pondha"];
+  } else if (locationLower.includes("dholas")) {
+    return areaImageMap["dholas"];
+  }
+
+  // Fallback to generic images if no area match
+  return ["/images/image1.jpg", "/images/image2.jpg", "/images/image3.jpg"];
+}
+
+// Helper function to add images with ANY names to an area
+function addImagesToArea(areaKey: string, newImages: string[]): void {
+  if (areaImageMap[areaKey]) {
+    // Add new images to existing area (avoid duplicates)
+    const existingImages = new Set(areaImageMap[areaKey]);
+    newImages.forEach((img) => {
+      if (!existingImages.has(img)) {
+        areaImageMap[areaKey].push(img);
+      }
+    });
+  } else {
+    // Create new area with images
+    areaImageMap[areaKey] = newImages;
+  }
+}
+
+// Helper function to update area images (for easy management)
+function updateAreaImages(areaKey: string, images: string[]): void {
+  areaImageMap[areaKey] = images;
+}
+
+// Export the area image map for external access
+export { areaImageMap, addImagesToArea, updateAreaImages };
 
 // Real properties data based on the reference links
 export const properties: Property[] = [
   {
     id: "1",
-    title: "200 Sq. Yards Residential Plot in Van Vihar, Dehradun",
+    title: "200 Sq. Yards Residential Plot in Van Vihar, Kalyanpur",
     description:
-      "Prime residential plot located in the desirable area of Van Vihar, Shimla Bypass Road, Dehradun. This property offers a perfect opportunity for both end-users and investors. The plot is well-situated in a developed area with excellent connectivity to major landmarks in Dehradun. It features a rectangular shape with good frontage, making it ideal for custom home construction. The area is known for its serene environment, pleasant climate, and proximity to the Himalayan foothills.",
-    price: 9800000, // 98 Lac
-    pricePerSqYard: 49000,
-    location: "Kalyanpur, Shimla Bypass Road, Dehradun",
+      "Opportunity to get cheap plots near city in Dehradun! Located just 20 minutes drive from ISBT, these plots are in Kalyanpur near 4 lane Chandigarh Highway. Fair deal, mutation, and up to 90% bank loan facility available. Get higher returns than bank FD. Small and big plots available, contact quickly. No brokerage. Rate 10500/square yard.",
+    price: 2100000, // 21 Lac
+    pricePerSqYard: 10500,
+    location: "Kalyanpur, Van Vihar, Dehradun",
     area: {
       value: 200,
       unit: "Sq. Yards",
@@ -20,52 +92,59 @@ export const properties: Property[] = [
     type: "residential",
     category: "plot",
     features: [
-      "Prime Location",
-      "Rectangular Plot",
-      "Good Road Frontage",
-      "East Facing",
-      "Close to Main Road",
-      "Favorable Surroundings",
+      "Near 4 Lane Chandigarh Highway",
+      "20 Minutes from ISBT",
+      "Fair Deal with Mutation",
+      "Up to 90% Bank Loan Available",
+      "No Brokerage",
+      "Higher Returns than Bank FD",
     ],
     amenities: [
+      "Road Connectivity",
       "Electricity Connection",
-      "Water Supply",
-      "Sewage System",
-      "Street Lights",
-      "Gated Community",
+      "Water Supply Available",
+      "Clear Title",
+      "Bank Loan Facility",
     ],
     nearbyFacilities: [
       {
-        name: "Doon International School",
-        distance: "1.5 KM",
-        type: "school",
-      },
-      {
-        name: "Synergy Hospital",
-        distance: "2 KM",
-        type: "hospital",
-      },
-      {
-        name: "Pacific Mall",
-        distance: "3 KM",
-        type: "shopping",
-      },
-      {
-        name: "HDFC Bank",
+        name: "Hospitals",
         distance: "1 KM",
+        type: "healthcare",
+      },
+      {
+        name: "School",
+        distance: "2 KM",
+        type: "education",
+      },
+      {
+        name: "Bank",
+        distance: "3 KM",
         type: "bank",
       },
       {
-        name: "Bus Stop",
-        distance: "500 M",
+        name: "Railway Station",
+        distance: "4 KM",
+        type: "transport",
+      },
+      {
+        name: "Airport",
+        distance: "7 KM",
+        type: "transport",
+      },
+      {
+        name: "Shopping Mall",
+        distance: "8 KM",
+        type: "shopping",
+      },
+      {
+        name: "Metro Station",
+        distance: "9 KM",
         type: "transport",
       },
     ],
-    images: [
-      "/images/properties/dehradun/kalyanpur/van-vihar-main.jpg",
-      "/images/properties/dehradun/kalyanpur/van-vihar-location.jpg",
-      "/images/properties/dehradun/kalyanpur/van-vihar-surroundings.jpg",
-    ],
+    images: getAreaImages("Kalyanpur, Van Vihar, Dehradun"),
+    videoUrl: "https://youtu.be/RvOUMyv6Css?si=X9QMicUdf7X_B2ai",
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
@@ -77,14 +156,15 @@ export const properties: Property[] = [
   },
   {
     id: "2",
-    title: "150 Sq. Yards Residential Plot in Kalyanpur, Dehradun",
+    title:
+      "200 Sq. Yards Residential Plot For Sale In Shimla Bypass Road, Dehradun",
     description:
-      "Excellent investment opportunity in the rapidly developing area of Kalyanpur on Shimla Bypass Road, Dehradun. This plot is perfect for building a residential house or investing for future appreciation. The area is developing quickly with many new housing projects and amenities coming up. This MDDA approved plot has clear title and all necessary documentation for immediate registration and construction. The plot is situated in a peaceful area with scenic mountain views, offering a perfect balance of connectivity and tranquility.",
-    price: 5850000, // 58.5 Lac
-    pricePerSqYard: 39000,
-    location: "Kalyanpur, Shimla Bypass Road, Dehradun",
+      "👍👍👍👍 2100 square yard, negotiable 👍👍👍👍 800 yard plot is available for sale on Shimla bypass road which is 500 meters from the highway. Anyone who wants even 80-90 yards can get it. 90% loan is available. It is a clean place, on one side there is a lush green forest which is situated at a height. The plot is situated at a high place from where a magnificent view of Dehradun and Mussoorie is visible. Underground tubewell line is laid for irrigation. Those who are thinking of buying land by collecting money, change your thinking. It would be better to take a loan. Build your own house instead of renting and pay EMI. Clear, land with mutation. Approach Road 50/20/25/30 feet.",
+    price: 2100000, // 21 Lac
+    pricePerSqYard: 10500,
+    location: "Kalyanpur, Van Vihar, Dehradun",
     area: {
-      value: 150,
+      value: 200,
       unit: "Sq. Yards",
     },
     type: "residential",
@@ -131,11 +211,8 @@ export const properties: Property[] = [
         type: "transport",
       },
     ],
-    images: [
-      "/images/properties/dehradun/kalyanpur/plot-main.jpg",
-      "/images/properties/dehradun/kalyanpur/plot-location.jpg",
-      "/images/properties/dehradun/kalyanpur/plot-surroundings.jpg",
-    ],
+    images: getAreaImages("Kalyanpur, Van Vihar, Dehradun"),
+    videoUrl: "https://youtu.be/RvOUMyv6Css?si=X9QMicUdf7X_B2ai",
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
@@ -147,12 +224,13 @@ export const properties: Property[] = [
   },
   {
     id: "3",
-    title: "100 Sq. Yards Residential Plot in Kalyanpur, Dehradun",
+    title:
+      "100 Sq. Yards Residential Plot For Sale In Shimla Bypass Road Shimla Bypass Road, Dehradun",
     description:
-      "Affordable residential plot in the high-potential area of Shimla Bypass Road, Dehradun. Perfect for first-time homebuyers or investors looking for properties with good appreciation prospects. The location is ideal with excellent connectivity to the city center while maintaining a peaceful environment. This is a great opportunity to own land in a rapidly developing area with consistent property value growth. The plot has all necessary approvals for residential construction.",
+      "100 square yard plot for sale at Shimla bypass road dehradun. For more information Kindly contact 7518215007.",
     price: 1050000, // 10.50 Lac
     pricePerSqYard: 10500,
-    location: "Kalyanpur, Shimla Bypass Road, Dehradun",
+    location: "Kalyanpur, Van Vihar, Dehradun",
     area: {
       value: 100,
       unit: "Sq. Yards",
@@ -160,52 +238,64 @@ export const properties: Property[] = [
     type: "residential",
     category: "plot",
     features: [
+      "Shimla Bypass Road Location",
       "Affordably Priced",
-      "Growing Neighborhood",
-      "All necessary approvals",
       "Ready for Construction",
-      "Good Road Connectivity",
-      "High Appreciation Area",
+      "Good Connectivity",
+      "Clear Title",
+      "Investment Opportunity",
     ],
     amenities: [
-      "Water Supply",
+      "Road Access",
       "Electricity Connection",
-      "Proper Drainage System",
-      "Road Infrastructure",
-      "Street Lights",
+      "Water Supply Available",
+      "Clear Documentation",
+      "Immediate Possession",
     ],
     nearbyFacilities: [
       {
-        name: "DPS School",
-        distance: "2.5 KM",
-        type: "school",
+        name: "Hospital",
+        distance: "3 KM",
+        type: "healthcare",
       },
       {
-        name: "Max Hospital",
-        distance: "3.0 KM",
-        type: "hospital",
+        name: "School",
+        distance: "3 KM",
+        type: "education",
       },
       {
-        name: "Shopping Complex",
-        distance: "1.8 KM",
-        type: "shopping",
-      },
-      {
-        name: "SBI Bank",
-        distance: "2.0 KM",
+        name: "Bank",
+        distance: "3 KM",
         type: "bank",
       },
       {
-        name: "Public Transport",
-        distance: "1.2 KM",
+        name: "Bus Stop",
+        distance: "1 KM",
+        type: "transport",
+      },
+      {
+        name: "Airport",
+        distance: "45 KM",
+        type: "transport",
+      },
+      {
+        name: "Atm",
+        distance: "3 KM",
+        type: "bank",
+      },
+      {
+        name: "Shopping Mall",
+        distance: "3 KM",
+        type: "shopping",
+      },
+      {
+        name: "Railway",
+        distance: "23 KM",
         type: "transport",
       },
     ],
-    images: [
-      "/images/properties/dehradun/kalyanpur/van-vihar-main.jpg",
-      "/images/properties/dehradun/kalyanpur/van-vihar-location.jpg",
-      "/images/properties/dehradun/kalyanpur/van-vihar-surroundings.jpg",
-    ],
+    images: getAreaImages("Kalyanpur, Van Vihar, Dehradun"),
+    videoUrl: "https://youtu.be/RvOUMyv6Css?si=X9QMicUdf7X_B2ai",
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
@@ -216,79 +306,13 @@ export const properties: Property[] = [
     status: "available",
   },
   {
-    id: "4",
-    title: "200 Sq. Yards Residential Plot in Vikas Nagar, Dehradun",
-    description:
-      "Excellent residential and investment plot in the upcoming area of Vikas Nagar, Dehradun. This property offers significant growth potential as the area develops. It's an ideal choice for both end-users looking to build their home and investors seeking capital appreciation. The plot is rectangular with good frontage and depth, making it perfect for custom home construction. Development is rapidly progressing in this area, which is expected to substantially increase property values in the near future.",
-    price: 2200000, // 22 Lac
-    pricePerSqYard: 11000,
-    location: "Vikas Nagar, Near Shimla Bypass, Dehradun",
-    area: {
-      value: 200,
-      unit: "Sq. Yards",
-    },
-    type: "residential",
-    category: "plot",
-    features: [
-      "Investment Opportunity",
-      "Fast Developing Area",
-      "Rectangular Plot Shape",
-      "Clear Title Property",
-      "Proper Documentation",
-      "Immediate Possession",
-    ],
-    amenities: [
-      "Electricity Connection",
-      "Water Supply",
-      "Road Connectivity",
-      "Sewage System",
-      "Community Development",
-    ],
-    nearbyFacilities: [
-      {
-        name: "Kendriya Vidyalaya",
-        distance: "3.0 KM",
-        type: "school",
-      },
-      {
-        name: "Doon Hospital",
-        distance: "4.5 KM",
-        type: "hospital",
-      },
-      {
-        name: "Crossroads Mall",
-        distance: "3.2 KM",
-        type: "shopping",
-      },
-      {
-        name: "Punjab National Bank",
-        distance: "2.8 KM",
-        type: "bank",
-      },
-      {
-        name: "City Bus Stand",
-        distance: "2.0 KM",
-        type: "transport",
-      },
-    ],
-    images: ["/images/image4.jpg", "/images/image2.jpg", "/images/image1.jpg"],
-    agent: {
-      name: "Roshan Singh Shah",
-      phone: "8383815279",
-      email: "shahproperties03@gmail.com",
-      facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
-    },
-    postedDate: "2023-07-25",
-    status: "available",
-  },
-  {
     id: "5",
-    title: "150 Sq. Yards Residential Plot in Pondha, Dehradun",
+    title: "Residential Plot For Sale In Pondha, Dehradun (150 Sq. Yards)",
     description:
-      "Premium residential plot in the sought-after locality of Pondha, Dehradun. This MDDA-approved plot is part of a gated residential community with excellent infrastructure. Perfect for building your dream home with all modern amenities. The plot is situated in a well-planned residential society with wide internal roads, parks, and community spaces. Security features include boundary walls, gates, and regular security patrol ensuring a safe living environment for families. The area is known for its rapid development and excellent property appreciation.",
+      "Premium MDDA approved residential plot in the prestigious Laxmi Garden society, Pondha, Dehradun. This 150 square yard plot is strategically located on Gurkul road with excellent connectivity and infrastructure. Perfect for building your dream home in a well-planned residential society. The area is known for its proximity to educational institutions, hospitals, and commercial centers. New MDDA Approved plots coming soon in Dehradun - contact us to book your perfect size and facing plots in this prime Dehradun society.",
     price: 5400000, // 54 Lac
     pricePerSqYard: 36000,
-    location: "MDDA Approved Colony, Pondha, Dehradun",
+    location: "Gurkul Road, Pondha, Dehradun",
     area: {
       value: 150,
       unit: "Sq. Yards",
@@ -297,48 +321,54 @@ export const properties: Property[] = [
     category: "plot",
     features: [
       "MDDA Approved",
-      "Gated Community",
-      "Premium Location",
-      "Well-developed Area",
-      "Higher Education Institutions Nearby",
-      "Strategic Investment Location",
+      "Laxmi Garden Society",
+      "Gurkul Road Location",
+      "Premium Plot",
+      "New Property",
+      "Immediate Possession",
     ],
     amenities: [
-      "24/7 Security",
-      "Underground Electricity",
+      "Electricity Available",
       "Water Supply",
-      "Landscaped Gardens",
-      "Children's Park",
-      "Community Center",
+      "Proper Drainage",
+      "Wide Roads",
+      "Society Infrastructure",
+      "Security Provisions",
     ],
     nearbyFacilities: [
       {
-        name: "Graphic Era University",
-        distance: "1.5 KM",
-        type: "education",
-      },
-      {
-        name: "CMI Hospital",
-        distance: "2.0 KM",
+        name: "Hospitals",
+        distance: "1 KM",
         type: "hospital",
       },
       {
-        name: "Pacific Mall",
-        distance: "2.5 KM",
-        type: "shopping",
+        name: "School",
+        distance: "2 KM",
+        type: "school",
       },
       {
-        name: "ICICI Bank",
-        distance: "1.0 KM",
+        name: "Bank",
+        distance: "3 KM",
         type: "bank",
       },
       {
-        name: "Bus Stand",
-        distance: "1.8 KM",
+        name: "ATM",
+        distance: "5 KM",
+        type: "bank",
+      },
+      {
+        name: "Bus Stop",
+        distance: "6 KM",
         type: "transport",
       },
+      {
+        name: "Shopping Mall",
+        distance: "8 KM",
+        type: "shopping",
+      },
     ],
-    images: ["/images/image1.jpg", "/images/image3.jpg", "/images/image2.jpg"],
+    images: getAreaImages("Gurkul Road, Pondha, Dehradun"),
+    videoUrl: "https://youtu.be/m4p9OR2Hn6Q?si=vZ4BLDZBHU3PVONl",
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
@@ -350,61 +380,79 @@ export const properties: Property[] = [
   },
   {
     id: "6",
-    title: "120 Sq. Yards Residential Plot in Pondha, Dehradun",
+    title:
+      "RERA Approved Gated Society Plots For Sale In Pondha, Dehradun (180 Sq. Yards)",
     description:
-      "Well-located residential plot in the expanding area of Pondha, Dehradun. This is an excellent opportunity for small families or young professionals looking to build their first home. The plot is part of a developing residential area with all basic amenities and infrastructure in place. It offers good connectivity to educational institutions, healthcare facilities, and commercial areas. The plot has proper documentation and is ready for immediate registration and construction.",
-    price: 2880000, // 28.80 Lac
-    pricePerSqYard: 24000,
-    location: "Pondha, Dehradun",
+      "RERA and MDDA Approved gated society plots are available for sale at Dehradun. This premium 180 square yard residential plot is located in the prestigious Vishnu Garden society on Gurkul road, Pondha, Dehradun. The plot features excellent facilities including 30 feet cemented road, electricity availability, running water tap, STP and STP chamber, bank loan facility, and no brokerage. Price starts from 33000 per square yard onwards. Contact us for more details and site visit.",
+    price: 6000000, // 60 Lac
+    pricePerSqYard: 33333,
+    location: "Gurkul Road, Pondha, Dehradun",
     area: {
-      value: 120,
+      value: 180,
       unit: "Sq. Yards",
     },
     type: "residential",
     category: "plot",
     features: [
-      "Good Connectivity",
-      "Growing Locality",
-      "Educational Hub Nearby",
-      "Clear Title",
-      "Bank Loan Available",
-      "Approved for Construction",
+      "RERA Approved",
+      "MDDA Approved",
+      "Gated Society",
+      "Vishnu Garden Society",
+      "No Brokerage",
+      "Bank Loan Facility",
     ],
     amenities: [
-      "Electricity Connection",
-      "Water Supply",
-      "Sewage System",
-      "Internal Roads",
-      "Street Lighting",
+      "30 Feet Cemented Road",
+      "Electricity Available",
+      "Running Water Tap",
+      "STP and STP Chamber",
+      "Geet lakh lira Water Storage Tank",
+      "Security Features",
     ],
     nearbyFacilities: [
       {
-        name: "DIT University",
-        distance: "2.0 KM",
-        type: "education",
-      },
-      {
-        name: "Doon Medical College",
-        distance: "3.5 KM",
+        name: "Hospital",
+        distance: "1 KM",
         type: "hospital",
       },
       {
-        name: "Local Market",
-        distance: "1.0 KM",
+        name: "School",
+        distance: "5 KM",
+        type: "school",
+      },
+      {
+        name: "Bank",
+        distance: "1 KM",
+        type: "bank",
+      },
+      {
+        name: "Airport",
+        distance: "30 KM",
+        type: "transport",
+      },
+      {
+        name: "Railway",
+        distance: "15 KM",
+        type: "transport",
+      },
+      {
+        name: "Shopping Mall",
+        distance: "1 KM",
         type: "shopping",
       },
       {
-        name: "Axis Bank",
-        distance: "1.5 KM",
+        name: "ATM",
+        distance: "1 KM",
         type: "bank",
       },
       {
         name: "Bus Stop",
-        distance: "500 M",
+        distance: "5 KM",
         type: "transport",
       },
     ],
-    images: ["/images/image2.jpg", "/images/image4.jpg", "/images/image3.jpg"],
+    images: getAreaImages("Gurkul Road, Pondha, Dehradun"),
+    videoUrl: "https://youtu.be/m4p9OR2Hn6Q?si=vZ4BLDZBHU3PVONl",
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
@@ -412,204 +460,6 @@ export const properties: Property[] = [
       facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
     },
     postedDate: "2023-06-30",
-    status: "available",
-  },
-  {
-    id: "7",
-    title: "5 Acre Agricultural Land in Badshahi Bagh, Saharanpur",
-    description:
-      "Premium agricultural land located in the fertile region of Badshahi Bagh in Saharanpur district. This agricultural land is ideal for farming with rich soil quality and excellent irrigation facilities. The land is suitable for various types of crops including wheat, rice, sugarcane, and vegetables. It has access to canal irrigation and features a tubewell for consistent water supply. Located in the productive Gangetic plain, this land offers excellent agricultural yield potential as well as long-term investment value.",
-    price: 10000000, // 1 Crore
-    pricePerSqYard: 411, // Price per sq yard calculated from 5 acres
-    location: "Badshahi Bagh, Behat, Saharanpur",
-    area: {
-      value: 5,
-      unit: "Acre",
-    },
-    type: "agricultural",
-    category: "farmland",
-    features: [
-      "Fertile Soil",
-      "Canal Irrigation Access",
-      "Tubewell",
-      "Road Accessibility",
-      "Clear Title",
-      "High Yield Potential",
-    ],
-    amenities: [
-      "Irrigation System",
-      "Farm Track Access",
-      "Electricity Connection",
-      "Water Storage Facility",
-      "Farmhouse Area",
-    ],
-    nearbyFacilities: [
-      {
-        name: "Local Village Market",
-        distance: "2.0 KM",
-        type: "market",
-      },
-      {
-        name: "Primary Health Center",
-        distance: "3.5 KM",
-        type: "healthcare",
-      },
-      {
-        name: "Agricultural Supply Store",
-        distance: "4.0 KM",
-        type: "retail",
-      },
-      {
-        name: "Cooperative Bank",
-        distance: "3.0 KM",
-        type: "bank",
-      },
-      {
-        name: "Bus Stop",
-        distance: "1.5 KM",
-        type: "transport",
-      },
-    ],
-    images: ["/images/image3.jpg", "/images/image2.jpg", "/images/image4.jpg"],
-    agent: {
-      name: "Roshan Singh Shah",
-      phone: "8383815279",
-      email: "shahproperties03@gmail.com",
-      facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
-    },
-    postedDate: "2023-10-05",
-    status: "available",
-  },
-  {
-    id: "8",
-    title: "3 Acre Agricultural Land in Badshahi Bagh, Saharanpur",
-    description:
-      "Well-located agricultural land in the fertile area of Badshahi Bagh, Saharanpur. This 3-acre parcel is perfect for agricultural use or farmhouse development. The land is level with excellent soil quality suitable for various crops. It has good road connectivity and is located close to nearby villages for labor availability. The property features natural water sources and can be developed with additional irrigation systems. This is an excellent investment opportunity in a region known for its agricultural productivity.",
-    price: 6000000, // 60 Lac
-    pricePerSqYard: 411, // Price per sq yard calculated from 3 acres
-    location: "Badshahi Bagh, Behat, Saharanpur",
-    area: {
-      value: 3,
-      unit: "Acre",
-    },
-    type: "agricultural",
-    category: "farmland",
-    features: [
-      "Level Land",
-      "Good Soil Quality",
-      "Accessible Location",
-      "Natural Water Source",
-      "Clear Title Documents",
-      "Multiple Crop Potential",
-    ],
-    amenities: [
-      "Road Access",
-      "Electricity Nearby",
-      "Water Source",
-      "Labor Availability",
-      "Farm Tools Storage",
-    ],
-    nearbyFacilities: [
-      {
-        name: "Village Market",
-        distance: "1.5 KM",
-        type: "market",
-      },
-      {
-        name: "Government Hospital",
-        distance: "5.0 KM",
-        type: "healthcare",
-      },
-      {
-        name: "Agricultural Center",
-        distance: "3.5 KM",
-        type: "retail",
-      },
-      {
-        name: "Rural Bank",
-        distance: "2.5 KM",
-        type: "bank",
-      },
-      {
-        name: "Main Road",
-        distance: "500 M",
-        type: "transport",
-      },
-    ],
-    images: ["/images/image4.jpg", "/images/image1.jpg", "/images/image3.jpg"],
-    agent: {
-      name: "Roshan Singh Shah",
-      phone: "8383815279",
-      email: "shahproperties03@gmail.com",
-      facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
-    },
-    postedDate: "2023-09-20",
-    status: "available",
-  },
-  {
-    id: "9",
-    title: "125 Sq. Yards Residential Plot in Behat, Saharanpur",
-    description:
-      "Affordable residential plot in the developing area of Behat, Saharanpur. This property is ideal for those looking to build a home in a peaceful environment away from the city noise but with good connectivity. The plot is part of a new residential development with proper planning and infrastructure. It offers excellent value for money with significant appreciation potential as the area develops. All necessary approvals for residential construction are in place.",
-    price: 1500000, // 15 Lac
-    pricePerSqYard: 12000,
-    location: "Behat, Saharanpur",
-    area: {
-      value: 125,
-      unit: "Sq. Yards",
-    },
-    type: "residential",
-    category: "plot",
-    features: [
-      "Budget Friendly",
-      "Developing Area",
-      "Good Frontage",
-      "Rectangular Plot",
-      "Clear Papers",
-      "Ready for Construction",
-    ],
-    amenities: [
-      "Electricity Connection",
-      "Water Supply",
-      "Road Access",
-      "Drainage System",
-      "Street Lights",
-    ],
-    nearbyFacilities: [
-      {
-        name: "Government School",
-        distance: "1.0 KM",
-        type: "education",
-      },
-      {
-        name: "Community Health Center",
-        distance: "2.0 KM",
-        type: "healthcare",
-      },
-      {
-        name: "Local Market",
-        distance: "1.5 KM",
-        type: "shopping",
-      },
-      {
-        name: "Rural Bank",
-        distance: "2.5 KM",
-        type: "bank",
-      },
-      {
-        name: "Bus Stop",
-        distance: "800 M",
-        type: "transport",
-      },
-    ],
-    images: ["/images/image1.jpg", "/images/image2.jpg", "/images/image4.jpg"],
-    agent: {
-      name: "Roshan Singh Shah",
-      phone: "8383815279",
-      email: "shahproperties03@gmail.com",
-      facebook: "https://www.facebook.com/share/1AnqEc5BRA/",
-    },
-    postedDate: "2023-05-15",
     status: "available",
   },
   {
@@ -668,7 +518,7 @@ export const properties: Property[] = [
         type: "transport",
       },
     ],
-    images: ["/images/image2.jpg", "/images/image3.jpg", "/images/image1.jpg"],
+    images: getAreaImages("Dholas, Dehradun"),
     agent: {
       name: "Roshan Singh Shah",
       phone: "8383815279",
@@ -736,52 +586,7 @@ export const propertyDetails = {
     ],
   },
 
-  // More detailed property information for additional properties
-  "7": {
-    id: "7",
-    title: "Agricultural Farm Land in Behat",
-    address: "Behat, Saharanpur, Uttar Pradesh",
-    price: 16000000,
-    bedrooms: 0,
-    bathrooms: 0,
-    squareFeet: 108900,
-    squareYards: 12100,
-    pricePerSquareYard: 1322,
-    imageUrl:
-      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    propertyType: "agricultural",
-    location: "Behat, Saharanpur",
-    description:
-      "This expansive agricultural land in Behat, Saharanpur offers exceptional value for farming and agricultural investment. With over 12,100 square yards (2.5 acres) of fertile soil, this property is ideal for various crops and agricultural activities. The land has good irrigation facilities with access to water sources. Located in a peaceful rural setting with good connectivity to nearby markets, this agricultural land represents an excellent investment opportunity for those looking to expand their agricultural portfolio.",
-    features: [
-      "12,100 square yards (2.5 acres) of fertile land",
-      "Suitable for multiple crop cultivation",
-      "Flat terrain with good soil quality",
-      "Good irrigation facilities",
-      "Access to water sources",
-      "Clear title documentation",
-      "Road accessibility",
-      "Peaceful rural location",
-      "Electricity connection available nearby",
-      "Potential for agricultural development",
-    ],
-    agent: {
-      name: "Vikas Singh",
-      phone: "+91 95570 86421",
-      email: "vikas@shahproperties.com",
-      imageUrl:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    },
-    contactDetails: {
-      mobile: "+91 95570 86421",
-      email: "vikas@shahproperties.com",
-    },
-    images: [
-      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80",
-    ],
-  },
+
 
   "11": {
     id: "11",
@@ -888,48 +693,7 @@ export const propertyDetails = {
     ],
   },
 
-  "14": {
-    id: "14",
-    title: "Premium Agricultural Land in Behat",
-    address: "Behat, Saharanpur, Uttar Pradesh",
-    price: 14500000,
-    bedrooms: 0,
-    bathrooms: 0,
-    squareFeet: 96800,
-    squareYards: 10756,
-    pricePerSquareYard: 1348,
-    imageUrl:
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80",
-    propertyType: "agricultural",
-    location: "Behat, Saharanpur",
-    description:
-      "Excellent opportunity to invest in premium agricultural land in Behat, Saharanpur. This vast property spans over 10,756 square yards (approximately 2.2 acres) of fertile agricultural land ideal for farming various crops. The land has good irrigation facilities and water availability throughout the year. Located in a peaceful rural setting with good connectivity to nearby markets and towns, this agricultural land represents an excellent investment opportunity with potential for good returns through agricultural activities or future development.",
-    features: [
-      "10,756 square yards (2.2 acres) of fertile land",
-      "Excellent for farming various crops",
-      "Good irrigation facilities",
-      "Water availability throughout the year",
-      "Flat terrain",
-      "Road accessible",
-      "Electricity connection available",
-      "Clear title documentation",
-      "No legal encumbrances",
-      "Potential for agricultural development",
-    ],
-    agent: {
-      name: "Vikas Singh",
-      phone: "+91 95570 86421",
-      email: "vikas@shahproperties.com",
-      imageUrl:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    },
-    contactDetails: {
-      mobile: "+91 95570 86421",
-      email: "vikas@shahproperties.com",
-    },
-    images: [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80",
-      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+
       "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     ],
   },

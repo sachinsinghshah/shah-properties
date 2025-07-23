@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import {
   FaMapMarkerAlt,
   FaPhone,
@@ -454,8 +454,8 @@ export default function ContactPage() {
                 <p className="text-gray-600 leading-relaxed">
                   We offer a comprehensive range of properties including
                   residential plots, agricultural lands, commercial properties,
-                  and investment opportunities in Dehradun, Saharanpur, and
-                  surrounding areas.
+                  and investment opportunities in Dehradun and surrounding
+                  areas.
                 </p>
               </div>
 
@@ -497,8 +497,6 @@ export default function ContactPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

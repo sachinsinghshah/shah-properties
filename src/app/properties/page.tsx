@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import PropertyCard from "@/components/PropertyCard";
 import {
   FaFilter,
@@ -41,7 +41,7 @@ function PropertiesPageContent() {
   // Apply filters when component mounts or filters change
   useEffect(() => {
     const timer = setTimeout(() => {
-    applyFilters();
+      applyFilters();
     }, 0);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -163,7 +163,7 @@ function PropertiesPageContent() {
       setCurrentPage(pageNumber);
       // Scroll to top when changing pages (only in browser)
       if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
   };
@@ -561,8 +561,6 @@ function PropertiesPageContent() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
@@ -579,7 +577,6 @@ export default function PropertiesPage() {
               <p className="text-gray-600">Loading properties...</p>
             </div>
           </main>
-          <Footer />
         </div>
       }
     >

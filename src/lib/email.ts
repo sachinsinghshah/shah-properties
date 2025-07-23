@@ -375,7 +375,7 @@ export function createAutoReplyEmailHTML(name: string): string {
       
       <div class="footer">
         <p>Shah Properties - Real Estate Services</p>
-        <p>Dehradun & Saharanpur | <a href="https://shahproperties.8bitcode.in" style="color: #60a5fa;">shahproperties.8bitcode.in</a></p>
+        <p>Dehradun | <a href="https://shahproperties.8bitcode.in" style="color: #60a5fa;">shahproperties.8bitcode.in</a></p>
         <p>© ${new Date().getFullYear()} Shah Properties. All rights reserved.</p>
       </div>
     </body>
@@ -410,7 +410,7 @@ The Shah Properties Team
 
 ---
 Shah Properties - Your Trusted Real Estate Partner
-Dehradun & Saharanpur | https://shahproperties.8bitcode.in
+Dehradun | https://shahproperties.8bitcode.in
 
 This is an automated response to your contact form submission. If you no longer wish to receive these emails, please reply with "UNSUBSCRIBE" in the subject line.`;
 }

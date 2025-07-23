@@ -20,6 +20,7 @@ export interface Property {
     type: string;
   }[];
   images: string[];
+  videoUrl?: string; // Optional video URL for property tours
   agent: {
     name: string;
     phone: string;

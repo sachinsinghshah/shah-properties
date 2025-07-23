@@ -2,16 +2,13 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { FaAward, FaHandshake, FaHeart, FaBuilding } from "react-icons/fa";
 
-import Footer from "@/components/Footer";
-
 export const metadata: Metadata = {
   title: "About Us - Shah Properties Real Estate Experts",
   description:
-    "Learn about Shah Properties, Dehradun's trusted real estate experts since 2005. Our experienced team helps you find the perfect property in Dehradun and Saharanpur.",
+    "Learn about Shah Properties, Dehradun's trusted real estate experts since 2005. Our experienced team helps you find the perfect property in Dehradun.",
   openGraph: {
     title: "About Shah Properties - Real Estate Experts Since 2005",
-    description:
-      "Trusted real estate services in Dehradun and Saharanpur since 2005.",
+    description: "Trusted real estate services in Dehradun since 2005.",
   },
 };
 
@@ -268,8 +265,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -18,6 +18,7 @@ import {
 import { properties, getSimilarProperties } from "@/data/properties";
 import PropertyCard from "@/components/PropertyCard";
 import ImageGallery from "@/components/ImageGallery";
+import YouTubeVideo from "@/components/YouTubeVideo";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -204,6 +205,34 @@ export default async function PropertyDetailPage({ params }: Props) {
                     {property.description}
                   </p>
                 </div>
+
+                {/* Property Video */}
+                {property.videoUrl && (
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900">
+                      Property Video Tour
+                    </h2>
+                    <YouTubeVideo
+                      videoUrl={property.videoUrl}
+                      title={`${property.title} - Video Tour`}
+                      className="w-full"
+                      startTime={
+                        property.location.toLowerCase().includes("kalyanpur")
+                          ? 7 * 60 + 33 // 7:33 for Kalyanpur
+                          : property.location.toLowerCase().includes("pondha")
+                          ? 9 * 60 + 21 // 9:21 for Pondha
+                          : undefined
+                      }
+                      endTime={
+                        property.location.toLowerCase().includes("kalyanpur")
+                          ? 8 * 60 // 8:00 for Kalyanpur
+                          : property.location.toLowerCase().includes("pondha")
+                          ? 9 * 60 + 29 // 9:29 for Pondha
+                          : undefined
+                      }
+                    />
+                  </div>
+                )}
 
                 {/* Features */}
                 <div className="mb-8">
