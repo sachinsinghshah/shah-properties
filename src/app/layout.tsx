@@ -10,14 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Shah Properties - Premium Real Estate in Dehradun & Saharanpur",
+    default: "Shah Properties - Premium Real Estate in Dehradun",
     template: "%s | Shah Properties",
   },
   description:
-    "Find your dream property in Dehradun and Saharanpur with Shah Properties. We offer residential plots, commercial properties, and agricultural land in prime locations. Expert real estate services since 2005.",
+    "Find your dream property in Dehradun with Shah Properties. We offer residential plots, commercial properties, and agricultural land in prime locations. Expert real estate services since 2005.",
   keywords: [
     "real estate Dehradun",
-    "properties Saharanpur",
+    "properties Dehradun",
     "residential plots Dehradun",
     "commercial properties",
     "agricultural land",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com",
     siteName: "Shah Properties",
-    title: "Shah Properties - Premium Real Estate in Dehradun & Saharanpur",
+    title: "Shah Properties - Premium Real Estate in Dehradun",
     description:
-      "Find your dream property in Dehradun and Saharanpur with Shah Properties. Expert real estate services since 2005.",
+      "Find your dream property in Dehradun with Shah Properties. Expert real estate services since 2005.",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -53,9 +53,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shah Properties - Premium Real Estate in Dehradun & Saharanpur",
-    description:
-      "Find your dream property in Dehradun and Saharanpur with Shah Properties.",
+    title: "Shah Properties - Premium Real Estate in Dehradun",
+    description: "Find your dream property in Dehradun with Shah Properties.",
     images: ["/images/og-image.jpg"],
   },
   robots: {
@@ -90,8 +89,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "RealEstateAgent",
               name: "Shah Properties",
-              description:
-                "Premium real estate services in Dehradun and Saharanpur",
+              description: "Premium real estate services in Dehradun",
               url: "https://shahproperties.com",
               telephone: "+91-8383815279",
               email: "shahproperties03@gmail.com",
@@ -108,7 +106,6 @@ export default function RootLayout({
                 },
                 {
                   "@type": "City",
-                  name: "Saharanpur",
                 },
               ],
               sameAs: ["https://www.facebook.com/share/1AnqEc5BRA/"],

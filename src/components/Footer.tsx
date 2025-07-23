@@ -20,7 +20,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Shah Properties</h3>
             <p className="text-gray-300 mb-4">
               Your trusted partner for premium real estate in Dehradun and
-              Saharanpur regions.
+              Dehradun region.
             </p>
             <div className="flex space-x-4 mt-4">
               <a
@@ -117,9 +117,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <FaMapMarkerAlt className="mt-1 mr-3 text-blue-400" />
-                <span className="text-gray-300">
-                  Shah Properties, Dehradun & Saharanpur
-                </span>
+                <span className="text-gray-300">Shah Properties, Dehradun</span>
               </li>
               <li className="flex items-center">
                 <FaPhone className="mr-3 text-blue-400" />

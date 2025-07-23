@@ -1,7 +1,7 @@
 {
-    "name": "Shah Properties - Real Estate in Dehradun & Saharanpur",
+    "name": "Shah Properties - Real Estate in Dehradun",
     "short_name": "Shah Properties",
-    "description": "Find your dream property in Dehradun and Saharanpur with Shah Properties",
+    "description": "Find your dream property in Dehradun with Shah Properties",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",

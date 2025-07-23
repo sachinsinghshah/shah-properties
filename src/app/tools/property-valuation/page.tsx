@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import {
   FaBuilding,
   FaMapMarkerAlt,
@@ -354,9 +354,6 @@ export default function PropertyValuationPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
- 

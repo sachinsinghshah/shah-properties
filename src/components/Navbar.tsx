@@ -38,21 +38,23 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white shadow-lg py-2"
-          : "bg-slate-900/80 backdrop-blur-lg py-4"
+          ? "bg-white shadow-lg py-1 sm:py-2"
+          : "bg-slate-900/80 backdrop-blur-lg py-2 sm:py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative h-10 w-10 mr-2">
+            <div className="relative h-8 w-8 sm:h-10 sm:w-10 mr-1.5 sm:mr-2">
               <div className="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 h-full w-full flex items-center justify-center rounded-xl shadow-lg animate-pulse">
-                <span className="text-white font-bold text-xl">SP</span>
+                <span className="text-white font-bold text-sm sm:text-xl">
+                  SP
+                </span>
               </div>
             </div>
             <span
-              className={`font-bold text-xl ${
+              className={`font-bold text-lg sm:text-xl ${
                 isScrolled ? "text-slate-800" : "text-white"
               }`}
             >
@@ -133,11 +135,15 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 rounded-md focus:outline-none ${
+              className={`p-1.5 sm:p-2 rounded-md focus:outline-none ${
                 isScrolled ? "text-blue-800" : "text-white"
               }`}
             >
-              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              {isMenuOpen ? (
+                <FaTimes size={20} className="sm:w-6 sm:h-6" />
+              ) : (
+                <FaBars size={20} className="sm:w-6 sm:h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -149,53 +155,53 @@ export default function Navbar() {
           isMenuOpen ? "max-h-96 bg-white shadow-lg" : "max-h-0"
         }`}
       >
-        <div className="px-4 py-2 space-y-1">
+        <div className="px-3 sm:px-4 py-2 space-y-1">
           <Link
             href="/"
-            className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md"
+            className="flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md text-sm sm:text-base"
             onClick={() => setIsMenuOpen(false)}
           >
-            <FaHome className="mr-3" />
+            <FaHome className="mr-2 sm:mr-3 text-sm sm:text-base" />
             Home
           </Link>
           <Link
             href="/properties"
-            className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md"
+            className="flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md text-sm sm:text-base"
             onClick={() => setIsMenuOpen(false)}
           >
-            <FaBuilding className="mr-3" />
+            <FaBuilding className="mr-2 sm:mr-3 text-sm sm:text-base" />
             Properties
           </Link>
           <Link
             href="/about"
-            className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md"
+            className="flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md text-sm sm:text-base"
             onClick={() => setIsMenuOpen(false)}
           >
-            <FaInfoCircle className="mr-3" />
+            <FaInfoCircle className="mr-2 sm:mr-3 text-sm sm:text-base" />
             About
           </Link>
           <Link
             href="/tools/mortgage-calculator"
-            className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md"
+            className="flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md text-sm sm:text-base"
             onClick={() => setIsMenuOpen(false)}
           >
-            <FaTools className="mr-3" />
+            <FaTools className="mr-2 sm:mr-3 text-sm sm:text-base" />
             Tools
           </Link>
           <Link
             href="/contact"
-            className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md"
+            className="flex items-center px-3 sm:px-4 py-2.5 sm:py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-800 rounded-md text-sm sm:text-base"
             onClick={() => setIsMenuOpen(false)}
           >
-            <FaPhone className="mr-3" />
+            <FaPhone className="mr-2 sm:mr-3 text-sm sm:text-base" />
             Contact
           </Link>
           <Link
             href="/properties"
-            className="flex items-center justify-center mt-2 px-4 py-3 bg-blue-800 text-white rounded-md hover:bg-blue-700"
+            className="flex items-center justify-center mt-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-blue-800 text-white rounded-md hover:bg-blue-700 text-sm sm:text-base"
             onClick={() => setIsMenuOpen(false)}
           >
-            <FaSearch className="mr-2" />
+            <FaSearch className="mr-1.5 sm:mr-2" />
             Search Properties
           </Link>
         </div>
