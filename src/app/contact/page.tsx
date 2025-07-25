@@ -316,7 +316,7 @@ export default function ContactPage() {
                         Address
                       </h4>
                       <p className="text-gray-600 leading-relaxed">
-                        123 Rajpur Road, Dehradun,
+                      2nd Floor, City Square Mega Mall, Ballupur, Dehradun,
                         <br />
                         Uttarakhand, India - 248001
                       </p>
@@ -424,7 +424,7 @@ export default function ContactPage() {
                   Visit Our Office
                 </h3>
                 <div className="aspect-video w-full bg-gray-200 rounded-xl relative overflow-hidden mb-6">
-                  <MapPlaceholder location="123 Rajpur Road, Dehradun, Uttarakhand, India - 248001" />
+                  <MapPlaceholder location="2nd Floor, City Square Mega Mall, Ballupur, Dehradun, Uttarakhand 248001, India" />
                 </div>
                 <p className="text-gray-600 leading-relaxed">
                   Our office is conveniently located in the heart of Dehradun
