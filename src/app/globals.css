@@ -20,6 +20,110 @@ body {
   background: white;
 }
 
+/* Fix for form elements - ensure proper text colors */
+input, 
+textarea, 
+select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="search"] {
+  color: #374151 !important; /* gray-700 */
+  background-color: white !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9CA3AF !important; /* gray-400 */
+}
+
+select option {
+  color: #374151 !important; /* gray-700 */
+  background-color: white !important;
+}
+
+/* Ensure focus states are visible */
+input:focus,
+textarea:focus,
+select:focus {
+  color: #374151 !important; /* gray-700 */
+}
+
+/* Ensure disabled states are visible */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  color: #6B7280 !important; /* gray-500 */
+  background-color: #F3F4F6 !important; /* gray-100 */
+}
+
+/* Dark backgrounds should have light text */
+.bg-blue-900 input,
+.bg-blue-900 textarea,
+.bg-blue-900 select,
+.bg-gray-900 input,
+.bg-gray-900 textarea,
+.bg-gray-900 select,
+.bg-gradient-to-r input,
+.bg-gradient-to-br input,
+.bg-gradient-to-l input {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.bg-blue-900 input::placeholder,
+.bg-blue-900 textarea::placeholder,
+.bg-gray-900 input::placeholder,
+.bg-gray-900 textarea::placeholder,
+.bg-gradient-to-r input::placeholder,
+.bg-gradient-to-br input::placeholder,
+.bg-gradient-to-l input::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Override any inherited text colors for form elements */
+form input,
+form textarea,
+form select {
+  color: #374151 !important; /* gray-700 */
+  background-color: white !important;
+}
+
+/* Ensure specific class combinations work */
+.w-full.px-3,
+.w-full.px-4 {
+  color: #374151 !important;
+}
+
+/* Additional overrides for common Tailwind combinations */
+.border-gray-200,
+.border-gray-300 {
+  color: #374151 !important;
+  background-color: white !important;
+}
+
+/* Form text visibility utility classes */
+.form-text-dark {
+  color: #374151 !important;
+  background-color: white !important;
+}
+
+.form-text-light {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure proper text color inheritance doesn't override form elements */
+* input,
+* textarea,
+* select {
+  color: #374151 !important;
+  background-color: white !important;
+}
+
 /* Custom animations */
 @keyframes fadeIn {
   from {

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   FaRulerCombined,
@@ -37,7 +39,8 @@ const formatPrice = (price: number): string => {
 
 export default function PropertyCard({ property }: PropertyCardProps) {
   return (
-    <div className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full transform hover:-translate-y-2 hover:scale-[1.02] border border-gray-100">
+    <Link href={`/properties/${property.id}`} className="block h-full">
+      <div className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full transform hover:-translate-y-2 hover:scale-[1.02] border border-gray-100 cursor-pointer">
       {/* Image Container with Overlay Actions */}
       <div className="relative h-48 sm:h-56 md:h-64 w-full overflow-hidden">
         <img
@@ -56,14 +59,23 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
         {/* Quick Action Buttons */}
         <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex space-x-1 sm:space-x-2 opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-          <button className="bg-white/20 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-white/30 transition-all duration-200 hover:scale-110">
+            <button 
+              onClick={(e) => e.preventDefault()}
+              className="bg-white/20 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-white/30 transition-all duration-200 hover:scale-110"
+            >
             <FaHeart className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
-          <button className="bg-white/20 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-white/30 transition-all duration-200 hover:scale-110">
+            <button 
+              onClick={(e) => e.preventDefault()}
+              className="bg-white/20 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-white/30 transition-all duration-200 hover:scale-110"
+            >
             <FaEye className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
           {property.videoUrl && (
-            <button className="bg-red-500/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-red-600 transition-all duration-200 hover:scale-110">
+              <button 
+                onClick={(e) => e.preventDefault()}
+                className="bg-red-500/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-red-600 transition-all duration-200 hover:scale-110"
+              >
               <FaPlay className="w-3 h-3 sm:w-4 sm:h-4" />
             </button>
           )}
@@ -106,13 +118,16 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
         {/* Action Buttons */}
         <div className="flex space-x-2 sm:space-x-3">
-          <Link
-            href={`/properties/${property.id}`}
+            <button
+              onClick={(e) => e.preventDefault()}
             className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-center hover:shadow-lg hover:shadow-emerald-500/25 transform hover:-translate-y-0.5 text-sm sm:text-base"
           >
             View Details
-          </Link>
-          <button className="bg-white border-2 border-emerald-500 text-emerald-500 hover:bg-emerald-50 p-1.5 sm:p-2 rounded-lg transition-all duration-300 hover:scale-110">
+            </button>
+            <button 
+              onClick={(e) => e.preventDefault()}
+              className="bg-white border-2 border-emerald-500 text-emerald-500 hover:bg-emerald-50 p-1.5 sm:p-2 rounded-lg transition-all duration-300 hover:scale-110"
+            >
             <FaPhone className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
@@ -123,5 +138,6 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         Featured
       </div>
     </div>
+    </Link>
   );
 }

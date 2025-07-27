@@ -1,6 +1,9 @@
 import Link from "next/link";
 import {
   FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaWhatsapp,
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
@@ -30,6 +33,30 @@ export default function Footer() {
                 className="bg-blue-600 hover:bg-blue-700 h-10 w-10 rounded-full flex items-center justify-center transition-colors"
               >
                 <FaFacebook size={20} />
+              </a>
+              <a
+                href="https://www.instagram.com/shahpropertiesrealestate"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 hover:opacity-90 h-10 w-10 rounded-full flex items-center justify-center transition-opacity"
+              >
+                <FaInstagram size={20} />
+              </a>
+              <a
+                href="https://twitter.com/shahproperties"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-400 hover:bg-blue-500 h-10 w-10 rounded-full flex items-center justify-center transition-colors"
+              >
+                <FaTwitter size={20} />
+              </a>
+              <a
+                href="https://wa.me/918383815279"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 hover:bg-green-600 h-10 w-10 rounded-full flex items-center justify-center transition-colors"
+              >
+                <FaWhatsapp size={20} />
               </a>
             </div>
           </div>

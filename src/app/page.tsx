@@ -68,7 +68,7 @@ export default function Home() {
           <div className="block sm:hidden text-center mb-4">
             <h1 className="text-2xl sm:text-3xl font-bold animate-fadeIn hero-text-shadow leading-tight mb-2">
               Find Your Dream Property in{" "}
-              <span className="text-yellow-300 font-extrabold drop-shadow-lg">
+              <span className="font-extrabold bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent " style={{textShadow:'none'}}>
                 Dehradun
               </span>
             </h1>
@@ -81,7 +81,7 @@ export default function Home() {
           <div className="hidden sm:block text-center mb-6">
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold animate-fadeIn hero-text-shadow leading-tight">
               Find Your Dream Property in{" "}
-              <span className="text-yellow-300 font-extrabold drop-shadow-lg">
+              <span className="font-extrabold bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent  " style={{textShadow:'none'}}>
                 Dehradun
               </span>
             </h1>
@@ -107,9 +107,7 @@ export default function Home() {
               <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-1 sm:mb-2">
                 Find Your Dream Property
               </h3>
-              <p className="text-emerald-100 text-xs sm:text-sm">
-                Search from thousands of premium properties
-              </p>
+
             </div>
 
             <div className="flex flex-col lg:flex-row gap-2 sm:gap-3 md:gap-4">
@@ -195,11 +193,14 @@ export default function Home() {
                   prime locations across Dehradun
                 </p>
 
-                {/* Hover Call-to-Action */}
+                {/* Hover Call-to-Action for Property Listing */}
                 <div className="mt-4 sm:mt-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                  <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base">
+                  <Link
+                    href="/properties"
+                    className="block text-center w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
+                  >
                     View Properties
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -221,11 +222,14 @@ export default function Home() {
                   consultants to make informed decisions
                 </p>
 
-                {/* Hover Call-to-Action */}
+                {/* Hover Call-to-Action for Expert Consultation */}
                 <div className="mt-4 sm:mt-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                  <button className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base">
+                  <Link
+                    href="/contact"
+                    className="block text-center w-full bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
+                  >
                     Get Consultation
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -247,11 +251,14 @@ export default function Home() {
                   the true worth of your investment
                 </p>
 
-                {/* Hover Call-to-Action */}
+                {/* Hover Call-to-Action for Property Valuation */}
                 <div className="mt-4 sm:mt-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                  <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base">
+                  <Link
+                    href="/tools/property-valuation"
+                    className="block text-center w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
+                  >
                     Get Valuation
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -423,7 +430,7 @@ export default function Home() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 animate-fadeIn animation-delay-600">
+            <div className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 animate-fadeIn animation-delay-600">
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-amber-300 mb-1 sm:mb-2">
                   500+
@@ -438,14 +445,6 @@ export default function Home() {
                 </div>
                 <div className="text-emerald-100 text-sm sm:text-base">
                   Happy Clients
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-amber-300 mb-1 sm:mb-2">
-                  15+
-                </div>
-                <div className="text-emerald-100 text-sm sm:text-base">
-                  Years Experience
                 </div>
               </div>
             </div>

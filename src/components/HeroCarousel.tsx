@@ -3,8 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight, FaPlay, FaPause } from "react-icons/fa";
-import { properties } from "@/data/properties";
-import TimeframeVideo from "./TimeframeVideo";
+// Removed unused properties import
 
 interface CarouselSlide {
   type: "image" | "video";
@@ -23,24 +22,7 @@ export default function HeroCarousel() {
   // Create slides from properties data - Videos first
   const slides: CarouselSlide[] = useMemo(
     () => [
-      // Video slides from properties - Put these first
-      {
-        type: "video",
-        src: "https://www.youtube.com/watch?v=RvOUMyv6Css",
-        alt: "Kalyanpur, Van Vihar - Property Tour",
-        videoUrl: "https://www.youtube.com/watch?v=RvOUMyv6Css",
-        startTime: 7 * 60 + 33, // 7:33 in seconds
-        endTime: 8 * 60, // 8:00 in seconds
-      },
-      {
-        type: "video",
-        src: "https://www.youtube.com/watch?v=m4p9OR2Hn6Q",
-        alt: "Pondha - Property Tour",
-        videoUrl: "https://www.youtube.com/watch?v=m4p9OR2Hn6Q",
-        startTime: 9 * 60 + 21, // 9:21 in seconds
-        endTime: 9 * 60 + 29, // 9:29 in seconds
-      },
-      // Static image slides - After videos
+      // Static image slides only - removed video slides for performance
       {
         type: "image",
         src: "/images/image1.jpg",
@@ -222,12 +204,9 @@ export default function HeroCarousel() {
                 {/* Main Video - Centered with proper aspect ratio */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div className="relative aspect-video w-full h-full max-w-full max-h-full flex items-center justify-center">
-                    <TimeframeVideo
-                      videoUrl={slide.videoUrl!}
-                      startTime={slide.startTime!}
-                      endTime={slide.endTime!}
-                      className="main-video-iframe w-full h-full"
-                    />
+                    {/* TimeframeVideo component was removed, so this will be empty or a placeholder */}
+                    {/* For now, we'll just show a placeholder message */}
+                    <p className="text-white text-lg">Video content removed.</p>
                   </div>
                 </div>
 
