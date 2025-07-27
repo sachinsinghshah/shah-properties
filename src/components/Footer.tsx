@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaFacebook,
   FaInstagram,
@@ -19,13 +20,21 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Shah Properties</h3>
-            <p className="text-gray-300 mb-4">
+          <div className="flex flex-col items-start">
+            <Image
+              src="/images/logo.png"
+              alt="Shah Properties logo"
+              width={240}
+              height={240}
+              className="h-24 w-auto mb-6"
+              priority
+            />
+            <h3 className="text-2xl font-bold mb-4">Shah Properties</h3>
+            <p className="text-gray-300 mb-6 max-w-xs">
               Your trusted partner for premium real estate in Dehradun and
               Dehradun region.
             </p>
-            <div className="flex space-x-4 mt-4">
+            <div className="flex space-x-4">
               <a
                 href="https://www.facebook.com/share/1AnqEc5BRA/"
                 target="_blank"

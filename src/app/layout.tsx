@@ -9,6 +9,7 @@ import BackToTop from "@/components/BackToTop";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com"),
   title: {
     default: "Shah Properties - Premium Real Estate in Dehradun",
     template: "%s | Shah Properties",

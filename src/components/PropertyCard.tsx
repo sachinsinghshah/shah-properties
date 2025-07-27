@@ -4,10 +4,7 @@ import Link from "next/link";
 import {
   FaRulerCombined,
   FaMapMarkerAlt,
-  FaHeart,
-  FaEye,
   FaPhone,
-  FaPlay,
 } from "react-icons/fa";
 import Image from "next/image";
 
@@ -55,30 +52,6 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         {/* Property Type Badge */}
         <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold text-xs sm:text-sm shadow-lg transform translate-y-0 group-hover:-translate-y-1 transition-transform duration-300">
           {property.type}
-        </div>
-
-        {/* Quick Action Buttons */}
-        <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex space-x-1 sm:space-x-2 opacity-0 group-hover:opacity-100 transform -translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-            <button 
-              onClick={(e) => e.preventDefault()}
-              className="bg-white/20 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-white/30 transition-all duration-200 hover:scale-110"
-            >
-            <FaHeart className="w-3 h-3 sm:w-4 sm:h-4" />
-          </button>
-            <button 
-              onClick={(e) => e.preventDefault()}
-              className="bg-white/20 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-white/30 transition-all duration-200 hover:scale-110"
-            >
-            <FaEye className="w-3 h-3 sm:w-4 sm:h-4" />
-          </button>
-          {property.videoUrl && (
-              <button 
-                onClick={(e) => e.preventDefault()}
-                className="bg-red-500/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full text-white hover:bg-red-600 transition-all duration-200 hover:scale-110"
-              >
-              <FaPlay className="w-3 h-3 sm:w-4 sm:h-4" />
-            </button>
-          )}
         </div>
 
         {/* Price Badge - Enhanced */}
@@ -131,11 +104,6 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             <FaPhone className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
-      </div>
-
-      {/* Floating "New" Badge for Featured Properties */}
-      <div className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 bg-gradient-to-r from-orange-400 to-red-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-lg transform rotate-12 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        Featured
       </div>
     </div>
     </Link>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaBars,
   FaTimes,
@@ -36,25 +37,25 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg py-3"
-          : "bg-white/90 backdrop-blur-md shadow-md py-4"
+          ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
+          : "bg-white/90 backdrop-blur-md shadow-md py-3"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="bg-blue-900 h-10 w-10 rounded-lg flex items-center justify-center shadow-md mr-3">
-              <span className="text-xl font-bold text-white">S</span>
-            </div>
-            <div>
-              <span className="text-xl font-bold text-blue-900">
-                Shah
-              </span>
-              <span className="text-xl font-bold text-orange-600">
-                Properties
-                </span>
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="Shah Properties logo"
+              width={96}
+              height={96}
+              priority
+              className="h-12 w-auto mr-3"
+            />
+            <span className="text-xl font-bold text-blue-900 hidden sm:inline-flex">
+              Shah <span className="text-orange-600">Properties</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

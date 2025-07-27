@@ -462,18 +462,23 @@ function PropertiesPageContent() {
               </h2>
               <div className="flex items-center gap-2">
                 <FaSort className="text-blue-800" />
-                <span className="text-gray-600 text-sm">
-                  Sort by:{" "}
-                  {sortBy === "default"
-                    ? "Default"
-                    : sortBy === "price_low"
-                    ? "Price: Low to High"
-                    : sortBy === "price_high"
-                    ? "Price: High to Low"
-                    : sortBy === "area_low"
-                    ? "Area: Low to High"
-                    : "Area: High to Low"}
-                </span>
+                <label htmlFor="sortBy" className="sr-only">
+                  Sort by
+                </label>
+                <select
+                  id="sortBy"
+                  value={sortBy}
+                  onChange={(e) =>
+                    setSortBy(e.target.value as SortOption)
+                  }
+                  className="border border-gray-300 rounded-md py-1 px-2 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="default">Sort by: Default</option>
+                  <option value="price_low">Price: Low to High</option>
+                  <option value="price_high">Price: High to Low</option>
+                  <option value="area_low">Area: Low to High</option>
+                  <option value="area_high">Area: High to Low</option>
+                </select>
               </div>
             </div>
 
