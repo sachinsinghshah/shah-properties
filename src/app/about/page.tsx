@@ -35,7 +35,7 @@ export default function AboutPage() {
                   A Story of Service, Sacrifice, and Second Chances
                 </h2>
                 <p className="text-gray-700 mb-4">
-                  Shah Properties was born from the vision of <strong>Roshan Singh Shah</strong>, a retired Indian Army professional who dedicated 32 years of his life serving our nation in the Signal Records division. After three decades of unwavering commitment to protecting India's borders and ensuring secure communications, Sub Maj & Hny. Lt Shah thought his service days were behind him.
+                  Shah Properties was born from the vision of <strong>Roshan Singh Shah</strong>, a retired Indian Army professional who dedicated 32 years of his life serving our nation in the Core of Signals division. After three decades of unwavering commitment to protecting India's borders and ensuring secure communications, Sub Maj & Hny. Lt Shah thought his service days were behind him.
                 </p>
                 <p className="text-gray-700 mb-4">
                   But destiny had other plans. When he returned to his hometown of Dehradun after retirement, ready to settle into peaceful civilian life, he encountered a different kind of battlefield – one where innocent, middle-class families were being exploited by dishonest property dealers.
