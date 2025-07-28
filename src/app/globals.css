@@ -20,7 +20,7 @@ body {
   background: white;
 }
 
-/* Fix for form elements - ensure proper text colors */
+/* Form element fixes */
 input, 
 textarea, 
 select,
@@ -30,36 +30,34 @@ input[type="tel"],
 input[type="number"],
 input[type="password"],
 input[type="search"] {
-  color: #374151 !important; /* gray-700 */
+  color: #374151 !important;
   background-color: white !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #9CA3AF !important; /* gray-400 */
+  color: #9CA3AF !important;
 }
 
 select option {
-  color: #374151 !important; /* gray-700 */
+  color: #374151 !important;
   background-color: white !important;
 }
 
-/* Ensure focus states are visible */
 input:focus,
 textarea:focus,
 select:focus {
-  color: #374151 !important; /* gray-700 */
+  color: #374151 !important;
 }
 
-/* Ensure disabled states are visible */
 input:disabled,
 textarea:disabled,
 select:disabled {
-  color: #6B7280 !important; /* gray-500 */
-  background-color: #F3F4F6 !important; /* gray-100 */
+  color: #6B7280 !important;
+  background-color: #F3F4F6 !important;
 }
 
-/* Dark backgrounds should have light text */
+/* Dark background form elements */
 .bg-blue-900 input,
 .bg-blue-900 textarea,
 .bg-blue-900 select,
@@ -84,47 +82,7 @@ select:disabled {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* Override any inherited text colors for form elements */
-form input,
-form textarea,
-form select {
-  color: #374151 !important; /* gray-700 */
-  background-color: white !important;
-}
-
-/* Ensure specific class combinations work */
-.w-full.px-3,
-.w-full.px-4 {
-  color: #374151 !important;
-}
-
-/* Additional overrides for common Tailwind combinations */
-.border-gray-200,
-.border-gray-300 {
-  color: #374151 !important;
-  background-color: white !important;
-}
-
-/* Form text visibility utility classes */
-.form-text-dark {
-  color: #374151 !important;
-  background-color: white !important;
-}
-
-.form-text-light {
-  color: white !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Ensure proper text color inheritance doesn't override form elements */
-* input,
-* textarea,
-* select {
-  color: #374151 !important;
-  background-color: white !important;
-}
-
-/* Custom animations */
+/* Core animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -145,42 +103,26 @@ form select {
   }
 }
 
-@keyframes colorShift {
+@keyframes pulse {
   0%, 100% {
-    filter: hue-rotate(0deg);
+    opacity: 1;
   }
   50% {
-    filter: hue-rotate(90deg);
+    opacity: 0.5;
   }
 }
 
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(147, 51, 234, 0.7);
-  }
-}
-
-/* Slideshow animations removed - now using React state */
-
+/* Animation classes */
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
-.animate-colorShift {
-  animation: colorShift 4s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-/* Old slideshow animations removed - now using React state */
-
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .animation-delay-200 {
@@ -243,13 +185,12 @@ html {
   background: linear-gradient(135deg, #059669, #0f766e);
 }
 
-/* Enhanced visual appeal */
+/* Enhanced visual effects */
 .hero-text-shadow {
   text-shadow: 
     2px 2px 4px rgba(0, 0, 0, 0.8),
     0 0 10px rgba(59, 130, 246, 0.4),
-    0 0 20px rgba(147, 51, 234, 0.3),
-    0 0 40px rgba(236, 72, 153, 0.2);
+    0 0 20px rgba(147, 51, 234, 0.3);
 }
 
 .glass-effect {
@@ -259,7 +200,7 @@ html {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-/* Gradient text for premium look */
+/* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #10b981, #06b6d4, #f59e0b);
   -webkit-background-clip: text;
@@ -277,39 +218,15 @@ html {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* Enhanced button animations */
-@keyframes buttonPulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
-  }
+/* Focus states for accessibility */
+.focus-ring:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgb(16 185 129);
+  ring-offset: 2px;
 }
 
-.animate-pulse-button {
-  animation: buttonPulse 2s infinite;
-}
-
-/* Smooth scale animations */
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-scaleIn {
-  animation: scaleIn 0.5s ease-out forwards;
-}
-
-/* Enhanced loading states */
+/* Loading states */
 @keyframes shimmer {
   0% {
     background-position: -468px 0;
@@ -325,299 +242,21 @@ html {
   animation: shimmer 1.2s ease-in-out infinite;
 }
 
-/* Improved focus states for accessibility */
-.focus-ring:focus {
-  outline: none;
-  ring: 2px;
-  ring-color: rgb(16 185 129);
-  ring-offset: 2px;
+/* Video aspect ratio handling */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
 }
 
-/* Bounce animation for interactive elements */
-@keyframes bounce {
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0,0,0);
-  }
-  40%, 43% {
-    transform: translate3d(0, -8px, 0);
-  }
-  70% {
-    transform: translate3d(0, -4px, 0);
-  }
-  90% {
-    transform: translate3d(0, -2px, 0);
-  }
+.aspect-video-hero {
+  aspect-ratio: 16/9;
+  width: 100%;
 }
 
-.animate-bounce-custom {
-  animation: bounce 1s ease-in-out;
-}
-
-/* Enhanced carousel animations */
-@keyframes slideInFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes progressFill {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-.animate-slideInRight {
-  animation: slideInFromRight 0.8s ease-out;
-}
-
-.animate-slideInLeft {
-  animation: slideInFromLeft 0.8s ease-out;
-}
-
-.animate-zoomIn {
-  animation: zoomIn 0.6s ease-out;
-}
-
-.animate-progressFill {
-  animation: progressFill linear;
-}
-
-/* Improved mobile responsiveness */
-@media (max-width: 640px) {
-  .hero-text-shadow {
-    text-shadow: 
-      1px 1px 2px rgba(0, 0, 0, 0.9),
-      0 0 5px rgba(59, 130, 246, 0.5);
-  }
-  
-  .glass-effect {
-    backdrop-filter: blur(8px);
-  }
-
-  /* Better touch targets for mobile */
-  button, a {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Improved mobile scrolling */
-  .smooth-scroll {
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-  }
-
-  /* Mobile-specific spacing */
-  .mobile-padding {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  /* Mobile-friendly text sizes */
-  .mobile-text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
-  .mobile-text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  /* Mobile-optimized buttons */
-  .mobile-btn {
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    border-radius: 0.5rem;
-  }
-
-  /* Mobile-friendly cards */
-  .mobile-card {
-    border-radius: 0.75rem;
-    padding: 1rem;
-  }
-
-  /* Mobile navigation improvements */
-  .mobile-nav {
-    padding: 0.5rem 1rem;
-  }
-
-  /* Mobile carousel improvements */
-  .mobile-carousel-controls {
-    padding: 0.5rem;
-    margin: 0.25rem;
-  }
-
-  /* Mobile form improvements */
-  .mobile-input {
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-  }
-
-  /* Mobile image optimizations */
-  .mobile-image {
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-  }
-
-  /* Mobile grid improvements */
-  .mobile-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  /* Mobile spacing utilities */
-  .mobile-space-y > * + * {
-    margin-top: 1rem;
-  }
-
-  .mobile-space-x > * + * {
-    margin-left: 1rem;
-  }
-
-  /* Mobile typography improvements */
-  .mobile-heading {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 700;
-  }
-
-  .mobile-subheading {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-  }
-
-  /* Mobile animation optimizations */
-  .mobile-animate {
-    transition: all 0.2s ease-in-out;
-  }
-
-  /* Mobile hover states (disabled for touch devices) */
-  @media (hover: none) {
-    .mobile-hover\:scale-105:hover {
-      transform: none;
-    }
-    
-    .mobile-hover\:opacity-100:hover {
-      opacity: 1;
-    }
-  }
-
-  /* Mobile focus improvements */
-  .mobile-focus\:ring-2:focus {
-    outline: none;
-    ring: 2px;
-    ring-color: rgb(59 130 246);
-    ring-offset: 2px;
-  }
-
-  /* Mobile loading states */
-  .mobile-loading {
-    opacity: 0.7;
-    pointer-events: none;
-  }
-
-  /* Mobile error states */
-  .mobile-error {
-    border-color: rgb(239 68 68);
-    background-color: rgb(254 242 242);
-  }
-
-  /* Mobile success states */
-  .mobile-success {
-    border-color: rgb(34 197 94);
-    background-color: rgb(240 253 244);
-  }
-}
-
-/* Tablet optimizations */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .tablet-padding {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .tablet-text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .tablet-grid-cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* High DPI display optimizations */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .retina-image {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-}
-
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .dark-mode-auto {
-    background-color: rgb(17 24 39);
-    color: rgb(243 244 246);
-  }
-}
-
-/* Print styles */
-@media print {
-  .print-hidden {
-    display: none !important;
-  }
-  
-  .print-visible {
-    display: block !important;
-  }
-}
-
-/* Working Echo Pillarboxing Effect using YouTube thumbnails */
+/* Echo background effect */
 .echo-background-image {
   position: absolute !important;
   top: 0;
@@ -632,59 +271,36 @@ html {
   z-index: 1;
 }
 
-.main-video-iframe {
-  position: relative;
-  z-index: 10;
-  max-width: 100%;
-  max-height: 100%;
-  aspect-ratio: 16/9;
-}
-
-.main-video-iframe iframe {
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Video aspect ratio handling */
-.video-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-}
-
-/* Aspect ratio container for hero section */
-.aspect-video-hero {
-  aspect-ratio: 16/9;
-  width: 100%;
-}
-
-/* Mobile video optimizations */
+/* Mobile optimizations */
 @media (max-width: 640px) {
+  .hero-text-shadow {
+    text-shadow: 
+      1px 1px 2px rgba(0, 0, 0, 0.9),
+      0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(8px);
+  }
+
   .echo-background-image {
     filter: blur(15px) brightness(0.5) saturate(1.1);
     transform: scale(1.05);
   }
   
-  .main-video-iframe {
-    aspect-ratio: 16/9;
-  }
-  
-  .main-video-iframe iframe {
-    border-radius: 6px;
-  }
-  
-  /* Mobile hero section adjustment */
   .aspect-video-hero {
     aspect-ratio: 16/10;
     min-height: 70vh;
   }
+
+  /* Better touch targets for mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }
 
-/* Tablet video optimizations */
+/* Tablet optimizations */
 @media (min-width: 641px) and (max-width: 1024px) {
   .echo-background-image {
     filter: blur(18px) brightness(0.45) saturate(1.15);
@@ -705,41 +321,24 @@ html {
   }
 }
 
-/* Alternative: Pure CSS gradient echo effect */
-.echo-background-gradient {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  background: linear-gradient(
-    135deg, 
-    rgba(26, 26, 46, 0.9), 
-    rgba(22, 33, 62, 0.8), 
-    rgba(15, 52, 96, 0.9),
-    rgba(26, 26, 46, 0.9)
-  );
-  filter: blur(10px);
-  z-index: 1;
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-/* Alternative: Pattern-based echo effect */
-.echo-background-pattern {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  background-image: 
-    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(15, 52, 96, 0.8));
-  filter: blur(15px);
-  animation: patternFloat 20s ease-in-out infinite;
-  z-index: 1;
-}
-
-@keyframes patternFloat {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.1) rotate(2deg); }
+/* Print styles */
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+  
+  .print-visible {
+    display: block !important;
+  }
 }
