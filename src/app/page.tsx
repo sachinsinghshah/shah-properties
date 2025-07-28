@@ -113,21 +113,21 @@ export default function Home() {
           {/* Search Form Component */}
           <SearchForm />
 
-          {/* Quick Search Suggestions - Hidden on mobile */}
-          <div className="hidden sm:block mt-3 sm:mt-4 md:mt-6 flex flex-wrap gap-1 sm:gap-2 justify-center">
-            <span className="text-white/80 text-xs sm:text-sm mr-2">
-              Popular:
-            </span>
-            {["Dehradun", "Shimla Bypass", "Race Course"].map((location) => (
+            {/* Quick Search Suggestions - Hidden on mobile */}
+            <div className="hidden sm:block mt-3 sm:mt-4 md:mt-6 flex flex-wrap gap-1 sm:gap-2 justify-center">
+              <span className="text-white/80 text-xs sm:text-sm mr-2">
+                Popular:
+              </span>
+              {["Dehradun", "Shimla Bypass", "Race Course"].map((location) => (
               <Link
-                key={location}
+                  key={location}
                 href={`/properties?location=${encodeURIComponent(location)}`}
-                className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-xs sm:text-sm rounded-full transition-all duration-200 hover:scale-105 border border-white/30"
-              >
-                {location}
+                  className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-xs sm:text-sm rounded-full transition-all duration-200 hover:scale-105 border border-white/30"
+                >
+                  {location}
               </Link>
-            ))}
-          </div>
+              ))}
+            </div>
         </div>
       </section>
 

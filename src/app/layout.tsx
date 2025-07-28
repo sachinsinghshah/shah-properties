@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import BackToTop from "@/components/BackToTop";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleSearchConsole from "@/components/GoogleSearchConsole";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -108,6 +110,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Google Search Console */}
+        <GoogleSearchConsole verificationCode={process.env.GOOGLE_VERIFICATION_CODE} />
+
         {/* Structured Data for Organization */}
         <script
           type="application/ld+json"
@@ -242,6 +247,11 @@ export default function RootLayout({
         <link rel="preload" href="/globals.css" as="style" />
       </head>
       <body className={inter.className}>
+        {/* Google Analytics */}
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
+
         <ErrorBoundary>
           <div className="flex flex-col min-h-screen">
             <Navbar />
