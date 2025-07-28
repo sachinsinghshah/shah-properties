@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight, FaPlay, FaPause } from "react-icons/fa";
-// Removed unused properties import
 
 interface CarouselSlide {
   type: "image" | "video";
@@ -26,22 +25,22 @@ export default function HeroCarousel() {
       {
         type: "image",
         src: "/images/image1.jpg",
-        alt: "Beautiful property view 1",
+        alt: "Beautiful residential property in Dehradun with mountain views",
       },
       {
         type: "image",
         src: "/images/image2.jpg",
-        alt: "Beautiful property view 2",
+        alt: "Premium residential plot in Kalyanpur, Dehradun",
       },
       {
         type: "image",
         src: "/images/image3.jpg",
-        alt: "Beautiful property view 3",
+        alt: "Modern property development in Pondha, Dehradun",
       },
       {
         type: "image",
         src: "/images/image4.jpg",
-        alt: "Beautiful property view 4",
+        alt: "Scenic property location in Dholas, Dehradun",
       },
     ],
     []
@@ -125,7 +124,7 @@ export default function HeroCarousel() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [goToPrevSlide, goToNextSlide, togglePause]);
 
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
@@ -186,7 +185,9 @@ export default function HeroCarousel() {
                 alt={slide.alt}
                 fill
                 priority={index === 0}
+                sizes="100vw"
                 className="object-cover w-full h-full"
+                quality={85}
               />
             ) : (
               <div className="w-full h-full relative bg-black video-container overflow-hidden">

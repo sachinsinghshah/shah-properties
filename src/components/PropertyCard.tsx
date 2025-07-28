@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaRulerCombined,
   FaMapMarkerAlt,
   FaPhone,
 } from "react-icons/fa";
-import Image from "next/image";
 
 interface PropertyCardProps {
   property: {
@@ -40,10 +40,14 @@ export default function PropertyCard({ property }: PropertyCardProps) {
       <div className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full transform hover:-translate-y-2 hover:scale-[1.02] border border-gray-100 cursor-pointer">
       {/* Image Container with Overlay Actions */}
       <div className="relative h-48 sm:h-56 md:h-64 w-full overflow-hidden">
-        <img
+        <Image
           src={property.images[0]}
-          alt={property.title}
-          className="w-full h-full object-contain bg-gray-100 transition-transform duration-700 group-hover:scale-110"
+          alt={`${property.title} - ${property.location}`}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-contain bg-gray-100 transition-transform duration-700 group-hover:scale-110"
+          priority={false}
+          loading="lazy"
         />
 
         {/* Gradient Overlay */}

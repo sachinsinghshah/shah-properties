@@ -5,12 +5,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com";
 
-  // Static pages
+  // Static pages with enhanced metadata
   const staticPages = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: "weekly" as const,
+      changeFrequency: "daily" as const,
       priority: 1,
     },
     {
@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/tools`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/tools/mortgage-calculator`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
@@ -45,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Property pages
+  // Property pages with enhanced metadata
   const propertyPages = properties.map((property) => ({
     url: `${baseUrl}/properties/${property.id}`,
     lastModified: new Date(property.postedDate),
@@ -53,5 +59,55 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...propertyPages];
+  // Location-based property pages for better SEO
+  const locationPages = [
+    {
+      url: `${baseUrl}/properties?location=kalyanpur`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/properties?location=pondha`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/properties?location=dholas`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/properties?location=dehradun`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+  ];
+
+  // Category-based property pages
+  const categoryPages = [
+    {
+      url: `${baseUrl}/properties?category=plot`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/properties?category=residential`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/properties?category=commercial`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+  ];
+
+  return [...staticPages, ...propertyPages, ...locationPages, ...categoryPages];
 }
