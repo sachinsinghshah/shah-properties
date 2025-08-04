@@ -96,10 +96,10 @@ export const trackPropertyView = (
   price: number,
   location: string
 ) => {
-  trackEvent("view_item", "property", propertyTitle, price);
+  trackEvent("property_view", "property", propertyTitle, price);
 
   if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", "view_item", {
+    window.gtag("event", "property_view", {
       event_category: "property",
       event_label: propertyTitle,
       value: price,
@@ -121,18 +121,72 @@ export const trackPropertyView = (
 
 // Helper function to track contact form submissions
 export const trackContactForm = (formType: string) => {
-  trackEvent("form_submit", "contact", formType);
+  trackEvent("contact_form_submit", "contact", formType);
 };
 
 // Helper function to track phone calls
 export const trackPhoneCall = (phoneNumber: string) => {
   const standardizedPhone = standardizePhoneForAnalytics(phoneNumber);
-  trackEvent("phone_call", "contact", standardizedPhone);
+  trackEvent("phone_call_click", "contact", standardizedPhone);
 };
 
 // Helper function to track search queries
 export const trackSearch = (searchTerm: string, resultsCount: number) => {
   trackEvent("search", "engagement", searchTerm, resultsCount);
+};
+
+// Helper function to track lead qualification
+export const trackQualifyLead = (leadType: string, source: string) => {
+  trackEvent("qualify_lead", "conversion", leadType, 1);
+
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "qualify_lead", {
+      event_category: "conversion",
+      event_label: leadType,
+      custom_lead_source: source,
+      value: 1,
+    });
+  }
+};
+
+// Helper function to track lead conversion closure
+export const trackCloseConvertLead = (leadType: string, value: number) => {
+  trackEvent("close_convert_lead", "conversion", leadType, value);
+
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "close_convert_lead", {
+      event_category: "conversion",
+      event_label: leadType,
+      value: value,
+    });
+  }
+};
+
+// Helper function to track purchases
+export const trackPurchase = (
+  propertyId: string,
+  propertyTitle: string,
+  price: number
+) => {
+  trackEvent("purchase", "ecommerce", propertyTitle, price);
+
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "purchase", {
+      event_category: "ecommerce",
+      event_label: propertyTitle,
+      value: price,
+      currency: "INR",
+      items: [
+        {
+          item_id: propertyId,
+          item_name: propertyTitle,
+          item_category: "property",
+          price: price,
+          currency: "INR",
+        },
+      ],
+    });
+  }
 };
 
 // Helper function to track page views

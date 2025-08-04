@@ -20,8 +20,7 @@ import PropertyCard from "@/components/PropertyCard";
 import ImageGallery from "@/components/ImageGallery";
 import YouTubeVideo from "@/components/YouTubeVideo";
 import PropertyViewTracker from "@/components/PropertyViewTracker";
-import { trackPhoneCall } from "@/components/GoogleAnalytics";
-import { standardizePhoneForAnalytics } from "@/lib/phoneUtils";
+import PropertyContactButtons from "@/components/PropertyContactButtons";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -354,54 +353,7 @@ export default async function PropertyDetailPage({ params }: Props) {
                 </div>
 
                 {/* Contact Buttons */}
-                <div className="space-y-4 mb-8">
-                  <a
-                    href={`tel:${property.agent.phone}`}
-                    className="flex items-center justify-center bg-gradient-to-r from-green-600 to-green-700 text-white py-4 px-6 rounded-xl hover:from-green-700 hover:to-green-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
-                    onClick={() =>
-                      trackPhoneCall(
-                        standardizePhoneForAnalytics(property.agent.phone)
-                      )
-                    }
-                  >
-                    <FaPhone className="mr-3 text-lg" />
-                    Call Now
-                  </a>
-                  <a
-                    href={`https://wa.me/91${property.agent.phone}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white py-4 px-6 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
-                    onClick={() =>
-                      trackPhoneCall(
-                        standardizePhoneForAnalytics(
-                          `WhatsApp:${property.agent.phone}`
-                        )
-                      )
-                    }
-                  >
-                    <FaWhatsapp className="mr-3 text-lg" />
-                    WhatsApp
-                  </a>
-                  <a
-                    href={`mailto:${property.agent.email}?subject=Inquiry about ${property.title}`}
-                    className="flex items-center justify-center border-2 border-blue-600 text-blue-600 py-4 px-6 rounded-xl hover:bg-blue-50 transition-all duration-200 font-semibold"
-                  >
-                    <FaEnvelope className="mr-3 text-lg" />
-                    Send Email
-                  </a>
-                  {property.agent.facebook && (
-                    <a
-                      href={property.agent.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
-                    >
-                      <FaFacebook className="mr-3 text-lg" />
-                      Facebook
-                    </a>
-                  )}
-                </div>
+                <PropertyContactButtons property={property} />
 
                 {/* Contact Information */}
                 <div className="space-y-4 p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200">

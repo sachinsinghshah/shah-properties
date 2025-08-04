@@ -89,7 +89,6 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.GOOGLE_VERIFICATION_CODE,
     yandex: process.env.YANDEX_VERIFICATION_CODE,
     yahoo: process.env.YAHOO_VERIFICATION_CODE,
   },
