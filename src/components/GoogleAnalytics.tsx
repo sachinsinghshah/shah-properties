@@ -96,10 +96,8 @@ export const trackPropertyView = (
   price: number,
   location: string
 ) => {
-  trackEvent("property_view", "property", propertyTitle, price);
-
   if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", "property_view", {
+    window.gtag("event", "view_item", {
       event_category: "property",
       event_label: propertyTitle,
       value: price,
@@ -121,24 +119,38 @@ export const trackPropertyView = (
 
 // Helper function to track contact form submissions
 export const trackContactForm = (formType: string) => {
-  trackEvent("contact_form_submit", "contact", formType);
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "contact_form_submit", {
+      event_category: "contact",
+      event_label: formType,
+    });
+  }
 };
 
 // Helper function to track phone calls
 export const trackPhoneCall = (phoneNumber: string) => {
   const standardizedPhone = standardizePhoneForAnalytics(phoneNumber);
-  trackEvent("phone_call_click", "contact", standardizedPhone);
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "phone_call_click", {
+      event_category: "contact",
+      event_label: standardizedPhone,
+    });
+  }
 };
 
 // Helper function to track search queries
 export const trackSearch = (searchTerm: string, resultsCount: number) => {
-  trackEvent("search", "engagement", searchTerm, resultsCount);
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "search", {
+      event_category: "engagement",
+      event_label: searchTerm,
+      value: resultsCount,
+    });
+  }
 };
 
 // Helper function to track lead qualification
 export const trackQualifyLead = (leadType: string, source: string) => {
-  trackEvent("qualify_lead", "conversion", leadType, 1);
-
   if (typeof window !== "undefined" && window.gtag) {
     window.gtag("event", "qualify_lead", {
       event_category: "conversion",
@@ -151,8 +163,6 @@ export const trackQualifyLead = (leadType: string, source: string) => {
 
 // Helper function to track lead conversion closure
 export const trackCloseConvertLead = (leadType: string, value: number) => {
-  trackEvent("close_convert_lead", "conversion", leadType, value);
-
   if (typeof window !== "undefined" && window.gtag) {
     window.gtag("event", "close_convert_lead", {
       event_category: "conversion",
@@ -168,8 +178,6 @@ export const trackPurchase = (
   propertyTitle: string,
   price: number
 ) => {
-  trackEvent("purchase", "ecommerce", propertyTitle, price);
-
   if (typeof window !== "undefined" && window.gtag) {
     window.gtag("event", "purchase", {
       event_category: "ecommerce",
