@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -10,6 +12,13 @@ import {
   FaMapMarkerAlt,
   FaArrowRight,
 } from "react-icons/fa";
+import { trackPhoneCall } from "./GoogleAnalytics";
+import {
+  getShahPropertiesPhone,
+  getShahPropertiesWhatsApp,
+  SHAH_PROPERTIES_PHONE_WITH_COUNTRY,
+  SHAH_PROPERTIES_PHONE_DISPLAY,
+} from "@/lib/phoneUtils";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -60,10 +69,14 @@ export default function Footer() {
                 <FaTwitter size={20} />
               </a>
               <a
-                href="https://wa.me/918383815279"
+                href={`https://wa.me/${SHAH_PROPERTIES_PHONE_WITH_COUNTRY.replace(
+                  "+",
+                  ""
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 h-10 w-10 rounded-full flex items-center justify-center transition-colors"
+                onClick={() => trackPhoneCall(getShahPropertiesWhatsApp())}
               >
                 <FaWhatsapp size={20} />
               </a>
@@ -158,10 +171,11 @@ export default function Footer() {
               <li className="flex items-center">
                 <FaPhone className="mr-3 text-blue-400" />
                 <a
-                  href="tel:8383815279"
+                  href={`tel:${SHAH_PROPERTIES_PHONE_WITH_COUNTRY}`}
                   className="text-gray-300 hover:text-white"
+                  onClick={() => trackPhoneCall(getShahPropertiesPhone())}
                 >
-                  +91 8383815279
+                  {SHAH_PROPERTIES_PHONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-center">
