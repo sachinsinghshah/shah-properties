@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { trackPhoneCall } from "@/components/GoogleAnalytics";
+import { trackPhoneCall, trackContactForm } from "@/components/GoogleAnalytics";
 import {
   getShahPropertiesPhone,
   getShahPropertiesWhatsApp,
@@ -78,6 +78,9 @@ export default function ContactPage() {
       const data = await response.json();
 
       if (data.success) {
+        // Track successful form submission
+        trackContactForm(formData.subject);
+
         setShowThankYou(true);
         setFormData({
           name: "",

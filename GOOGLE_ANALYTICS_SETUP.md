@@ -80,10 +80,10 @@ NEXT_PUBLIC_BASE_URL=https://shahproperties.com
 
 ### **Custom Events**:
 
-- 🏠 **Property Views**: When users view property details
-- 📞 **Phone Calls**: When users click phone numbers
-- 📝 **Contact Forms**: When forms are submitted
-- 🔍 **Search Queries**: When users search for properties
+- 🏠 **Property Views**: Uses standard GA4 `view_item` event for enhanced ecommerce tracking
+- 📞 **Phone Calls**: `phone_call_click` event when users click phone numbers
+- 📝 **Contact Forms**: `contact_form_submit` event when forms are submitted
+- 🔍 **Search Queries**: `search` event when users search for properties
 - 📱 **Button Clicks**: Important CTA interactions
 
 ### **Enhanced E-commerce**:

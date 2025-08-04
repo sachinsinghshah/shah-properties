@@ -2,12 +2,19 @@
 
 import { useState } from "react";
 import { FaSearch, FaMapMarkerAlt } from "react-icons/fa";
+import { trackSearch } from "./GoogleAnalytics";
 
 export default function SearchForm() {
   const [searchLocation, setSearchLocation] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Track search event
+    if (searchLocation.trim()) {
+      trackSearch(searchLocation.trim(), 0); // We'll update results count later
+    }
+
     window.location.href = `/properties?location=${encodeURIComponent(
       searchLocation
     )}`;
@@ -65,4 +72,4 @@ export default function SearchForm() {
       </div>
     </form>
   );
-} 
+}

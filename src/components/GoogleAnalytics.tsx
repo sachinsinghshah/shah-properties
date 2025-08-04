@@ -96,8 +96,6 @@ export const trackPropertyView = (
   price: number,
   location: string
 ) => {
-  trackEvent("view_item", "property", propertyTitle, price);
-
   if (typeof window !== "undefined" && window.gtag) {
     window.gtag("event", "view_item", {
       event_category: "property",
@@ -121,18 +119,82 @@ export const trackPropertyView = (
 
 // Helper function to track contact form submissions
 export const trackContactForm = (formType: string) => {
-  trackEvent("form_submit", "contact", formType);
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "contact_form_submit", {
+      event_category: "contact",
+      event_label: formType,
+    });
+  }
 };
 
 // Helper function to track phone calls
 export const trackPhoneCall = (phoneNumber: string) => {
   const standardizedPhone = standardizePhoneForAnalytics(phoneNumber);
-  trackEvent("phone_call", "contact", standardizedPhone);
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "phone_call_click", {
+      event_category: "contact",
+      event_label: standardizedPhone,
+    });
+  }
 };
 
 // Helper function to track search queries
 export const trackSearch = (searchTerm: string, resultsCount: number) => {
-  trackEvent("search", "engagement", searchTerm, resultsCount);
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "search", {
+      event_category: "engagement",
+      event_label: searchTerm,
+      value: resultsCount,
+    });
+  }
+};
+
+// Helper function to track lead qualification
+export const trackQualifyLead = (leadType: string, source: string) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "qualify_lead", {
+      event_category: "conversion",
+      event_label: leadType,
+      custom_lead_source: source,
+      value: 1,
+    });
+  }
+};
+
+// Helper function to track lead conversion closure
+export const trackCloseConvertLead = (leadType: string, value: number) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "close_convert_lead", {
+      event_category: "conversion",
+      event_label: leadType,
+      value: value,
+    });
+  }
+};
+
+// Helper function to track purchases
+export const trackPurchase = (
+  propertyId: string,
+  propertyTitle: string,
+  price: number
+) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "purchase", {
+      event_category: "ecommerce",
+      event_label: propertyTitle,
+      value: price,
+      currency: "INR",
+      items: [
+        {
+          item_id: propertyId,
+          item_name: propertyTitle,
+          item_category: "property",
+          price: price,
+          currency: "INR",
+        },
+      ],
+    });
+  }
 };
 
 // Helper function to track page views
