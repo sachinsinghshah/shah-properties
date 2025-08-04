@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import BackToTop from "@/components/BackToTop";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import GoogleSearchConsole from "@/components/GoogleSearchConsole";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -115,10 +114,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Google Search Console */}
-        <GoogleSearchConsole
-          verificationCode={process.env.GOOGLE_VERIFICATION_CODE}
-        />
 
         {/* Structured Data for Organization */}
         <script

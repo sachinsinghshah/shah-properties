@@ -317,7 +317,7 @@ export default function ContactPage() {
                         Address
                       </h4>
                       <p className="text-gray-600 leading-relaxed">
-                      2nd Floor, City Square Mega Mall, Ballupur, Dehradun,
+                        2nd Floor, City Square Mega Mall, Ballupur, Dehradun,
                         <br />
                         Uttarakhand, India - 248001
                       </p>
