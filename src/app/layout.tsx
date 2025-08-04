@@ -8,16 +8,19 @@ import BackToTop from "@/components/BackToTop";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleSearchConsole from "@/components/GoogleSearchConsole";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
-  display: 'swap',
+  display: "swap",
   preload: true,
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com"
+  ),
   title: {
-    default: "Shah Properties - Premium Real Estate in Dehradun | Residential Plots & Properties",
+    default:
+      "Shah Properties - Premium Real Estate in Dehradun | Residential Plots & Properties",
     template: "%s | Shah Properties - Dehradun Real Estate",
   },
   description:
@@ -53,7 +56,8 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com",
     siteName: "Shah Properties",
-    title: "Shah Properties - Premium Real Estate in Dehradun | Residential Plots & Properties",
+    title:
+      "Shah Properties - Premium Real Estate in Dehradun | Residential Plots & Properties",
     description:
       "Find your dream property in Dehradun with Shah Properties. Premium residential plots, commercial properties, and agricultural land in prime locations. Expert real estate services since 2005.",
     images: [
@@ -69,7 +73,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Shah Properties - Premium Real Estate in Dehradun",
-    description: "Find your dream property in Dehradun with Shah Properties. Premium residential plots and properties.",
+    description:
+      "Find your dream property in Dehradun with Shah Properties. Premium residential plots and properties.",
     images: ["/images/og-image.jpg"],
     creator: "@shahproperties",
   },
@@ -98,7 +103,7 @@ export const metadata: Metadata = {
     "geo.region": "IN-UT",
     "geo.placename": "Dehradun",
     "geo.position": "30.3165;78.0322",
-    "ICBM": "30.3165, 78.0322",
+    ICBM: "30.3165, 78.0322",
   },
 };
 
@@ -111,7 +116,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head>
         {/* Google Search Console */}
-        <GoogleSearchConsole verificationCode={process.env.GOOGLE_VERIFICATION_CODE} />
+        <GoogleSearchConsole
+          verificationCode={process.env.GOOGLE_VERIFICATION_CODE}
+        />
 
         {/* Structured Data for Organization */}
         <script
@@ -122,7 +129,8 @@ export default function RootLayout({
               "@type": "RealEstateAgent",
               name: "Shah Properties",
               alternateName: "Shah Properties Dehradun",
-              description: "Premium real estate services in Dehradun, Uttarakhand. Specializing in residential plots, commercial properties, and agricultural land.",
+              description:
+                "Premium real estate services in Dehradun, Uttarakhand. Specializing in residential plots, commercial properties, and agricultural land.",
               url: "https://shahproperties.com",
               telephone: "+91-8383815279",
               email: "shahproperties03@gmail.com",
@@ -156,14 +164,13 @@ export default function RootLayout({
                   name: "Dholas",
                 },
               ],
-              sameAs: [
-                "https://www.facebook.com/share/1AnqEc5BRA/",
-              ],
+              sameAs: ["https://www.facebook.com/share/1AnqEc5BRA/"],
               founder: {
                 "@type": "Person",
                 name: "Roshan Singh Shah",
                 jobTitle: "Founder & CEO",
-                description: "Retired Indian Army professional with 32 years of service",
+                description:
+                  "Retired Indian Army professional with 32 years of service",
               },
               foundingDate: "2005",
               serviceType: [
@@ -225,13 +232,27 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
 
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
 
@@ -240,16 +261,28 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.youtube.com" />
 
         {/* Preload critical resources */}
-        <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
-        <link rel="preload" href="/images/image1.jpg" as="image" type="image/jpeg" />
-        
+        <link
+          rel="preload"
+          href="/images/logo.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          href="/images/image1.jpg"
+          as="image"
+          type="image/jpeg"
+        />
+
         {/* Preload critical CSS */}
         <link rel="preload" href="/globals.css" as="style" />
       </head>
       <body className={inter.className}>
         {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-          <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+          <GoogleAnalytics
+            GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+          />
         )}
 
         <ErrorBoundary>

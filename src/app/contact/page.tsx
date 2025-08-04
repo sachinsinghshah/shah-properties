@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import { trackPhoneCall } from "@/components/GoogleAnalytics";
 
 import {
   FaMapMarkerAlt,
@@ -335,6 +336,7 @@ export default function ContactPage() {
                         <a
                           href="tel:+918383815279"
                           className="hover:text-blue-600 font-semibold transition-colors"
+                          onClick={() => trackPhoneCall("+918383815279")}
                         >
                           +91 83838 15279
                         </a>
@@ -388,6 +390,7 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-600 hover:bg-green-700 text-white p-4 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
+                      onClick={() => trackPhoneCall("WhatsApp:+918383815279")}
                     >
                       <FaWhatsapp size={20} />
                     </a>
