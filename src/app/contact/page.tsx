@@ -3,6 +3,12 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { trackPhoneCall } from "@/components/GoogleAnalytics";
+import {
+  getShahPropertiesPhone,
+  getShahPropertiesWhatsApp,
+  SHAH_PROPERTIES_PHONE_WITH_COUNTRY,
+  SHAH_PROPERTIES_PHONE_DISPLAY,
+} from "@/lib/phoneUtils";
 
 import {
   FaMapMarkerAlt,
@@ -17,7 +23,6 @@ import {
   FaCheckCircle,
   FaArrowRight,
 } from "react-icons/fa";
-import Image from "next/image";
 
 // Simple Map Placeholder Component
 const MapPlaceholder = ({ location }: { location: string }) => {
@@ -127,7 +132,7 @@ export default function ContactPage() {
                     Send Us a Message
                   </h2>
                   <p className="text-gray-600 text-lg">
-                    We'll get back to you within 24 hours
+                    We&apos;ll get back to you within 24 hours
                   </p>
                 </div>
 
@@ -334,11 +339,13 @@ export default function ContactPage() {
                       </h4>
                       <p className="text-gray-600">
                         <a
-                          href="tel:+918383815279"
+                          href={`tel:${SHAH_PROPERTIES_PHONE_WITH_COUNTRY}`}
                           className="hover:text-blue-600 font-semibold transition-colors"
-                          onClick={() => trackPhoneCall("+918383815279")}
+                          onClick={() =>
+                            trackPhoneCall(getShahPropertiesPhone())
+                          }
                         >
-                          +91 83838 15279
+                          {SHAH_PROPERTIES_PHONE_DISPLAY}
                         </a>
                       </p>
                     </div>
@@ -386,11 +393,16 @@ export default function ContactPage() {
                   </h4>
                   <div className="flex space-x-4">
                     <a
-                      href="https://wa.me/918383815279"
+                      href={`https://wa.me/${SHAH_PROPERTIES_PHONE_WITH_COUNTRY.replace(
+                        "+",
+                        ""
+                      )}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-600 hover:bg-green-700 text-white p-4 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
-                      onClick={() => trackPhoneCall("WhatsApp:+918383815279")}
+                      onClick={() =>
+                        trackPhoneCall(getShahPropertiesWhatsApp())
+                      }
                     >
                       <FaWhatsapp size={20} />
                     </a>

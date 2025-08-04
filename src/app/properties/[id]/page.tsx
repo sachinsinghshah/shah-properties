@@ -21,6 +21,7 @@ import ImageGallery from "@/components/ImageGallery";
 import YouTubeVideo from "@/components/YouTubeVideo";
 import PropertyViewTracker from "@/components/PropertyViewTracker";
 import { trackPhoneCall } from "@/components/GoogleAnalytics";
+import { standardizePhoneForAnalytics } from "@/lib/phoneUtils";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -357,7 +358,11 @@ export default async function PropertyDetailPage({ params }: Props) {
                   <a
                     href={`tel:${property.agent.phone}`}
                     className="flex items-center justify-center bg-gradient-to-r from-green-600 to-green-700 text-white py-4 px-6 rounded-xl hover:from-green-700 hover:to-green-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
-                    onClick={() => trackPhoneCall(property.agent.phone)}
+                    onClick={() =>
+                      trackPhoneCall(
+                        standardizePhoneForAnalytics(property.agent.phone)
+                      )
+                    }
                   >
                     <FaPhone className="mr-3 text-lg" />
                     Call Now
@@ -367,7 +372,13 @@ export default async function PropertyDetailPage({ params }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white py-4 px-6 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold"
-                    onClick={() => trackPhoneCall(`WhatsApp:${property.agent.phone}`)}
+                    onClick={() =>
+                      trackPhoneCall(
+                        standardizePhoneForAnalytics(
+                          `WhatsApp:${property.agent.phone}`
+                        )
+                      )
+                    }
                   >
                     <FaWhatsapp className="mr-3 text-lg" />
                     WhatsApp
