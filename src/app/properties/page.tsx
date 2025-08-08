@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import Navbar from "@/components/Navbar";
 
 import PropertyCard from "@/components/PropertyCard";
 import {
@@ -170,8 +169,6 @@ function PropertiesPageContent() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
-
       <main className="flex-grow">
         {/* Page Header */}
         <div className="bg-blue-900 text-white py-12 px-6">
@@ -468,9 +465,7 @@ function PropertiesPageContent() {
                 <select
                   id="sortBy"
                   value={sortBy}
-                  onChange={(e) =>
-                    setSortBy(e.target.value as SortOption)
-                  }
+                  onChange={(e) => setSortBy(e.target.value as SortOption)}
                   className="border border-gray-300 rounded-md py-1 px-2 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="default">Sort by: Default</option>
@@ -575,7 +570,6 @@ export default function PropertiesPage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex flex-col">
-          <Navbar />
           <main className="flex-grow flex items-center justify-center">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>

@@ -1,27 +1,26 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import {
-  FaSearch,
   FaBuilding,
   FaHandshake,
   FaChartLine,
-  FaMapMarkerAlt,
   FaQuoteLeft,
   FaArrowRight,
   FaPhone,
 } from "react-icons/fa";
 import { properties } from "@/data/properties";
 import PropertyCard from "@/components/PropertyCard";
-import VideoShowcase from "@/components/VideoShowcase";
-import HeroCarousel from "@/components/HeroCarousel";
+import VideoShowcaseClient from "@/components/VideoShowcaseClient";
+import HeroCarouselClient from "@/components/HeroCarouselClient";
 import SearchForm from "@/components/SearchForm";
 
 export const metadata: Metadata = {
   title: "Premium Real Estate in Dehradun | Residential Plots & Properties",
-  description: "Find your dream property in Dehradun with Shah Properties. Premium residential plots, commercial properties, and agricultural land in prime locations like Kalyanpur, Pondha, and Dholas. Expert real estate services since 2005.",
+  description:
+    "Find your dream property in Dehradun with Shah Properties. Premium residential plots, commercial properties, and agricultural land in prime locations like Kalyanpur, Pondha, and Dholas. Expert real estate services since 2005.",
   keywords: [
     "real estate Dehradun",
-    "properties Dehradun", 
+    "properties Dehradun",
     "residential plots Dehradun",
     "commercial properties Dehradun",
     "property investment Dehradun",
@@ -30,7 +29,8 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Premium Real Estate in Dehradun | Shah Properties",
-    description: "Find your dream property in Dehradun with Shah Properties. Premium residential plots and properties in prime locations.",
+    description:
+      "Find your dream property in Dehradun with Shah Properties. Premium residential plots and properties in prime locations.",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -70,24 +70,27 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative w-full aspect-video min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] overflow-hidden">
         {/* Background Carousel */}
-        <HeroCarousel />
+        <HeroCarouselClient />
 
-        {/* Enhanced Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-purple-800/20 to-pink-800/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/15 via-transparent to-blue-600/15 animate-pulse"></div>
+        {/* Enhanced Gradient Overlays (reduced on mobile to improve LCP) */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-purple-800/20 to-pink-800/30 hidden sm:block"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/15 via-transparent to-blue-600/15 animate-pulse hidden sm:block"></div>
 
-        {/* Animated Background Elements */}
-        <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-20 h-20 sm:w-32 sm:h-32 bg-white/5 rounded-full animate-float"></div>
-        <div className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-16 h-16 sm:w-24 sm:h-24 bg-white/5 rounded-full animate-float animation-delay-200"></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-full animate-float animation-delay-400"></div>
+        {/* Animated Background Elements (hidden on mobile to reduce paint costs) */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-white/5 rounded-full animate-float hidden sm:block"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-white/5 rounded-full animate-float animation-delay-200 hidden sm:block"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/5 rounded-full animate-float animation-delay-400 hidden sm:block"></div>
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           {/* Mobile: Simplified content */}
           <div className="block sm:hidden text-center mb-4">
             <h1 className="text-2xl sm:text-3xl font-bold animate-fadeIn hero-text-shadow leading-tight mb-2">
               Find Your Dream Property in{" "}
-              <span className="font-extrabold bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent " style={{textShadow:'none'}}>
+              <span
+                className="font-extrabold bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent "
+                style={{ textShadow: "none" }}
+              >
                 Dehradun
               </span>
             </h1>
@@ -100,7 +103,10 @@ export default function Home() {
           <div className="hidden sm:block text-center mb-6">
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold animate-fadeIn hero-text-shadow leading-tight">
               Find Your Dream Property in{" "}
-              <span className="font-extrabold bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent  " style={{textShadow:'none'}}>
+              <span
+                className="font-extrabold bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent  "
+                style={{ textShadow: "none" }}
+              >
                 Dehradun
               </span>
             </h1>
@@ -113,21 +119,21 @@ export default function Home() {
           {/* Search Form Component */}
           <SearchForm />
 
-            {/* Quick Search Suggestions - Hidden on mobile */}
-            <div className="hidden sm:block mt-3 sm:mt-4 md:mt-6 flex flex-wrap gap-1 sm:gap-2 justify-center">
-              <span className="text-white/80 text-xs sm:text-sm mr-2">
-                Popular:
-              </span>
-              {["Dehradun", "Shimla Bypass", "Race Course"].map((location) => (
+          {/* Quick Search Suggestions - Hidden on mobile */}
+          <div className="hidden sm:block mt-3 sm:mt-4 md:mt-6 flex flex-wrap gap-1 sm:gap-2 justify-center">
+            <span className="text-white/80 text-xs sm:text-sm mr-2">
+              Popular:
+            </span>
+            {["Dehradun", "Shimla Bypass", "Race Course"].map((location) => (
               <Link
-                  key={location}
+                key={location}
                 href={`/properties?location=${encodeURIComponent(location)}`}
-                  className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-xs sm:text-sm rounded-full transition-all duration-200 hover:scale-105 border border-white/30"
-                >
-                  {location}
+                className="px-2 sm:px-3 py-1 bg-white/20 hover:bg-white/30 text-white text-xs sm:text-sm rounded-full transition-all duration-200 hover:scale-105 border border-white/30"
+              >
+                {location}
               </Link>
-              ))}
-            </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -346,8 +352,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Video Showcase */}
-      <VideoShowcase />
+      {/* Video Showcase (client-only, deferred until near viewport) */}
+      <VideoShowcaseClient />
 
       {/* Call to Action */}
       <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden">

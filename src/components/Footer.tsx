@@ -36,7 +36,10 @@ export default function Footer() {
               width={240}
               height={240}
               className="h-24 w-auto mb-6"
-              priority
+              sizes="(max-width: 640px) 120px, 192px"
+              priority={false}
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2P4z8DwHwAF+gJ7S0kqNwAAAABJRU5ErkJggg=="
             />
             <h3 className="text-2xl font-bold mb-4">Shah Properties</h3>
             <p className="text-gray-300 mb-6 max-w-xs">

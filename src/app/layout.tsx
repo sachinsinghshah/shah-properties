@@ -238,9 +238,7 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
 
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* Preconnect to external domains for performance (only those actually used) */}
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -250,25 +248,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
 
         {/* DNS Prefetch for performance */}
-        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.youtube.com" />
 
-        {/* Preload critical resources */}
-        <link
-          rel="preload"
-          href="/images/logo.png"
-          as="image"
-          type="image/png"
-        />
-        <link
-          rel="preload"
-          href="/images/image1.jpg"
-          as="image"
-          type="image/jpeg"
-        />
-
-        {/* Preload critical CSS */}
-        <link rel="preload" href="/globals.css" as="style" />
+        {/* Avoid preloading non-critical assets to reduce bandwidth */}
       </head>
       <body className={inter.className}>
         {/* Google Analytics */}
