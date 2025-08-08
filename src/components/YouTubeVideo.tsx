@@ -66,6 +66,7 @@ const YouTubeVideo: React.FC<YouTubeVideoProps> = ({
           title={title || "Property Video"}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          loading="lazy"
           allowFullScreen
         />
       </div>

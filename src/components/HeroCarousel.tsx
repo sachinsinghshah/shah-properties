@@ -169,7 +169,7 @@ export default function HeroCarousel() {
   return (
     <div className="absolute inset-0 group aspect-video-hero">
       {/* Background Slideshow */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" aria-hidden>
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -185,9 +185,11 @@ export default function HeroCarousel() {
                 alt={slide.alt}
                 fill
                 priority={index === 0}
+                fetchPriority={index === 0 ? "high" : undefined}
                 sizes="100vw"
                 className="object-cover w-full h-full"
-                quality={85}
+                quality={72}
+                placeholder={index === 0 ? "empty" : "empty"}
               />
             ) : (
               <div className="w-full h-full relative bg-black video-container overflow-hidden">

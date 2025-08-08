@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface ImageGalleryProps {
   images: string[];
@@ -36,10 +37,15 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
       {/* Main Image Container */}
       <div className="relative w-full h-96 md:h-[500px] bg-gray-100 rounded-lg overflow-hidden mb-4">
         {/* Main Image */}
-        <img
+        <Image
           src={images[currentImageIndex]}
           alt={`${title} - Image ${currentImageIndex + 1}`}
-          className="w-full h-full object-contain transition-opacity duration-300"
+          fill
+          sizes="(max-width: 768px) 100vw, 100vw"
+          className="object-contain transition-opacity duration-300"
+          priority={currentImageIndex === 0}
+          fetchPriority={currentImageIndex === 0 ? "high" : undefined}
+          quality={75}
         />
 
         {/* Navigation Arrows */}
@@ -50,14 +56,14 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
               aria-label="Previous image"
             >
-              <ChevronLeftIcon className="w-6 h-6" />
+              <FaChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextImage}
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
               aria-label="Next image"
             >
-              <ChevronRightIcon className="w-6 h-6" />
+              <FaChevronRight className="w-6 h-6" />
             </button>
           </>
         )}
@@ -71,7 +77,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
 
         {/* Property Tag */}
         <div className="absolute top-4 left-4">
-          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+          <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium select-none">
             Residential
           </span>
         </div>
@@ -108,11 +114,17 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
                   : "border-gray-200 hover:border-gray-300"
               }`}
             >
-              <img
-                src={image}
-                alt={`${title} thumbnail ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={image}
+                  alt={`${title} thumbnail ${index + 1}`}
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                  priority={false}
+                  quality={70}
+                />
+              </div>
             </button>
           ))}
         </div>

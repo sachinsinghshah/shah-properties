@@ -35,10 +35,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 h-16 transition-colors duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
-          : "bg-white/90 backdrop-blur-md shadow-md py-3"
+          ? "bg-white/95 backdrop-blur-md shadow-lg"
+          : "bg-white/90 backdrop-blur-md shadow-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
@@ -50,8 +50,11 @@ export default function Navbar() {
               alt="Shah Properties logo"
               width={96}
               height={96}
-              priority
+              priority={false}
+              sizes="48px"
               className="h-12 w-auto mr-3"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2P4z8DwHwAF+gJ7S0kqNwAAAABJRU5ErkJggg=="
             />
             <span className="text-xl font-bold text-blue-900 hidden sm:inline-flex">
               Shah <span className="text-orange-600">Properties</span>
@@ -107,8 +110,8 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`lg:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen 
-            ? "max-h-screen bg-white shadow-lg border-t border-gray-100" 
+          isMenuOpen
+            ? "max-h-screen bg-white shadow-lg border-t border-gray-100"
             : "max-h-0"
         }`}
       >

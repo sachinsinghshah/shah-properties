@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   generateEtags: true,
   experimental: {
-    optimizePackageImports: ['react-icons', '@heroicons/react'],
+    optimizePackageImports: ['react-icons'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
