@@ -93,7 +93,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="text-gray-300 hover:text-white flex items-center"
+                  className="text-gray-300 md:hover:text-white flex items-center"
                 >
                   <FaArrowRight className="mr-2 text-sm" />
                   Home
@@ -102,7 +102,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/properties"
-                  className="text-gray-300 hover:text-white flex items-center"
+                  className="text-gray-300 md:hover:text-white flex items-center"
                 >
                   <FaArrowRight className="mr-2 text-sm" />
                   Properties
@@ -111,7 +111,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-gray-300 hover:text-white flex items-center"
+                  className="text-gray-300 md:hover:text-white flex items-center"
                 >
                   <FaArrowRight className="mr-2 text-sm" />
                   About Us
@@ -120,7 +120,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-gray-300 hover:text-white flex items-center"
+                  className="text-gray-300 md:hover:text-white flex items-center"
                 >
                   <FaArrowRight className="mr-2 text-sm" />
                   Contact

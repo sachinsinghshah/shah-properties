@@ -1,18 +1,16 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useMemo, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 import PropertyCard from "@/components/PropertyCard";
 import {
   FaFilter,
-  FaSort,
   FaMapMarkerAlt,
   FaRupeeSign,
   FaRulerCombined,
-  FaAngleLeft,
-  FaAngleRight,
-  FaSearch,
+  FaTimes,
+  FaSort,
 } from "react-icons/fa";
 import { properties } from "@/data/properties";
 
@@ -34,8 +32,10 @@ function PropertiesPageContent() {
     minPrice: "",
     maxPrice: "",
   });
-  const [showFilters, setShowFilters] = useState(false);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>("default");
+  const [visibleCount, setVisibleCount] = useState(9);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   // Apply filters when component mounts or filters change
   useEffect(() => {
@@ -45,6 +45,11 @@ function PropertiesPageContent() {
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, sortBy, filters]);
+
+  // Reset visible items when filters/sort change
+  useEffect(() => {
+    setVisibleCount(9);
+  }, [filters, sortBy]);
 
   const applyFilters = () => {
     let result = [...properties];
@@ -117,63 +122,43 @@ function PropertiesPageContent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     applyFilters();
+    setIsFiltersOpen(false);
   };
-
-  // Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const propertiesPerPage = 9;
 
   // Get unique locations for the filter dropdown
   const locations = Array.from(
     new Set(properties.map((p) => p.location))
   ).sort();
 
-  // Price range options for dropdown
-  const priceRanges = [
-    { label: "All Prices", min: undefined, max: undefined },
-    { label: "Under ₹20 Lakh", min: undefined, max: 2000000 },
-    { label: "₹20 Lakh - ₹50 Lakh", min: 2000000, max: 5000000 },
-    { label: "₹50 Lakh - ₹1 Crore", min: 5000000, max: 10000000 },
-    { label: "Above ₹1 Crore", min: 10000000, max: undefined },
-  ];
+  // Note: additional ranges removed for simplicity; can be reintroduced if needed
 
-  // Area range options for dropdown
-  const areaRanges = [
-    { label: "All Sizes", min: undefined, max: undefined },
-    { label: "Under 150 sq.yd", min: undefined, max: 150 },
-    { label: "150-250 sq.yd", min: 150, max: 250 },
-    { label: "250-500 sq.yd", min: 250, max: 500 },
-    { label: "Above 500 sq.yd", min: 500, max: undefined },
-  ];
-
-  // Get current page properties
-  const indexOfLastProperty = currentPage * propertiesPerPage;
-  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
-  const currentProperties = filteredProperties.slice(
-    indexOfFirstProperty,
-    indexOfLastProperty
+  // Current items and infinite load
+  const currentProperties = useMemo(
+    () => filteredProperties.slice(0, visibleCount),
+    [filteredProperties, visibleCount]
   );
 
-  // Pagination controls
-  const totalPages = Math.ceil(filteredProperties.length / propertiesPerPage);
-
-  const handlePageChange = (pageNumber: number) => {
-    if (pageNumber > 0 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber);
-      // Scroll to top when changing pages (only in browser)
-      if (typeof window !== "undefined") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+  useEffect(() => {
+    if (!loadMoreRef.current) return;
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setVisibleCount((prev) =>
+          Math.min(prev + 9, filteredProperties.length)
+        );
       }
-    }
-  };
+    });
+    observer.observe(loadMoreRef.current);
+    return () => observer.disconnect();
+  }, [filteredProperties.length]);
 
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
         {/* Page Header */}
-        <div className="bg-blue-900 text-white py-12 px-6">
+        <div className="bg-blue-900 text-white py-10 px-4 sm:px-6">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-3">
               {filters.type === "residential"
                 ? "Residential Properties"
                 : filters.type === "commercial"
@@ -183,7 +168,7 @@ function PropertiesPageContent() {
                 : "All Properties"}
               {filters.location && ` in ${filters.location}`}
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-base sm:text-xl text-blue-100">
               Browse our curated selection of premium properties
               {filters.minPrice &&
                 filters.maxPrice &&
@@ -207,15 +192,44 @@ function PropertiesPageContent() {
         </div>
 
         {/* Filters and Listings */}
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+          {/* Sticky toolbar (mobile) */}
+          <div className="md:hidden sticky top-16 z-30 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-gray-100 py-2 mb-4">
+            <div className="flex items-center justify-between gap-3">
+              <button
+                onClick={() => setIsFiltersOpen(true)}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 text-gray-800 text-sm font-medium"
+              >
+                <FaFilter /> Filters
+              </button>
+              <div className="flex items-center gap-2">
+                <FaSort className="text-gray-500" />
+                <label htmlFor="sortByMobile" className="sr-only">
+                  Sort by
+                </label>
+                <select
+                  id="sortByMobile"
+                  className="rounded-md border border-gray-300 py-2 px-3 text-sm"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as SortOption)}
+                >
+                  <option value="default">Default</option>
+                  <option value="price_low">Price: Low to High</option>
+                  <option value="price_high">Price: High to Low</option>
+                  <option value="area_low">Area: Low to High</option>
+                  <option value="area_high">Area: High to Low</option>
+                </select>
+              </div>
+            </div>
+          </div>
           {/* Filters */}
-          <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+          <div className="hidden md:block bg-white p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
             <div className="flex items-center gap-2 text-blue-900 font-medium mb-4">
               <FaFilter />
               <span>Filters</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               {/* Property Type Filter */}
               <div className="relative">
                 <label
@@ -285,31 +299,18 @@ function PropertiesPageContent() {
                 </select>
               </div>
 
-              {/* Area Range Filter */}
-              <div className="relative">
-                <label
-                  htmlFor="areaRange"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+              {/* Submit */}
+              <div className="flex items-end">
+                <button
+                  type="submit"
+                  className="w-full bg-blue-800 text-white rounded-md py-2 font-medium"
                 >
-                  Area (sq. yards)
-                </label>
-                <select
-                  id="areaRange"
-                  name="maxPrice"
-                  value={filters.maxPrice}
-                  onChange={handleFilterChange}
-                  className="block w-full rounded-md border border-gray-300 py-2 px-3 focus:border-blue-500 focus:ring-blue-500"
-                >
-                  <option value="">All Sizes</option>
-                  <option value="150">Under 150 sq.yd</option>
-                  <option value="250">150-250 sq.yd</option>
-                  <option value="500">250-500 sq.yd</option>
-                  <option value="500">Above 500 sq.yd</option>
-                </select>
+                  Apply
+                </button>
               </div>
 
-              {/* Category Filter */}
-              <div className="relative">
+              {/* Category Filter (moved to mobile modal to reduce width) */}
+              <div className="hidden">
                 <label
                   htmlFor="category"
                   className="block text-sm font-medium text-gray-700 mb-1"
@@ -328,47 +329,6 @@ function PropertiesPageContent() {
                   <option value="farmland">Farmland</option>
                   <option value="commercial">Commercial</option>
                 </select>
-              </div>
-
-              {/* Sort Filter */}
-              <div className="relative">
-                <label
-                  htmlFor="sortBy"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Sort By
-                </label>
-                <select
-                  id="sortBy"
-                  className="block w-full rounded-md border border-gray-300 py-2 px-3 focus:border-blue-500 focus:ring-blue-500"
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as SortOption)}
-                >
-                  <option value="default">Default</option>
-                  <option value="price_low">Price: Low to High</option>
-                  <option value="price_high">Price: High to Low</option>
-                  <option value="area_low">Area: Low to High</option>
-                  <option value="area_high">Area: High to Low</option>
-                </select>
-              </div>
-
-              {/* Clear Filters Button */}
-              <div className="relative flex items-end">
-                <button
-                  onClick={() => {
-                    setFilters({
-                      location: "",
-                      type: "",
-                      category: "",
-                      minPrice: "",
-                      maxPrice: "",
-                    });
-                    setSortBy("default");
-                  }}
-                  className="w-full py-2 px-3 bg-gray-100 hover:bg-gray-200 rounded-md text-gray-700 font-medium flex items-center justify-center"
-                >
-                  Clear Filters
-                </button>
               </div>
             </div>
           </div>
@@ -453,22 +413,22 @@ function PropertiesPageContent() {
 
           {/* Property Listing */}
           <div>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
-                {filteredProperties.length} Properties Found
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+                {filteredProperties.length} Properties
               </h2>
-              <div className="flex items-center gap-2">
-                <FaSort className="text-blue-800" />
-                <label htmlFor="sortBy" className="sr-only">
+              <div className="hidden md:flex items-center gap-2">
+                <FaSort className="text-gray-500" />
+                <label htmlFor="sortByDesktop" className="sr-only">
                   Sort by
                 </label>
                 <select
-                  id="sortBy"
+                  id="sortByDesktop"
+                  className="rounded-md border border-gray-300 py-2 px-3 text-sm"
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="border border-gray-300 rounded-md py-1 px-2 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value="default">Sort by: Default</option>
+                  <option value="default">Default</option>
                   <option value="price_low">Price: Low to High</option>
                   <option value="price_high">Price: High to Low</option>
                   <option value="area_low">Area: Low to High</option>
@@ -485,54 +445,22 @@ function PropertiesPageContent() {
                   ))}
                 </div>
 
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="flex justify-center mt-10">
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                          currentPage === 1
-                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
-                        aria-label="Previous page"
-                      >
-                        <FaAngleLeft />
-                      </button>
-
-                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                        (page) => (
-                          <button
-                            key={page}
-                            onClick={() => handlePageChange(page)}
-                            className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                              currentPage === page
-                                ? "bg-blue-800 text-white"
-                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                            }`}
-                          >
-                            {page}
-                          </button>
+                {/* Load More + Sentinel */}
+                {visibleCount < filteredProperties.length && (
+                  <div className="mt-8 flex justify-center">
+                    <button
+                      onClick={() =>
+                        setVisibleCount((v) =>
+                          Math.min(v + 9, filteredProperties.length)
                         )
-                      )}
-
-                      <button
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        className={`flex items-center justify-center w-10 h-10 rounded-full ${
-                          currentPage === totalPages
-                            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
-                        aria-label="Next page"
-                      >
-                        <FaAngleRight />
-                      </button>
-                    </div>
+                      }
+                      className="px-4 py-2 rounded-lg bg-gray-100 text-gray-800 hover:bg-gray-200"
+                    >
+                      Load More
+                    </button>
                   </div>
                 )}
+                <div ref={loadMoreRef} className="h-6"></div>
               </>
             ) : (
               <div className="text-center py-12 bg-white rounded-lg shadow-md">
@@ -561,6 +489,118 @@ function PropertiesPageContent() {
           </div>
         </div>
       </main>
+
+      {/* Mobile Filters Modal */}
+      {isFiltersOpen && (
+        <div className="fixed inset-0 z-50">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setIsFiltersOpen(false)}
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-white rounded-t-2xl p-4 shadow-xl max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2 text-blue-900 font-semibold">
+                <FaFilter /> Filters
+              </div>
+              <button
+                onClick={() => setIsFiltersOpen(false)}
+                aria-label="Close filters"
+                className="p-2 rounded-full bg-gray-100"
+              >
+                <FaTimes />
+              </button>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="type"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Property Type
+                </label>
+                <select
+                  id="type"
+                  name="type"
+                  value={filters.type}
+                  onChange={handleFilterChange}
+                  className="w-full rounded-md border border-gray-300 py-2 px-3"
+                >
+                  <option value="">All Types</option>
+                  <option value="residential">Residential</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="agricultural">Agricultural</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="location"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Location
+                </label>
+                <select
+                  id="location"
+                  name="location"
+                  value={filters.location}
+                  onChange={handleFilterChange}
+                  className="w-full rounded-md border border-gray-300 py-2 px-3"
+                >
+                  <option value="">All Locations</option>
+                  {locations.map((loc) => (
+                    <option key={loc} value={loc}>
+                      {loc}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="priceRange"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Price Range
+                </label>
+                <select
+                  id="priceRange"
+                  name="minPrice"
+                  value={filters.minPrice}
+                  onChange={handleFilterChange}
+                  className="w-full rounded-md border border-gray-300 py-2 px-3"
+                >
+                  <option value="">All Prices</option>
+                  <option value="2000000">Under ₹20 Lakh</option>
+                  <option value="5000000">₹20 Lakh - ₹50 Lakh</option>
+                  <option value="10000000">₹50 Lakh - ₹1 Crore</option>
+                  <option value="10000000">Above ₹1 Crore</option>
+                </select>
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setFilters({
+                      location: "",
+                      type: "",
+                      category: "",
+                      minPrice: "",
+                      maxPrice: "",
+                    })
+                  }
+                  className="flex-1 py-2 rounded-md bg-gray-100 text-gray-700"
+                >
+                  Reset
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-2 rounded-md bg-blue-800 text-white font-medium"
+                >
+                  Apply
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
