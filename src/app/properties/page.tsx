@@ -29,6 +29,7 @@ function PropertiesPageContent() {
     location: searchParams.get("location") || "",
     type: searchParams.get("type") || "",
     category: searchParams.get("category") || "",
+    priceRange: "",
     minPrice: "",
     maxPrice: "",
   });
@@ -113,6 +114,18 @@ function PropertiesPageContent() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
+    if (name === "priceRange") {
+      const [minRaw, maxRaw] = value.split("-");
+      const minPrice = minRaw && minRaw !== "0" ? minRaw : "";
+      const maxPrice = maxRaw ? maxRaw : "";
+      setFilters((prev) => ({
+        ...prev,
+        priceRange: value,
+        minPrice,
+        maxPrice,
+      }));
+      return;
+    }
     setFilters((prev) => ({
       ...prev,
       [name]: value,
@@ -286,16 +299,16 @@ function PropertiesPageContent() {
                 </label>
                 <select
                   id="priceRange"
-                  name="minPrice"
-                  value={filters.minPrice}
+                  name="priceRange"
+                  value={filters.priceRange}
                   onChange={handleFilterChange}
                   className="block w-full rounded-md border border-gray-300 py-2 px-3 focus:border-blue-500 focus:ring-blue-500"
                 >
                   <option value="">All Prices</option>
-                  <option value="2000000">Under ₹20 Lakh</option>
-                  <option value="5000000">₹20 Lakh - ₹50 Lakh</option>
-                  <option value="10000000">₹50 Lakh - ₹1 Crore</option>
-                  <option value="10000000">Above ₹1 Crore</option>
+                  <option value="0-2000000">Under ₹20 Lakh</option>
+                  <option value="2000000-5000000">₹20 Lakh - ₹50 Lakh</option>
+                  <option value="5000000-10000000">₹50 Lakh - ₹1 Crore</option>
+                  <option value="10000000-">Above ₹1 Crore</option>
                 </select>
               </div>
 
@@ -476,6 +489,7 @@ function PropertiesPageContent() {
                       location: "",
                       type: "",
                       category: "",
+                      priceRange: "",
                       minPrice: "",
                       maxPrice: "",
                     });
@@ -562,16 +576,16 @@ function PropertiesPageContent() {
                 </label>
                 <select
                   id="priceRange"
-                  name="minPrice"
-                  value={filters.minPrice}
+                  name="priceRange"
+                  value={filters.priceRange}
                   onChange={handleFilterChange}
                   className="w-full rounded-md border border-gray-300 py-2 px-3"
                 >
                   <option value="">All Prices</option>
-                  <option value="2000000">Under ₹20 Lakh</option>
-                  <option value="5000000">₹20 Lakh - ₹50 Lakh</option>
-                  <option value="10000000">₹50 Lakh - ₹1 Crore</option>
-                  <option value="10000000">Above ₹1 Crore</option>
+                  <option value="0-2000000">Under ₹20 Lakh</option>
+                  <option value="2000000-5000000">₹20 Lakh - ₹50 Lakh</option>
+                  <option value="5000000-10000000">₹50 Lakh - ₹1 Crore</option>
+                  <option value="10000000-">Above ₹1 Crore</option>
                 </select>
               </div>
               <div className="flex gap-3 pt-2">
@@ -582,6 +596,7 @@ function PropertiesPageContent() {
                       location: "",
                       type: "",
                       category: "",
+                      priceRange: "",
                       minPrice: "",
                       maxPrice: "",
                     })
