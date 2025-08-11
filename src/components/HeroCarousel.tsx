@@ -125,7 +125,7 @@ export default function HeroCarousel() {
 
   return (
     <div
-      className="absolute inset-0 group aspect-video-hero"
+      className="absolute inset-0 group aspect-video-hero pointer-events-none md:pointer-events-auto"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -162,7 +162,7 @@ export default function HeroCarousel() {
       {/* Enhanced Navigation Arrows */}
       <button
         onClick={goToPrevSlide}
-        className="absolute left-1 sm:left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-black/40 md:hover:bg-black/60 backdrop-blur-sm text-white rounded-full transition-transform duration-300 md:hover:scale-110 opacity-100 md:opacity-0 md:group-hover:opacity-100 border border-white/20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center"
+        className="absolute left-1 sm:left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-black/40 md:hover:bg-black/60 backdrop-blur-sm text-white rounded-full transition-transform duration-300 md:hover:scale-110 opacity-100 md:opacity-0 md:group-hover:opacity-100 border border-white/20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center pointer-events-auto"
         aria-label="Previous slide"
       >
         <FaChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" />
@@ -170,7 +170,7 @@ export default function HeroCarousel() {
 
       <button
         onClick={goToNextSlide}
-        className="absolute right-1 sm:right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-black/40 md:hover:bg-black/60 backdrop-blur-sm text-white rounded-full transition-transform duration-300 md:hover:scale-110 opacity-100 md:opacity-0 md:group-hover:opacity-100 border border-white/20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center"
+        className="absolute right-1 sm:right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-black/40 md:hover:bg-black/60 backdrop-blur-sm text-white rounded-full transition-transform duration-300 md:hover:scale-110 opacity-100 md:opacity-0 md:group-hover:opacity-100 border border-white/20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center pointer-events-auto"
         aria-label="Next slide"
       >
         <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" />
@@ -179,7 +179,7 @@ export default function HeroCarousel() {
       {/* Play/Pause Button */}
       <button
         onClick={togglePause}
-        className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6 z-20 bg-black/40 md:hover:bg-black/60 backdrop-blur-sm text-white rounded-full transition-transform duration-300 md:hover:scale-110 border border-white/20 w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 flex items-center justify-center leading-none overflow-hidden"
+        className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6 z-20 bg-black/40 md:hover:bg-black/60 backdrop-blur-sm text-white rounded-full transition-transform duration-300 md:hover:scale-110 border border-white/20 w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 flex items-center justify-center leading-none overflow-hidden pointer-events-auto"
         aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
       >
         {isPaused ? (
