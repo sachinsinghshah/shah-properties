@@ -68,7 +68,10 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full aspect-video min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] overflow-hidden">
+      <section
+        className="relative w-full aspect-video min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] overflow-hidden"
+        style={{ minHeight: "70svh" }}
+      >
         {/* Background Carousel */}
         <HeroCarouselClient />
 
