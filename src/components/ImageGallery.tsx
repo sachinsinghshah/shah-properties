@@ -53,14 +53,14 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
           <>
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 md:hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 md:hover:scale-110"
               aria-label="Previous image"
             >
               <FaChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 md:hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 md:hover:scale-110"
               aria-label="Next image"
             >
               <FaChevronRight className="w-6 h-6" />

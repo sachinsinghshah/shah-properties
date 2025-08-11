@@ -152,24 +152,24 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Property Listing Service */}
-            <div className="group bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-l-4 border-emerald-400 relative overflow-hidden">
+            <div className="group bg-white p-6 sm:p-8 rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-500 md:transform md:hover:-translate-y-3 md:hover:scale-105 border-l-4 border-emerald-400 relative overflow-hidden">
               {/* Decorative Background */}
-              <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-emerald-50 rounded-full -translate-y-10 sm:-translate-y-12 translate-x-10 sm:translate-x-12 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-emerald-50 rounded-full -translate-y-10 sm:-translate-y-12 translate-x-10 sm:translate-x-12 md:group-hover:scale-150 transition-transform duration-500"></div>
 
               <div className="relative">
-                <div className="bg-gradient-to-br from-emerald-100 to-teal-100 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                <div className="bg-gradient-to-br from-emerald-100 to-teal-100 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto shadow-lg md:group-hover:scale-110 md:group-hover:rotate-12 transition-all duration-300">
                   <FaBuilding className="text-emerald-600 text-xl sm:text-2xl group-hover:text-emerald-700" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-center mb-3 sm:mb-4 group-hover:text-emerald-600 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-center mb-3 sm:mb-4 md:group-hover:text-emerald-600 transition-colors duration-300">
                   Property Listing
                 </h3>
-                <p className="text-gray-600 text-center text-sm sm:text-base group-hover:text-gray-700 transition-colors duration-300">
+                <p className="text-gray-600 text-center text-sm sm:text-base md:group-hover:text-gray-700 transition-colors duration-300">
                   Explore our extensive collection of premium properties in
                   prime locations across Dehradun
                 </p>
 
                 {/* Hover Call-to-Action for Property Listing */}
-                <div className="mt-4 sm:mt-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                <div className="mt-4 sm:mt-6 opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
                   <Link
                     href="/properties"
                     className="block text-center w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
@@ -181,24 +181,24 @@ export default function Home() {
             </div>
 
             {/* Expert Consultation Service */}
-            <div className="group bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-l-4 border-teal-400 relative overflow-hidden">
+            <div className="group bg-white p-6 sm:p-8 rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-500 md:transform md:hover:-translate-y-3 md:hover:scale-105 border-l-4 border-teal-400 relative overflow-hidden">
               {/* Decorative Background */}
-              <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-teal-50 rounded-full -translate-y-10 sm:-translate-y-12 translate-x-10 sm:translate-x-12 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-teal-50 rounded-full -translate-y-10 sm:-translate-y-12 translate-x-10 sm:translate-x-12 md:group-hover:scale-150 transition-transform duration-500"></div>
 
               <div className="relative">
-                <div className="bg-gradient-to-br from-teal-100 to-blue-100 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                <div className="bg-gradient-to-br from-teal-100 to-blue-100 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto shadow-lg md:group-hover:scale-110 md:group-hover:rotate-12 transition-all duration-300">
                   <FaHandshake className="text-teal-600 text-xl sm:text-2xl group-hover:text-teal-700" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-center mb-3 sm:mb-4 group-hover:text-teal-600 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-center mb-3 sm:mb-4 md:group-hover:text-teal-600 transition-colors duration-300">
                   Expert Consultation
                 </h3>
-                <p className="text-gray-600 text-center text-sm sm:text-base group-hover:text-gray-700 transition-colors duration-300">
+                <p className="text-gray-600 text-center text-sm sm:text-base md:group-hover:text-gray-700 transition-colors duration-300">
                   Get personalized advice from our experienced real estate
                   consultants to make informed decisions
                 </p>
 
                 {/* Hover Call-to-Action for Expert Consultation */}
-                <div className="mt-4 sm:mt-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                <div className="mt-4 sm:mt-6 opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
                   <Link
                     href="/contact"
                     className="block text-center w-full bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
@@ -210,24 +210,24 @@ export default function Home() {
             </div>
 
             {/* Property Valuation Service */}
-            <div className="group bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-l-4 border-blue-400 relative overflow-hidden">
+            <div className="group bg-white p-6 sm:p-8 rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-500 md:transform md:hover:-translate-y-3 md:hover:scale-105 border-l-4 border-blue-400 relative overflow-hidden">
               {/* Decorative Background */}
-              <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-blue-50 rounded-full -translate-y-10 sm:-translate-y-12 translate-x-10 sm:translate-x-12 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 bg-blue-50 rounded-full -translate-y-10 sm:-translate-y-12 translate-x-10 sm:translate-x-12 md:group-hover:scale-150 transition-transform duration-500"></div>
 
               <div className="relative">
-                <div className="bg-gradient-to-br from-blue-100 to-indigo-100 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                <div className="bg-gradient-to-br from-blue-100 to-indigo-100 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto shadow-lg md:group-hover:scale-110 md:group-hover:rotate-12 transition-all duration-300">
                   <FaChartLine className="text-blue-600 text-xl sm:text-2xl group-hover:text-blue-700" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-center mb-3 sm:mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-center mb-3 sm:mb-4 md:group-hover:text-blue-600 transition-colors duration-300">
                   Property Valuation
                 </h3>
-                <p className="text-gray-600 text-center text-sm sm:text-base group-hover:text-gray-700 transition-colors duration-300">
+                <p className="text-gray-600 text-center text-sm sm:text-base md:group-hover:text-gray-700 transition-colors duration-300">
                   Accurate property valuation services to help you understand
                   the true worth of your investment
                 </p>
 
                 {/* Hover Call-to-Action for Property Valuation */}
-                <div className="mt-4 sm:mt-6 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                <div className="mt-4 sm:mt-6 opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
                   <Link
                     href="/tools/property-valuation"
                     className="block text-center w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
@@ -261,10 +261,10 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
               <Link
                 href="/properties"
-                className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-bold transition-all duration-300 flex items-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base"
+                className="group bg-gradient-to-r from-emerald-500 to-teal-500 md:hover:from-emerald-600 md:hover:to-teal-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-bold transition-all duration-300 flex items-center shadow-lg md:hover:shadow-xl md:transform md:hover:-translate-y-1 text-sm sm:text-base"
               >
                 View All Properties
-                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                <FaArrowRight className="ml-2 md:group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
 
               <div className="flex items-center text-gray-500 text-xs sm:text-sm">
@@ -296,7 +296,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-xl hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-xl md:hover:bg-white/15 transition-all duration-300">
               <FaQuoteLeft className="text-amber-300 text-2xl sm:text-3xl mb-3 sm:mb-4" />
               <p className="mb-4 sm:mb-6 text-slate-100 text-sm sm:text-base">
                 &ldquo;Shah Properties helped me find my dream home in Dehradun.
@@ -314,7 +314,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-xl hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-xl md:hover:bg-white/15 transition-all duration-300">
               <FaQuoteLeft className="text-amber-300 text-2xl sm:text-3xl mb-3 sm:mb-4" />
               <p className="mb-4 sm:mb-6 text-slate-100 text-sm sm:text-base">
                 &ldquo;I was looking for an investment property and Shah
@@ -331,7 +331,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-xl hover:bg-white/15 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-xl md:hover:bg-white/15 transition-all duration-300">
               <FaQuoteLeft className="text-amber-300 text-2xl sm:text-3xl mb-3 sm:mb-4" />
               <p className="mb-4 sm:mb-6 text-slate-100 text-sm sm:text-base">
                 &ldquo;The team at Shah Properties was professional and

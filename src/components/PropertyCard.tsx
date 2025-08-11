@@ -31,7 +31,7 @@ const formatPrice = (price: number): string => {
 export default function PropertyCard({ property }: PropertyCardProps) {
   return (
     <div className="h-full">
-      <div className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full transform hover:-translate-y-2 hover:scale-[1.02] border border-gray-100">
+      <div className="group relative bg-white rounded-xl overflow-hidden shadow-lg md:hover:shadow-2xl transition-all duration-500 h-full md:transform md:hover:-translate-y-2 md:hover:scale-[1.02] border border-gray-100">
         {/* Image Container with Overlay Actions wrapped in Link */}
         <Link
           href={`/properties/${property.id}`}
@@ -43,23 +43,23 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             alt={`${property.title} - ${property.location}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-contain bg-gray-100 transition-transform duration-700 group-hover:scale-110"
+            className="object-contain bg-gray-100 transition-transform duration-700 md:group-hover:scale-110"
             priority={false}
             loading="lazy"
             quality={75}
           />
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"></div>
 
           {/* Property Type Badge */}
-          <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold text-xs sm:text-sm shadow-lg transform translate-y-0 group-hover:-translate-y-1 transition-transform duration-300">
+          <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold text-xs sm:text-sm shadow-lg transform translate-y-0 md:group-hover:-translate-y-1 transition-transform duration-300">
             {property.type}
           </div>
 
           {/* Price Badge - Enhanced */}
           <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
-            <div className="bg-white/95 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+            <div className="bg-white/95 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-1.5 sm:py-2 shadow-xl transform translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
               <p className="text-emerald-600 font-bold text-lg sm:text-xl mb-0.5 sm:mb-1">
                 {formatPrice(property.price)}
               </p>
@@ -78,7 +78,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             className="block"
             prefetch={false}
           >
-            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3 line-clamp-1 group-hover:text-emerald-600 transition-colors duration-300">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3 line-clamp-1 md:group-hover:text-emerald-600 transition-colors duration-300">
               {property.title}
             </h3>
           </Link>
@@ -101,21 +101,21 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex space-x-2 sm:space-x-3">
+          <div className="flex space-x-2 sm:space-x-3 items-center">
             <Link
               href={`/properties/${property.id}`}
-              className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-center hover:shadow-lg hover:shadow-emerald-500/25 transform hover:-translate-y-0.5 text-sm sm:text-base"
+              className="flex-1 inline-flex items-center justify-center h-10 sm:h-11 bg-gradient-to-r from-emerald-500 to-teal-500 md:hover:from-emerald-600 md:hover:to-teal-600 text-white px-3 sm:px-4 rounded-lg font-medium leading-none transition-all duration-300 text-center md:hover:shadow-lg md:hover:shadow-emerald-500/25 md:transform md:hover:-translate-y-0.5 text-sm sm:text-base"
               prefetch={false}
             >
               View Details
             </Link>
             <Link
               href={`/properties/${property.id}#contact`}
-              className="bg-white border-2 border-emerald-500 text-emerald-500 hover:bg-emerald-50 p-1.5 sm:p-2 rounded-lg transition-all duration-300 hover:scale-110"
+              className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 bg-white border-2 border-emerald-500 text-emerald-500 md:hover:bg-emerald-50 rounded-lg transition-all duration-300 md:hover:scale-110"
               prefetch={false}
               aria-label={`Contact about ${property.title}`}
             >
-              <FaPhone className="w-3 h-3 sm:w-4 sm:h-4" />
+              <FaPhone className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
           </div>
         </div>

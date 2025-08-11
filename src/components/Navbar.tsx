@@ -71,19 +71,19 @@ export default function Navbar() {
             </Link>
             <Link
               href="/properties"
-              className="font-medium text-gray-700 hover:text-blue-900 transition-colors duration-200"
+              className="font-medium text-gray-700 md:hover:text-blue-900 transition-colors duration-200"
             >
               Properties
             </Link>
             <Link
               href="/about"
-              className="font-medium text-gray-700 hover:text-blue-900 transition-colors duration-200"
+              className="font-medium text-gray-700 md:hover:text-blue-900 transition-colors duration-200"
             >
               About
             </Link>
             <Link
               href="/tools"
-              className="font-medium text-gray-700 hover:text-blue-900 transition-colors duration-200"
+              className="font-medium text-gray-700 md:hover:text-blue-900 transition-colors duration-200"
             >
               Tools
             </Link>

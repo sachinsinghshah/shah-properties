@@ -61,7 +61,7 @@ export const metadata: Metadata = {
       "Find your dream property in Dehradun with Shah Properties. Premium residential plots, commercial properties, and agricultural land in prime locations. Expert real estate services since 2005.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/image1.jpg",
         width: 1200,
         height: 630,
         alt: "Shah Properties - Premium Real Estate in Dehradun",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     title: "Shah Properties - Premium Real Estate in Dehradun",
     description:
       "Find your dream property in Dehradun with Shah Properties. Premium residential plots and properties.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/image1.jpg"],
     creator: "@shahproperties",
   },
   robots: {

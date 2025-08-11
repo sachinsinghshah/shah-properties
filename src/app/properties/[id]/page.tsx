@@ -1,19 +1,12 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import {
   FaMapMarkerAlt,
   FaRulerCombined,
   FaCalendarAlt,
-  FaPhone,
-  FaEnvelope,
-  FaFacebook,
-  FaShare,
-  FaHeart,
   FaArrowLeft,
   FaCheckCircle,
-  FaWhatsapp,
 } from "react-icons/fa";
 import { properties, getSimilarProperties } from "@/data/properties";
 import PropertyCard from "@/components/PropertyCard";
@@ -24,6 +17,11 @@ import PropertyContactButtons from "@/components/PropertyContactButtons";
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+// Pre-generate static params for ISR/SSG
+export function generateStaticParams() {
+  return properties.map((p) => ({ id: p.id }));
 }
 
 // Generate metadata for SEO
