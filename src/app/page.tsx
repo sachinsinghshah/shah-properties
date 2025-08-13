@@ -69,8 +69,12 @@ export default function Home() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section
-        className="relative w-full aspect-video min-h-[70vh] sm:min-h-[80vh] lg:min-h-[90vh] overflow-hidden"
-        style={{ minHeight: "70svh" }}
+        className="relative w-full overflow-hidden"
+        style={{
+          height: "100vh",
+          minHeight: "70vh",
+          maxHeight: "90vh",
+        }}
       >
         {/* Background Carousel */}
         <HeroCarouselClient />
@@ -123,7 +127,7 @@ export default function Home() {
           <SearchForm />
 
           {/* Quick Search Suggestions - Hidden on mobile */}
-          <div className="hidden sm:block mt-3 sm:mt-4 md:mt-6 flex flex-wrap gap-1 sm:gap-2 justify-center">
+          <div className="hidden sm:flex mt-3 sm:mt-4 md:mt-6 flex-wrap gap-1 sm:gap-2 justify-center">
             <span className="text-white/80 text-xs sm:text-sm mr-2">
               Popular:
             </span>
