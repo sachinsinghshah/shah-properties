@@ -78,7 +78,7 @@ export default async function PropertyDetailPage({ params }: Props) {
     "@type": "RealEstateListing",
     name: property.title,
     description: property.description,
-    url: `https://shahproperties.com/properties/${id}`,
+    url: `https://shahproperties.8bitcode.in/properties/${id}`,
     image: property.images,
     price: {
       "@type": "PriceSpecification",

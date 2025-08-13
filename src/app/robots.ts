@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ["/api/", "/admin/"],
     },
     sitemap: `${
-      process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com"
+      process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.8bitcode.in"
     }/sitemap.xml`,
   };
 }

@@ -3,7 +3,7 @@ import { properties } from "@/data/properties";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com";
+    process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.8bitcode.in";
 
   // Static pages with enhanced metadata
   const staticPages = [

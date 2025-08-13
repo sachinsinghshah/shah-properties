@@ -45,7 +45,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 GOOGLE_VERIFICATION_CODE=xxxxxxxxxxxxxxxxxx
 
 # Base URL
-NEXT_PUBLIC_BASE_URL=https://shahproperties.com
+NEXT_PUBLIC_BASE_URL=https://shahproperties.8bitcode.in
 ```
 
 ### **5. Test the Setup**
@@ -111,7 +111,7 @@ NEXT_PUBLIC_BASE_URL=https://shahproperties.com
 
 ### **3. Search Console Optimization**
 
-- **Submit Sitemap**: `https://shahproperties.com/sitemap.xml`
+- **Submit Sitemap**: `https://shahproperties.8bitcode.in/sitemap.xml`
 - **Monitor Core Web Vitals**
 - **Track Search Performance**
 - **Fix any indexing issues**

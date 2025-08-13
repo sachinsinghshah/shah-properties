@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://shahproperties.com",
+    canonical: "https://shahproperties.8bitcode.in",
   },
 };
 

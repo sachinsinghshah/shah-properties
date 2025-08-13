@@ -1,6 +1,6 @@
 {
   "lighthouseVersion": "12.8.1",
-  "requestedUrl": "https://shahproperties.com/",
+  "requestedUrl": "https://shahproperties.8bitcode.in/",
   "mainDocumentUrl": "chrome-error://chromewebdata/",
   "finalDisplayedUrl": "chrome-error://chromewebdata/",
   "finalUrl": "chrome-error://chromewebdata/",
@@ -13,7 +13,7 @@
     "artifactKey": "PageLoadError"
   },
   "runWarnings": [
-    "The page may not be loading as expected because your test URL (https://shahproperties.com/) was redirected to chrome-error://chromewebdata/. Try testing the second URL directly.",
+    "The page may not be loading as expected because your test URL (https://shahproperties.8bitcode.in/) was redirected to chrome-error://chromewebdata/. Try testing the second URL directly.",
     "Chrome prevented page load with an interstitial. Make sure you are testing the correct URL and that the server is properly responding to all requests."
   ],
   "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
@@ -5084,7 +5084,7 @@
       "core/gather/driver/navigation.js | warningRedirected": [
         {
           "values": {
-            "requested": "https://shahproperties.com/",
+            "requested": "https://shahproperties.8bitcode.in/",
             "final": "chrome-error://chromewebdata/"
           },
           "path": "runWarnings[0]"

@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com"
+    process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.8bitcode.in"
   ),
   title: {
     default:
@@ -42,7 +42,9 @@ export const metadata: Metadata = {
     "RERA approved properties",
     "bank loan property Dehradun",
   ],
-  authors: [{ name: "Roshan Singh Shah", url: "https://shahproperties.com" }],
+  authors: [
+    { name: "Roshan Singh Shah", url: "https://shahproperties.8bitcode.in" },
+  ],
   creator: "Shah Properties",
   publisher: "Shah Properties",
   formatDetection: {
@@ -53,7 +55,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com",
+    url:
+      process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.8bitcode.in",
     siteName: "Shah Properties",
     title:
       "Shah Properties - Premium Real Estate in Dehradun | Residential Plots & Properties",
@@ -93,7 +96,8 @@ export const metadata: Metadata = {
     yahoo: process.env.YAHOO_VERIFICATION_CODE,
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.com",
+    canonical:
+      process.env.NEXT_PUBLIC_BASE_URL || "https://shahproperties.8bitcode.in",
   },
   category: "Real Estate",
   classification: "Business",
@@ -124,7 +128,7 @@ export default function RootLayout({
               alternateName: "Shah Properties Dehradun",
               description:
                 "Premium real estate services in Dehradun, Uttarakhand. Specializing in residential plots, commercial properties, and agricultural land.",
-              url: "https://shahproperties.com",
+              url: "https://shahproperties.8bitcode.in",
               telephone: "+91-8383815279",
               email: "shahproperties03@gmail.com",
               address: {
@@ -188,9 +192,9 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Shah Properties",
-              image: "https://shahproperties.com/images/logo.png",
+              image: "https://shahproperties.8bitcode.in/images/logo.png",
               description: "Premium real estate services in Dehradun",
-              url: "https://shahproperties.com",
+              url: "https://shahproperties.8bitcode.in",
               telephone: "+91-8383815279",
               address: {
                 "@type": "PostalAddress",

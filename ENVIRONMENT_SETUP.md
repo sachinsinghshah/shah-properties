@@ -16,7 +16,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 GOOGLE_VERIFICATION_CODE=xxxxxxxxxxxxxxxxxx
 
 # Base URL for your website
-NEXT_PUBLIC_BASE_URL=https://shahproperties.com
+NEXT_PUBLIC_BASE_URL=https://shahproperties.8bitcode.in
 
 # Optional: Other search engine verifications
 YANDEX_VERIFICATION_CODE=xxxxxxxxxxxxxxxxxx
@@ -46,7 +46,7 @@ SMTP_PASS=your-app-password
 
 ### **3. Base URL**
 
-- Use your actual domain: `https://shahproperties.com`
+- Use your actual domain: `https://shahproperties.8bitcode.in`
 
 ## ⚠️ **Important Notes**
 
