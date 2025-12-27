@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "About Us - Shah Properties Real Estate Experts",
   description:
     "Learn about Shah Properties, founded by retired Indian Army professional Roshan Singh Shah. Our mission is to provide honest property dealings in Dehradun after experiencing fraud firsthand.",
+  alternates: {
+    canonical: "https://shahproperties.8bitcode.in/about",
+  },
   openGraph: {
     title: "About Shah Properties - Founded by Retired Army Officer",
     description:
