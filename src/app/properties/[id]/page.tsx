@@ -38,6 +38,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${property.title} | Shah Properties`,
     description: property.description.substring(0, 160),
+    alternates: {
+      canonical: `https://shahproperties.8bitcode.in/properties/${id}`,
+    },
     openGraph: {
       title: property.title,
       description: property.description.substring(0, 160),
