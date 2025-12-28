@@ -249,7 +249,7 @@ export default function RootLayout({
 
         {/* Avoid preloading non-critical assets to reduce bandwidth */}
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} cz-shortcut-listen="true">
         {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics

@@ -1,14 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import {
-  FaCalendar,
-  FaUser,
-  FaClock,
-  FaArrowRight,
-  FaHome,
-  FaChartLine,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+import { blogsPostsInterface } from "@/types";
+import SectionBlogs from "@/components/blog/SectionBlogs";
 
 export const metadata: Metadata = {
   title: "Real Estate Blog - Dehradun Property Insights & Market Trends",
@@ -40,7 +33,8 @@ export const metadata: Metadata = {
 };
 
 // Blog posts data (will be moved to database/CMS later)
-const blogPosts = [
+
+const blogPosts: blogsPostsInterface[] = [
   {
     id: "top-residential-areas-dehradun-2025",
     title: "Top 10 Residential Areas in Dehradun for 2025",
@@ -51,7 +45,19 @@ const blogPosts = [
     date: "2025-01-15",
     readTime: "8 min read",
     image: "/images/blog/residential-areas.jpg",
-    icon: FaHome,
+    icon: "home",
+  },
+  {
+    id: "top-residential-areas-dehradun-2027",
+    title: "Top 10 Residential Areas in Dehradun for 2027",
+    excerpt:
+      "Discover the best localities in Dehradun for residential property investment. Complete analysis of infrastructure, connectivity, and ROI potential.",
+    category: "Investment Guide",
+    author: "Roshan Singh Shah",
+    date: "2025-01-15",
+    readTime: "8 min read",
+    image: "/images/blog/residential-areas.jpg",
+    icon: "home",
   },
   {
     id: "dehradun-market-trends-2025",
@@ -63,7 +69,7 @@ const blogPosts = [
     date: "2025-01-10",
     readTime: "10 min read",
     image: "/images/blog/market-trends.jpg",
-    icon: FaChartLine,
+    icon: "chartLine",
   },
   {
     id: "complete-guide-buying-property-dehradun",
@@ -75,7 +81,7 @@ const blogPosts = [
     date: "2025-01-05",
     readTime: "12 min read",
     image: "/images/blog/buying-guide.jpg",
-    icon: FaHome,
+    icon: "home",
   },
   {
     id: "kalyanpur-vs-pondha-comparison",
@@ -87,7 +93,7 @@ const blogPosts = [
     date: "2024-12-28",
     readTime: "7 min read",
     image: "/images/blog/location-comparison.jpg",
-    icon: FaMapMarkerAlt,
+    icon: "mapMarkerAlt",
   },
 ];
 
@@ -112,85 +118,7 @@ export default function BlogPage() {
       {/* Blog Posts Grid */}
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Categories Filter */}
-          <div className="flex flex-wrap gap-3 mb-12 justify-center">
-            <button className="px-6 py-2 bg-emerald-600 text-white rounded-full font-medium hover:bg-emerald-700 transition-colors">
-              All Posts
-            </button>
-            <button className="px-6 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-emerald-50 transition-colors border border-gray-200">
-              Investment Guide
-            </button>
-            <button className="px-6 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-emerald-50 transition-colors border border-gray-200">
-              Market Analysis
-            </button>
-            <button className="px-6 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-emerald-50 transition-colors border border-gray-200">
-              Buyer&apos;s Guide
-            </button>
-            <button className="px-6 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-emerald-50 transition-colors border border-gray-200">
-              Location Guide
-            </button>
-          </div>
-
-          {/* Blog Posts */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {blogPosts.map((post) => (
-              <article
-                key={post.id}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
-              >
-                {/* Image */}
-                <div className="relative h-64 bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center overflow-hidden">
-                  <post.icon className="text-8xl text-emerald-600/20 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="absolute top-4 left-4 bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium">
-                    {post.category}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
-                    {post.title}
-                  </h2>
-
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Meta Information */}
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
-                    <div className="flex items-center gap-1">
-                      <FaUser className="text-emerald-600" />
-                      <span>{post.author}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FaCalendar className="text-emerald-600" />
-                      <span>
-                        {new Date(post.date).toLocaleDateString("en-IN", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FaClock className="text-emerald-600" />
-                      <span>{post.readTime}</span>
-                    </div>
-                  </div>
-
-                  {/* Read More Link */}
-                  <Link
-                    href={`/blog/${post.id}`}
-                    className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors group"
-                  >
-                    Read Full Article
-                    <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
+          <SectionBlogs posts={blogPosts} />
           {/* Coming Soon Notice */}
           <div className="mt-16 text-center">
             <div className="inline-block bg-amber-50 border border-amber-200 rounded-xl p-6">
@@ -267,4 +195,3 @@ export default function BlogPage() {
     </main>
   );
 }
-

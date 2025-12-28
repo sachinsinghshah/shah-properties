@@ -1,3 +1,24 @@
+import { IconType } from "react-icons";
+import {
+  FaCalendar,
+  FaUser,
+  FaClock,
+  FaArrowRight,
+  FaHome,
+  FaChartLine,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+
+export const iconMap: Record<string, IconType> = {
+  calendar: FaCalendar,
+  user: FaUser,
+  clock: FaClock,
+  arrowRight: FaArrowRight,
+  home: FaHome,
+  chartLine: FaChartLine,
+  mapMarkerAlt: FaMapMarkerAlt,
+};
+
 // Unified Property interface for the entire application
 export interface Property {
   id: string; // Changed from number to string to match data
@@ -63,4 +84,16 @@ export interface ApiResponse<T> {
 export interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
+}
+
+export interface blogsPostsInterface {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  author: string;
+  date: string;
+  readTime: string;
+  image: string;
+  icon: string;
 }
