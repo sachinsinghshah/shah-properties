@@ -48,18 +48,6 @@ const blogPosts: blogsPostsInterface[] = [
     icon: "home",
   },
   {
-    id: "top-residential-areas-dehradun-2027",
-    title: "Top 10 Residential Areas in Dehradun for 2027",
-    excerpt:
-      "Discover the best localities in Dehradun for residential property investment. Complete analysis of infrastructure, connectivity, and ROI potential.",
-    category: "Investment Guide",
-    author: "Roshan Singh Shah",
-    date: "2025-01-15",
-    readTime: "8 min read",
-    image: "/images/blog/residential-areas.jpg",
-    icon: "home",
-  },
-  {
     id: "dehradun-market-trends-2025",
     title: "Dehradun Real Estate Market Trends & Analysis 2025",
     excerpt:
@@ -95,6 +83,18 @@ const blogPosts: blogsPostsInterface[] = [
     image: "/images/blog/location-comparison.jpg",
     icon: "mapMarkerAlt",
   },
+  {
+    id: "kalyanpur-vs-pondha-comparison2",
+    title: "Kalyanpur vs Pondha: Best Location for Property Investment? teste",
+    excerpt:
+      "Detailed comparison of Kalyanpur and Pondha localities - infrastructure, connectivity, amenities, prices, and investment potential.",
+    category: "Location Guide",
+    author: "Roshan Singh Shah",
+    date: "2024-12-28",
+    readTime: "7 min read",
+    image: "/images/blog/location-comparison.jpg",
+    icon: "mapMarkerAlt",
+  },
 ];
 
 export default function BlogPage() {
@@ -118,7 +118,7 @@ export default function BlogPage() {
       {/* Blog Posts Grid */}
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionBlogs posts={blogPosts} />
+          <SectionBlogs blogPosts={blogPosts} />
           {/* Coming Soon Notice */}
           <div className="mt-16 text-center">
             <div className="inline-block bg-amber-50 border border-amber-200 rounded-xl p-6">

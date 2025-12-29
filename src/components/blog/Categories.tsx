@@ -18,15 +18,13 @@ export default function Categories({
 }) {
   const onUpdate = (category: string) => {
     setSelected(category);
-    if (category !== "all") {
-      const categories = originalPosts.filter(
-        (post) => post.category === category
-      );
-      onUpdateCategories(categories);
-      return;
-    }
-    onUpdateCategories(originalPosts);
+    const updateOriginalPosts =
+      category === "all"
+        ? originalPosts
+        : originalPosts.filter((post) => post.category === category);
+    onUpdateCategories(updateOriginalPosts);
   };
+
   return (
     <div className="flex flex-wrap gap-3 mb-12 justify-center">
       <button

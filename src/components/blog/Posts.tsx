@@ -1,12 +1,10 @@
 "use client";
-import { blogsPostsInterface, iconMap } from "@/types";
 import Link from "next/link";
+import { blogsPostsInterface, iconMap } from "@/types";
 import { FaArrowRight, FaCalendar, FaClock, FaUser } from "react-icons/fa";
+import { formatDate } from "@/lib/formatDate";
 
 export default function Posts({ posts }: { posts: blogsPostsInterface[] }) {
-  if (posts.length === 0) {
-    <div className="text-2xl text-black">Not posts found.</div>;
-  }
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
       {posts.map((post) => {
@@ -40,13 +38,7 @@ export default function Posts({ posts }: { posts: blogsPostsInterface[] }) {
                 </div>
                 <div className="flex items-center gap-1">
                   <FaCalendar className="text-emerald-600" />
-                  <span>
-                    {new Date(post.date).toLocaleDateString("en-IN", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </span>
+                  <span>{formatDate(post.date)}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <FaClock className="text-emerald-600" />
