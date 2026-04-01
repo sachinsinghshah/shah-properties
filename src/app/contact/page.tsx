@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { trackPhoneCall, trackContactForm } from "@/components/GoogleAnalytics";
 import {
@@ -39,7 +40,16 @@ const MapPlaceholder = ({ location }: { location: string }) => {
   );
 };
 
+const VALID_SUBJECTS = [
+  "General Inquiry",
+  "Property Viewing",
+  "Price Inquiry",
+  "Investment Advice",
+  "Other",
+];
+
 export default function ContactPage() {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -49,6 +59,13 @@ export default function ContactPage() {
   });
   const [showThankYou, setShowThankYou] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const subjectParam = searchParams.get("subject");
+    if (subjectParam && VALID_SUBJECTS.includes(subjectParam)) {
+      setFormData((prev) => ({ ...prev, subject: subjectParam }));
+    }
+  }, [searchParams]);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -140,7 +157,7 @@ export default function ContactPage() {
                 </div>
 
                 {showThankYou ? (
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 text-green-800 p-8 rounded-xl border border-green-200 text-center">
+                  <div aria-live="polite" className="bg-gradient-to-r from-green-50 to-emerald-50 text-green-800 p-8 rounded-xl border border-green-200 text-center">
                     <FaCheckCircle className="text-6xl text-green-600 mx-auto mb-4" />
                     <h3 className="text-2xl font-bold mb-3">
                       Thank you for contacting us!

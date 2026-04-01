@@ -7,8 +7,37 @@ import {
   createAutoReplyText,
 } from "@/lib/email";
 
+// Simple in-memory rate limiter: max 5 requests per IP per 10 minutes
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return false;
+  }
+  if (entry.count >= RATE_LIMIT) return true;
+  entry.count += 1;
+  return false;
+}
+
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+    if (isRateLimited(ip)) {
+      return NextResponse.json<ApiResponse<null>>(
+        { success: false, error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body: ContactForm = await request.json();
 
     // Validate required fields
@@ -20,6 +49,32 @@ export async function POST(request: NextRequest) {
           success: false,
           error: "Missing required fields",
         },
+        { status: 400 }
+      );
+    }
+
+    // Input length validation
+    if (name.length > 100) {
+      return NextResponse.json<ApiResponse<null>>(
+        { success: false, error: "Name must be 100 characters or fewer" },
+        { status: 400 }
+      );
+    }
+    if (email.length > 254) {
+      return NextResponse.json<ApiResponse<null>>(
+        { success: false, error: "Email address is too long" },
+        { status: 400 }
+      );
+    }
+    if (phone.length > 20) {
+      return NextResponse.json<ApiResponse<null>>(
+        { success: false, error: "Phone number is too long" },
+        { status: 400 }
+      );
+    }
+    if (message.length > 5000) {
+      return NextResponse.json<ApiResponse<null>>(
+        { success: false, error: "Message must be 5000 characters or fewer" },
         { status: 400 }
       );
     }
@@ -71,40 +126,26 @@ export async function POST(request: NextRequest) {
       html: autoReplyHTML,
     };
 
-    try {
-      // Send business notification email
-      await sendEmail(businessEmailData);
+    // Send business notification email — propagate failure to caller
+    await sendEmail(businessEmailData);
 
-      // Send auto-reply to customer (non-blocking)
-      // Temporarily disabled due to spam issues with Gmail SMTP
-      // TODO: Implement with professional email service like SendGrid
-      /*
+    // Send auto-reply to customer (non-blocking, failure does not affect response)
+    // Temporarily disabled due to spam issues with Gmail SMTP
+    // TODO: Implement with professional email service like SendGrid
+    /*
     try {
-      // Create plain text version for better deliverability
       const autoReplyText = createAutoReplyText(name);
-      const autoReplyDataWithText = {
-        ...autoReplyData,
-        text: autoReplyText,
-      };
-
-      await sendEmail(autoReplyDataWithText);
+      await sendEmail({ ...autoReplyData, text: autoReplyText });
     } catch (autoReplyError) {
-      // Log auto-reply failure but don't fail the main request
       if (process.env.NODE_ENV === "development") {
         console.error("Auto-reply email failed:", autoReplyError);
       }
     }
     */
-    } catch (emailError) {
-      // If email sending fails, log error but don't fail the request
-      // This ensures the user gets a response even if email service is down
-      if (process.env.NODE_ENV === "development") {
-        console.error("Business email failed:", emailError);
-      }
 
-      // In production, you might want to save to a queue for retry
-      // or store in database for manual follow-up
-    }
+    // Suppress unused variable warnings for the auto-reply variables
+    void autoReplyData;
+    void createAutoReplyText;
 
     // Return success response
     return NextResponse.json<ApiResponse<{ id: string }>>({
@@ -113,7 +154,6 @@ export async function POST(request: NextRequest) {
       data: { id: `contact_${Date.now()}` },
     });
   } catch (error) {
-    // Log error only in development
     if (process.env.NODE_ENV === "development") {
       console.error("Contact form error:", error);
     }
@@ -121,7 +161,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json<ApiResponse<null>>(
       {
         success: false,
-        error: "Internal server error. Please try again later.",
+        error: "Failed to send your message. Please try again later.",
       },
       { status: 500 }
     );

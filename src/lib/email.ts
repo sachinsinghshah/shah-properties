@@ -51,7 +51,7 @@ function createTransporter() {
     },
     // Additional options for better compatibility
     tls: {
-      rejectUnauthorized: false, // For self-signed certificates
+      rejectUnauthorized: true,
     },
     // Connection timeout settings
     connectionTimeout: 60000, // 60 seconds

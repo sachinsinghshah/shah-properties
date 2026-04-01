@@ -140,7 +140,7 @@ export default async function PropertyDetailPage({ params }: Props) {
             <div className="xl:col-span-2">
               {/* Property Images */}
               <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-                <ImageGallery images={property.images} title={property.title} />
+                <ImageGallery images={property.images} title={property.title} propertyType={property.type} />
               </div>
 
               {/* Property Details */}
@@ -392,15 +392,24 @@ export default async function PropertyDetailPage({ params }: Props) {
                     Quick Actions
                   </h4>
                   <div className="space-y-2">
-                    <button className="w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors">
+                    <Link
+                      href="/contact?subject=Property+Viewing"
+                      className="block w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors"
+                    >
                       📋 Schedule Property Viewing
-                    </button>
-                    <button className="w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors">
+                    </Link>
+                    <Link
+                      href="/contact?subject=Price+Inquiry"
+                      className="block w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors"
+                    >
                       💰 Get Price Negotiation
-                    </button>
-                    <button className="w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors">
+                    </Link>
+                    <Link
+                      href="/contact?subject=General+Inquiry"
+                      className="block w-full text-left text-sm text-yellow-700 hover:text-yellow-900 transition-colors"
+                    >
                       📄 Request Documents
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
