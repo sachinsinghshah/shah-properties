@@ -28,9 +28,8 @@ export default function WhatsAppButton({
 
   // Handle WhatsApp click for analytics
   const handleClick = () => {
-    // Track in Google Analytics if available
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "whatsapp_click", {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "whatsapp_click", {
         event_category: "engagement",
         event_label: propertyTitle || "general_inquiry",
       });

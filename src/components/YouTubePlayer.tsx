@@ -8,8 +8,8 @@ interface YouTubePlayerProps {
   startTime?: number;
   endTime?: number;
   className?: string;
-  onReady?: (event: any) => void;
-  onStateChange?: (event: any) => void;
+  onReady?: (event: { target: YT.Player }) => void;
+  onStateChange?: (event: { target: YT.Player; data: number }) => void;
 }
 
 const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
@@ -20,9 +20,9 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   onReady,
   onStateChange,
 }) => {
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<YT.Player | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Extract video ID from YouTube URL
   const getVideoId = (url: string): string => {
     const regExp =
       /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -51,13 +51,11 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     },
   };
 
-  const handleReady = (event: any) => {
+  const handleReady = (event: { target: YT.Player }) => {
     playerRef.current = event.target;
 
-    // Force seek to start time and play
     if (startTime) {
-      event.target.seekTo(startTime, true); // true forces allowSeekAhead
-      // Small delay to ensure seek completes before playing
+      event.target.seekTo(startTime, true);
       setTimeout(() => {
         event.target.playVideo();
       }, 200);
@@ -68,37 +66,25 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     }
   };
 
-  const handleStateChange = (event: any) => {
-    // YouTube states: -1 (unstarted), 0 (ended), 1 (playing), 2 (paused), 3 (buffering), 5 (video cued)
-
+  const handleStateChange = (event: { target: YT.Player; data: number }) => {
     if (event.data === 1) {
-      // Playing - Set up continuous monitoring for strict timeframe enforcement
       const monitorTimeframe = () => {
         if (playerRef.current) {
           const currentTime = playerRef.current.getCurrentTime();
-
-          // If we're before the start time, seek to start time
           if (startTime && currentTime < startTime) {
-            playerRef.current.seekTo(startTime);
+            playerRef.current.seekTo(startTime, true);
           }
-
-          // If we're past the end time, seek back to start time
           if (endTime && currentTime >= endTime) {
-            playerRef.current.seekTo(startTime || 0);
+            playerRef.current.seekTo(startTime || 0, true);
           }
         }
       };
 
-      // Monitor every 100ms to ensure strict timeframe compliance
-      const interval = setInterval(monitorTimeframe, 100);
-
-      // Store interval reference for cleanup
-      (playerRef.current as any)._timeframeInterval = interval;
+      intervalRef.current = setInterval(monitorTimeframe, 100);
     } else {
-      // Clear monitoring when not playing
-      if (playerRef.current && (playerRef.current as any)._timeframeInterval) {
-        clearInterval((playerRef.current as any)._timeframeInterval);
-        (playerRef.current as any)._timeframeInterval = null;
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
       }
     }
 
@@ -108,13 +94,11 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   };
 
   useEffect(() => {
-    // Cleanup function
     return () => {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+      }
       if (playerRef.current) {
-        // Clear any running timeframe monitoring interval
-        if ((playerRef.current as any)._timeframeInterval) {
-          clearInterval((playerRef.current as any)._timeframeInterval);
-        }
         playerRef.current.destroy();
       }
     };

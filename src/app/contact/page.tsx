@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { trackPhoneCall, trackContactForm } from "@/components/GoogleAnalytics";
@@ -48,7 +48,7 @@ const VALID_SUBJECTS = [
   "Other",
 ];
 
-export default function ContactPage() {
+function ContactContent() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
@@ -533,5 +533,13 @@ export default function ContactPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={null}>
+      <ContactContent />
+    </Suspense>
   );
 }

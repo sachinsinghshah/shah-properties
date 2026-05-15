@@ -51,8 +51,7 @@ export default function Breadcrumbs({
 
 // Helper function to generate breadcrumbs for property pages
 export function getPropertyBreadcrumbs(
-  propertyTitle: string,
-  propertyId: string
+  propertyTitle: string
 ) {
   return [
     { label: "Properties", href: "/properties" },

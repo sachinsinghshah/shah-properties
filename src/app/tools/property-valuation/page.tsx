@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
 import {
@@ -302,7 +303,7 @@ export default function PropertyValuationPage() {
 
                 <p className="text-gray-700 mb-4">
                   Our property valuation tool uses advanced algorithms and local
-                  market data to provide an accurate estimate of your property's
+                  market data to provide an accurate estimate of your property&apos;s
                   value.
                 </p>
 
@@ -343,12 +344,12 @@ export default function PropertyValuationPage() {
                   Contact Us
                 </a>
 
-                <a
+                <Link
                   href="/properties"
                   className="block w-full text-center border border-white text-white hover:bg-white/10 py-3 rounded-md font-medium transition-colors"
                 >
                   Browse Properties
-                </a>
+                </Link>
               </div>
             </div>
           </div>

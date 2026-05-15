@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 interface ImageDebugProps {
@@ -32,6 +31,7 @@ export default function ImageDebug({ src, alt, propertyId }: ImageDebugProps) {
 
       <div className="relative h-64 w-full overflow-hidden bg-gray-100 rounded">
         {!imageError ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={src}
             alt={alt}

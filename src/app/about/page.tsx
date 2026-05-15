@@ -52,7 +52,7 @@ export default function AboutPage() {
                   <strong>Roshan Singh Shah</strong>, a retired Indian Army
                   professional who dedicated 32 years of his life serving our
                   nation in the Core of Signals division. After three decades of
-                  unwavering commitment to protecting India's borders and
+                  unwavering commitment to protecting India&apos;s borders and
                   ensuring secure communications, Sub Maj & Hny. Lt Shah thought
                   his service days were behind him.
                 </p>
@@ -72,11 +72,11 @@ export default function AboutPage() {
                   to exploit those seeking their dream homes.
                 </p>
                 <p className="text-gray-700">
-                  "I spent 32 years protecting this country from external
-                  threats," says Sub Maj & Hny. Lt Shah, "but I realized there
-                  was another battle to fight – protecting honest, hardworking
+                  &ldquo;I spent 32 years protecting this country from external
+                  threats,&rdquo; says Sub Maj & Hny. Lt Shah, &ldquo;but I realized there
+                  was another battle to fight &ndash; protecting honest, hardworking
                   families from those who would cheat them out of their life
-                  savings."
+                  savings.&rdquo;
                 </p>
               </div>
               <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl bg-gray-100">
@@ -101,18 +101,18 @@ export default function AboutPage() {
               Our Mission: Honesty in Every Transaction
             </h2>
             <p className="text-lg text-gray-700 mb-8 max-w-4xl mx-auto">
-              After witnessing and experiencing the rampant fraud in Dehradun's
+              After witnessing and experiencing the rampant fraud in Dehradun&apos;s
               property market, Sub Maj & Hny. Lt Shah made a solemn promise: no
               family should have to face what he faced. Shah Properties was
-              established with a simple yet powerful mission – to provide
-              transparent, honest property dealings where the client's interest
+              established with a simple yet powerful mission &ndash; to provide
+              transparent, honest property dealings where the client&apos;s interest
               always comes first.
             </p>
             <div className="bg-blue-900 text-white p-8 rounded-lg max-w-3xl mx-auto">
               <blockquote className="text-xl italic">
-                "Just as I served to protect our nation's borders, I now serve
+                &ldquo;Just as I served to protect our nation&apos;s borders, I now serve
                 to protect families from property fraud. Every transaction is a
-                chance to restore faith in honest business."
+                chance to restore faith in honest business.&rdquo;
               </blockquote>
               <p className="mt-4 font-semibold">
                 - Sub Maj & Hny. Lt Roshan Singh Shah (Retd.)
@@ -192,7 +192,7 @@ export default function AboutPage() {
                 </h3>
                 <p className="text-gray-700">
                   Fighting property fraud with the same determination used to
-                  defend our country's borders for over three decades.
+                  defend our country&apos;s borders for over three decades.
                 </p>
               </div>
 
@@ -202,7 +202,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Local Expertise</h3>
                 <p className="text-gray-700">
-                  Deep understanding of Dehradun's property landscape, gained
+                  Deep understanding of Dehradun&apos;s property landscape, gained
                   through personal experience and a commitment to serving the
                   local community.
                 </p>
@@ -221,16 +221,16 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="bg-white p-8 rounded-lg shadow-md">
                 <h3 className="text-2xl font-bold text-blue-900 mb-4">
-                  We've Been Where You Are
+                  We&apos;ve Been Where You Are
                 </h3>
                 <p className="text-gray-700 mb-4">
-                  Sub Maj & Hny. Lt Shah's personal experience with property
-                  fraud means we understand exactly what families face. We've
+                  Sub Maj & Hny. Lt Shah&apos;s personal experience with property
+                  fraud means we understand exactly what families face. We&apos;ve
                   walked in your shoes, felt the frustration, and know the red
                   flags to watch for.
                 </p>
                 <p className="text-gray-700">
-                  This isn't just business for us – it's personal. Every client
+                  This isn&apos;t just business for us &ndash; it&apos;s personal. Every client
                   reminds us of our own experience and strengthens our resolve
                   to ensure no one else faces what we faced.
                 </p>
@@ -258,11 +258,11 @@ export default function AboutPage() {
                 </h3>
                 <p className="text-gray-700 mb-4">
                   We refuse to participate in the inflation and deception that
-                  plagues Dehradun's property market. Our clients get honest
+                  plagues Dehradun&apos;s property market. Our clients get honest
                   market prices, transparent dealings, and no hidden surprises.
                 </p>
                 <p className="text-gray-700">
-                  Your financial security is as important to us as our nation's
+                  Your financial security is as important to us as our nation&apos;s
                   security was during our military service.
                 </p>
               </div>
@@ -272,8 +272,8 @@ export default function AboutPage() {
                   A Personal Mission
                 </h3>
                 <p className="text-gray-700 mb-4">
-                  This isn't just another business venture. It's a continuation
-                  of Sub Maj & Hny. Lt Shah's service to protect and serve, now
+                  This isn&apos;t just another business venture. It&apos;s a continuation
+                  of Sub Maj & Hny. Lt Shah&apos;s service to protect and serve, now
                   focused on defending families from property fraud.
                 </p>
                 <p className="text-gray-700">

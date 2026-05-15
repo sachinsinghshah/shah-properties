@@ -7,28 +7,28 @@ interface GoogleAnalyticsProps {
   GA_MEASUREMENT_ID: string;
 }
 
+type GtagCommand = "config" | "event" | "js";
+
 // Declare gtag and dataLayer on window object
 declare global {
   interface Window {
-    gtag: (
-      command: "config" | "event" | "js",
-      targetId: string,
-      config?: Record<string, any>
+    gtag?: (
+      command: GtagCommand,
+      targetId: string | Date,
+      config?: Record<string, unknown>
     ) => void;
-    dataLayer: any[];
+    dataLayer: unknown[][];
   }
 }
 
 export default function GoogleAnalytics({
   GA_MEASUREMENT_ID,
 }: GoogleAnalyticsProps) {
-  if (!GA_MEASUREMENT_ID) {
-    return null;
-  }
-
   useEffect(() => {
+    if (!GA_MEASUREMENT_ID) return;
+
     // Check if gtag is already loaded
-    if (typeof window !== "undefined" && (window as any).gtag) {
+    if (typeof window !== "undefined" && window.gtag) {
       return;
     }
 
@@ -39,10 +39,10 @@ export default function GoogleAnalytics({
     script1.onload = () => {
       // Initialize gtag
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) {
-        window.dataLayer.push(arguments);
+      function gtag(...args: unknown[]) {
+        window.dataLayer.push(args);
       }
-      window.gtag = gtag;
+      window.gtag = gtag as typeof window.gtag;
 
       gtag("js", new Date());
       gtag("config", GA_MEASUREMENT_ID, {
@@ -63,14 +63,17 @@ export default function GoogleAnalytics({
     document.head.appendChild(script1);
 
     return () => {
-      // Cleanup
       if (script1.parentNode) {
         script1.parentNode.removeChild(script1);
       }
     };
   }, [GA_MEASUREMENT_ID]);
 
-  return null; // This component doesn't render anything visible
+  if (!GA_MEASUREMENT_ID) {
+    return null;
+  }
+
+  return null;
 }
 
 // Helper function to track custom events

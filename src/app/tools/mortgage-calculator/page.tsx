@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
 import {
@@ -8,7 +9,6 @@ import {
   FaInfoCircle,
   FaChartLine,
   FaHome,
-  FaRupeeSign,
 } from "react-icons/fa";
 
 export default function MortgageCalculatorPage() {
@@ -100,6 +100,7 @@ export default function MortgageCalculatorPage() {
     propertyTax,
     homeInsurance,
     principalInterest,
+    totalInterest,
   ]);
 
   // Format number as Indian currency
@@ -462,12 +463,12 @@ export default function MortgageCalculatorPage() {
                   to find your dream home in Dehradun.
                 </p>
 
-                <a
+                <Link
                   href="/properties"
                   className="block w-full text-center bg-white text-blue-900 hover:bg-blue-50 py-3 rounded-md font-medium transition-colors"
                 >
                   Browse Properties
-                </a>
+                </Link>
               </div>
 
               {/* EMI Formula */}

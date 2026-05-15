@@ -100,7 +100,7 @@ const TimeframeVideo: React.FC<TimeframeVideoProps> = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [videoId, startTime, endTime, onVideoReady]);
+  }, [videoId, startTime, endTime, onVideoReady, onTimeframeComplete]);
 
   if (!videoId) {
     return (

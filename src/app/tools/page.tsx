@@ -36,7 +36,7 @@ export default function ToolsPage() {
               </h2>
               <p className="text-gray-700 max-w-3xl mx-auto">
                 Shah Properties offers a suite of powerful tools designed to
-                simplify your real estate journey. Whether you're buying,
+                simplify your real estate journey. Whether you&apos;re buying,
                 selling, or investing, these resources will help you make
                 data-driven decisions with confidence.
               </p>
@@ -242,7 +242,7 @@ export default function ToolsPage() {
               </h2>
               <p className="text-gray-700 max-w-3xl mx-auto">
                 Our property tools are designed with accuracy and ease of use in
-                mind. Here's what sets them apart:
+                mind. Here&apos;s what sets them apart:
               </p>
             </div>
 
@@ -263,7 +263,7 @@ export default function ToolsPage() {
                   User-Friendly
                 </h3>
                 <p className="text-gray-700">
-                  We've designed our tools to be intuitive and easy to use,
+                  We&apos;ve designed our tools to be intuitive and easy to use,
                   regardless of your level of real estate experience. Get the
                   information you need quickly.
                 </p>

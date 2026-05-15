@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import type SMTPTransport from "nodemailer/lib/smtp-transport";
 
 // Email configuration interface
 interface EmailConfig {
@@ -41,7 +42,7 @@ function createTransporter() {
   const isGmail = config.host === "smtp.gmail.com";
   const useSecurePort = isGmail && config.port === 587 ? false : config.secure;
 
-  return nodemailer.createTransport({
+  const transportOptions: SMTPTransport.Options = {
     host: config.host,
     port: config.port,
     secure: useSecurePort,
@@ -49,23 +50,17 @@ function createTransporter() {
       user: config.user,
       pass: config.pass,
     },
-    // Additional options for better compatibility
     tls: {
       rejectUnauthorized: true,
     },
-    // Connection timeout settings
-    connectionTimeout: 60000, // 60 seconds
-    greetingTimeout: 30000, // 30 seconds
-    socketTimeout: 60000, // 60 seconds
-    // Retry settings
-    maxConnections: 1,
-    maxMessages: 3,
-    // Pool settings for better reliability
-    pool: false,
-    // Debug mode for troubleshooting
+    connectionTimeout: 60000,
+    greetingTimeout: 30000,
+    socketTimeout: 60000,
     debug: process.env.NODE_ENV === "development",
     logger: process.env.NODE_ENV === "development",
-  } as any);
+  };
+
+  return nodemailer.createTransport(transportOptions);
 }
 
 // Send email function
